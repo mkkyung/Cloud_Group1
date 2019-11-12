@@ -1,0 +1,7 @@
+<View xmlns="sap.f" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" controllerName="Cloud_Group1_ProjectCloud_Group1_Project.controller.vendor.FlexibleColumnLayout" height="100%">
+	<FlexibleColumnLayout id="fcl">
+		<beginColumnPages>
+			<mvc:XMLView id="beginView" viewName="Cloud_Group1_ProjectCloud_Group1_Project.view.vendor.List" />
+		</beginColumnPages>
+	</FlexibleColumnLayout>
+</View>

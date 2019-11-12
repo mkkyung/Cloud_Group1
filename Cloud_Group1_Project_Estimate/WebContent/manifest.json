@@ -1,0 +1,233 @@
+{
+	"_version": "1.7.0",
+	"sap.app": {
+		"id": "Cloud_Group1_ProjectCloud_Group1_Project",
+		"type": "application",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "APP",
+		"description": "APP",
+		"sourceTemplate": {
+			"id": "ui5template.basicSAPUI5ApplicationProject",
+			"version": "1.40.12"
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": [
+			"sap_hcb",
+			"sap_belize"
+		]
+	},
+	"sap.ui5": {
+		"rootView": {
+			"viewName": "Cloud_Group1_ProjectCloud_Group1_Project.view.products.List",
+			"type": "XML",
+			"async": true,
+			"id": "apps"
+		},
+		"dependencies": {
+			"minUI5Version": "1.30.0",
+			"libs": {
+				"sap.ui.core": {
+					
+				},
+				"sap.m": {
+					
+				},
+				"sap.ui.layout": {
+					
+				},
+				"sap.ushell": {
+					
+				},
+				"sap.collaboration": {
+					
+				},
+				"sap.ui.comp": {
+					
+				},
+				"sap.uxap": {
+					
+				}
+			}
+		},
+		"config": {
+			"fullWidth": true
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			
+		},
+		"resources": {
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"viewPath": "Cloud_Group1_ProjectCloud_Group1_Project.view",
+				"controlId": "apps",
+				"controlAggregation": "pages",
+				"transition": "slide",
+				"bypassed": {
+					
+				},
+				"async": true
+			},
+			"routes": [
+				{
+					"pattern": "",
+					"name": "list",
+					"target": "list"
+				},
+				{
+					"pattern": "detail",
+					"name": "detail",
+					"target": "detail"
+				},
+				{
+					"pattern": "view2",
+					"name": "view2",
+					"target": "view2"
+				},
+				{
+					"pattern": "estlookup/{EstPath}",
+					"name": "estlookup",
+					"target": "estlookup"
+				},
+				{
+					"pattern": "view3",
+					"name": "view3",
+					"target": "view3"
+				},
+				{
+					"pattern": "view4",
+					"name": "view4",
+					"target": "view4"
+				},
+				{
+					"pattern": "contDetail/{contDetail}",
+					"name": "contDetail",
+					"target": "contDetail"
+				},
+				{
+					"pattern": "view6",
+					"name": "view6",
+					"target": "view6"
+				},
+				{
+					"pattern": "view7",
+					"name": "view7",
+					"target": "view7"
+				},
+				{
+					"pattern": "poDetail/{poDetail}",
+					"name": "poDetail",
+					"target": "poDetail"
+				},
+				{
+					"pattern": "view8",
+					"name": "view8",
+					"target": "view8"
+				},
+				{
+					"pattern": "in",
+					"name": "in",
+					"target": "in"
+
+				},
+				{
+					"pattern": "view9",
+					"name": "view9",
+					"target": "view9"
+				},
+				{
+					"pattern": "view10",
+					"name": "view10",
+					"target": "view10"
+				}
+			],
+			"targets": {
+				"list": {
+					"viewId": "list",
+					"viewName": "products.List"
+				},
+				"detail": {
+					"viewId": "detail",
+					"viewName": "products.Detail"
+				},
+				"view2": {
+					"viewId": "view2",
+					"viewName": "estimate.View2"
+				},
+				"estlookup": {
+					"viewId": "estlookup",
+					"viewName": "estimate.estlookup"
+				},
+				"view3": {
+					"viewId": "view3",
+					"viewName": "contract.View3"
+				},
+				"view4": {
+					"viewId": "view4",
+					"viewName": "contract.View4"
+				},
+				"contDetail": {
+					"viewId": "contDetail",
+					"viewName": "contract.contDetail"
+				},
+				"view6": {
+					"viewId": "view6",
+					"viewName": "po.View6"
+				},
+				"view7": {
+					"viewId": "view7",
+					"viewName": "po.View7"
+				},
+				"poDetail": {
+					"viewId": "poDetail",
+					"viewName": "po.poDetail"
+				},
+				"view8": {
+					"viewId": "view8",
+					"viewName": "stock.View8"
+				},
+				"in": {
+					"viewId": "in",
+					"viewName": "stock.In"
+				},
+				"view9": {
+					"viewId": "view9",
+					"viewName": "stock.View9"
+				},
+				"view10": {
+					"viewId": "view10",
+					"viewName": "stock.View10"
+				}
+			}
+		}
+	}
+}
+

@@ -1,0 +1,68 @@
+<mvc:View displayBlock="true"
+	controllerName="Cloud_Group1_ProjectCloud_Group1_Project.controller.vendor.Create"
+	height="100%" xmlns="sap.uxap" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core" xmlns:m="sap.m" xmlns:f="sap.f"
+	xmlns:form="sap.ui.layout.form" xmlns:u="sap.ui.unified"
+	xmlns:l="sap.ui.layout">
+
+	<ObjectPageLayout id="ObjectPageLayout">
+		<headerTitle>
+			<ObjectPageDynamicHeaderTitle>
+				<navigationActions>
+					<m:Button id="enter" icon="sap-icon://save" press="enter"
+						type="Transparent" />
+					<m:OverflowToolbarButton type="Transparent"
+						icon="sap-icon://decline" press="handleClose"
+						tooltip="Close column" />
+				</navigationActions>
+			</ObjectPageDynamicHeaderTitle>
+		</headerTitle>
+
+		<sections>
+			<ObjectPageSection title="공급업체 등록">
+				<subSections>
+					<ObjectPageSubSection>
+						<blocks>
+							<form:SimpleForm maxContainerCols="2"
+								editable="false" layout="ResponsiveGridLayout" labelSpanL="12"
+								labelSpanM="12" emptySpanL="0" emptySpanM="0" columnsL="1"
+								columnsM="1">
+								<form:content>
+									<m:Label text="공급업체명" />
+									<m:Input />
+									<m:Label text="구분" />
+									<m:ComboBox>
+										<m:items>
+											<core:Item text="법인" />
+											<core:Item text="개인" />
+										</m:items>
+									</m:ComboBox>
+									<m:Label text="사업자번호" />
+									<m:Input />
+									<m:Label text="대표자" />
+									<m:Input />
+									<m:Label text="주소" />
+									<m:Input />
+									<m:Label text="업태" />
+									<m:Input />
+									<m:Label text="종목" />
+									<m:Input />
+									<m:Label text="전화번호" />
+									<m:Input />
+									<m:Label text="팩스" />
+									<m:Input />
+									<m:Label text="이메일" />
+									<m:Input />
+									<m:Label text="은행" />
+									<m:Input />
+									<m:Label text="계좌번호" />
+									<m:Input />
+								</form:content>
+							</form:SimpleForm>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+		</sections>
+	</ObjectPageLayout>
+</mvc:View>

@@ -1,0 +1,78 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<TableSelectDialog noDataText="No Products Found"
+		title="Products" class="sapUiPopupWithPadding" items="{MainData>/MainData}"
+		search="handleSearch" confirm="handleClose" cancel="handleClose">
+		<ColumnListItem>
+			<!-- title="{estlist>EstCat1}" -->
+			<!-- description="{estlist>EstVname}" /> -->
+
+			<cells>
+				<ObjectIdentifier title="{MainData>BName}" text="{MainData>BName}" />
+					<Text text="{MainData>BName}" />
+					<Text text="{MainData>BName}" />
+					<Text text="{MainData>BName}" />
+					<Text text="{MainData>BName}" />
+					<Text text="{MainData>BName}" />
+					<Text text="{MainData>BName}" />
+					<Text text="{MainData>BName}" />
+					<Text text="{MainData>BName}" />
+					<Text text="{MainData>BName}" />
+
+			</cells>
+		</ColumnListItem>
+		<columns>
+			<Column>
+				<header>
+					<Text text="계약번호" minScreenWidth="Desktop" demandPopin="true"/>
+				</header>
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<header>
+					<Text text="구분"/>
+				</header>
+			</Column>
+			<Column>
+				<header>
+					<Text text="공급업체명" minScreenWidth="Desktop" demandPopin="true"/>
+				</header>
+			</Column>
+			<Column minScreenWidth="Desktop" demandPopin="true">
+				<header>
+					<Text text="제품명" />
+				</header>
+			</Column>
+			<Column minScreenWidth="Desktop" demandPopin="true">
+				<header>
+					<Text text="제품코드" />
+				</header>
+			</Column>
+			<Column>
+				<header>
+					<Text text="수량" />
+				</header>
+			</Column>
+			<Column>
+				<header>
+					<Text text="합계" />
+				</header>
+			</Column>
+			<!-- <Column hAlign="Left"> -->
+			<!-- <header> -->
+			<!-- <Text text="Conttprice" /> -->
+			<!-- </header> -->
+			<!-- </Column> -->
+			<Column>
+				<header>
+					<Text text="계약일자" />
+				</header>
+			</Column>
+
+
+		</columns>
+
+
+
+
+	</TableSelectDialog>
+</core:FragmentDefinition>

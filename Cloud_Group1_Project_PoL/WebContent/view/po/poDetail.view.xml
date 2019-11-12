@@ -1,0 +1,114 @@
+<mvc:View height="100%"
+	controllerName="Cloud_Group1_ProjectCloud_Group1_Project.controller.po.poDetail"
+	xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
+	<Page title="발주서 상세 화면" showNavButton="true"
+		navButtonPress="goBack">
+		<headerContent>
+			<Button type="Accept" text="발주서 등록" id="button"
+				press=".onShow" />
+		</headerContent>
+
+		<content>
+			<l:Grid defaultSpan="L4 M6 S6" class="white">
+				<l:VerticalLayout class="sapUiTinyMarginEnd">
+					<f:SimpleForm title="발주번호"
+						layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="3"
+						labelSpanM="12" labelSpanS="12" adjustLabelSpan="false"
+						emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0"
+						columnsXL="2" columnsL="2" columnsM="1"
+						singleContainerFullSize="false">
+						<Text text="발주상태" class="sapUiTinyMarginBottom" />
+						<Text text="발주일자" class="sapUiTinyMarginBottom" />
+						<Text text="입고예정일" class="sapUiTinyMarginBottom" />
+					</f:SimpleForm>
+				</l:VerticalLayout>
+				<l:VerticalLayout class="sapUiTinyMarginEnd">
+					<f:SimpleForm title="공급업체"
+						layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="3"
+						labelSpanM="12" labelSpanS="12" adjustLabelSpan="false"
+						emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0"
+						columnsXL="2" columnsL="2" columnsM="1"
+						singleContainerFullSize="false">
+						<!-- <Title level="H2" titleStyle="H2" text="공급업체" -->
+						<!-- class="sapUiMediumMarginBottom" /> -->
+						<f:content>
+							<Text text="공급업체명" class="sapUiTinyMarginBottom" />
+							<Text text="공급업체코드" class="sapUiTinyMarginBottom" />
+							<Text text="사업자등록번호" class="sapUiTinyMarginBottom" />
+							<Text text="공급업체 주소" class="sapUiTinyMarginBottom" />
+							<Text text="대표자" class="sapUiTinyMarginBottom" />
+						</f:content>
+					</f:SimpleForm>
+				</l:VerticalLayout>
+				<l:VerticalLayout class="sapUiTinyMarginEnd">
+					<f:SimpleForm layout="ResponsiveGridLayout"
+						labelSpanXL="4" labelSpanL="3" labelSpanM="12" labelSpanS="12"
+						adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+						emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2"
+						columnsM="1" singleContainerFullSize="false">
+						<Title class="sapUiMediumMarginBottom" />
+						<Text text="업태" class="sapUiTinyMarginBottom" />
+						<Text text="종목" class="sapUiTinyMarginBottom" />
+						<Text text="이메일" class="sapUiTinyMarginBottom" />
+					</f:SimpleForm>
+				</l:VerticalLayout>
+			</l:Grid>
+			<VBox class="sapUiSmallMargin">
+				<f:SimpleForm title="제품 리스트"
+					layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="3"
+					labelSpanM="12" labelSpanS="12" adjustLabelSpan="false"
+					emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0"
+					columnsXL="2" columnsL="2" columnsM="1"
+					singleContainerFullSize="false">
+				</f:SimpleForm>
+				<Table items="{estlist>/data}" id="esttable" inset="false">
+					<columns>
+						<Column minScreenWidth="Tablet" demandPopin="true">
+							<Text text="대분류 코드" />
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true">
+							<Text text="중분류 코드" />
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true">
+							<Text text="제품명" />
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true">
+							<Text text="제품코드" />
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true">
+							<Text text="발주수량" />
+						</Column>							
+						<Column minScreenWidth="Tablet" demandPopin="true">
+							<Text text="단가" />
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true">
+							<Text text="합계" />
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true">
+							<Text text="금액단위" />
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<!-- <ObjectIdentifier title="{/data}" /> text="{ProductId}" -->
+								<Text text="{estlist>EstNo}" />
+								<Text text="{estlist>EstAva}" />
+								<Text text="{estlist>EstCat1}" />
+								<Text text="{estlist>EstCat2}" />
+								<Text text="{estlist>EstCat3}" />
+								<Text text="{estlist>EstVname}" />
+								<Text text="{estlist>EstVcode}" />
+								<Text text="{estlist>EstAmt}" />
+								<Text text="{estlist>EstPrice}" />
+								<Text text="{estlist>EstTotal}" />
+								<Text text="{estlist>EstCuky}" />
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</VBox>
+		</content>
+	</Page>
+</mvc:View>

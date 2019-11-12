@@ -1,0 +1,118 @@
+<mvc:View
+	controllerName="Cloud_Group1_ProjectCloud_Group1_Project.controller.vendor.List"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true" height="100%" xmlns="sap.m" xmlns:f="sap.f"
+	xmlns:core="sap.ui.core" xmlns:fb="sap.ui.comp.filterbar"
+	xmlns:l="sap.ui.layout">
+	<App id="apps">
+		<Page title="Centered Title" class="sapUiContentPadding"
+			showNavButton="true">
+			<headerContent>
+				<Button icon="sap-icon://add" press="handleCreatePress" />
+				<Button icon="sap-icon://excel-attachment" />
+			</headerContent>
+			<fb:FilterBar reset="onReset" search="onSearch"
+				showRestoreButton="true" showClearButton="true">
+				<fb:filterItems>
+					<fb:FilterItem name="Cat1" label="공급업체명"
+						mandatory="true">
+						<fb:control>
+							<ComboBox>
+								<items>
+									<core:Item key="001" text="EMEA" />
+								</items>
+							</ComboBox>
+						</fb:control>
+					</fb:FilterItem>
+					<fb:FilterItem name="Cat2" label="중분류">
+						<fb:control>
+							<ComboBox>
+								<items>
+									<core:Item key="001" text="America" />
+								</items>
+							</ComboBox>
+						</fb:control>
+					</fb:FilterItem>
+					<fb:FilterItem name="Cat3" label="상품명">
+						<fb:control>
+							<ComboBox>
+								<items>
+									<core:Item key="001" text="America" />
+								</items>
+							</ComboBox>
+						</fb:control>
+					</fb:FilterItem>
+					<fb:FilterItem name="Made" label="제조사">
+						<fb:control>
+							<ComboBox>
+								<items>
+									<core:Item key="001" text="America" />
+								</items>
+							</ComboBox>
+						</fb:control>
+					</fb:FilterItem>
+					<fb:FilterItem name="Date" label="출시일">
+						<fb:control>
+							<DateRangeSelection />
+						</fb:control>
+					</fb:FilterItem>
+				</fb:filterItems>
+			</fb:FilterBar>
+			<content>
+				<Table id="productsTable" inset="false"
+					class="sapFDynamicPageAlignContent" width="auto">
+					<columns>
+						<Column>
+							<Text text="대분류" />
+						</Column>
+						<Column>
+							<Text text="중분류" />
+						</Column>
+						<Column width="12em">
+							<Text text="상품코드" />
+						</Column>
+						<Column>
+							<Text text="상품명" />
+						</Column>
+						<Column>
+							<Text text="표준금액" />
+						</Column>
+						<Column>
+							<Text text="제조사" />
+						</Column>
+						<Column>
+							<Text text="출시일" />
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem type="Navigation"
+							press="handleMasterPress">
+							<cells>
+								<Text text="OA가구" />
+								<Text text="책상" />
+								<Text text="AB05001" />
+								<Text text="OA-W16" />
+								<ObjectIdentifier title="1,900,000" text="원" />
+								<Text text="삼성전자" />
+								<Text text="2019.03.07" />
+							</cells>
+						</ColumnListItem>
+						<ColumnListItem type="Navigation"
+							press="handleMasterPress">
+							<cells>
+								<Text text="OA가구" />
+								<Text text="책상" />
+								<Text text="AB05001" />
+								<Text text="OA-W16" />
+								<ObjectIdentifier title="1,900,000" text="KRW" />
+								<Text text="삼성전자" />
+								<Text text="2019.03.07" />
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</content>
+
+		</Page>
+	</App>
+</mvc:View>

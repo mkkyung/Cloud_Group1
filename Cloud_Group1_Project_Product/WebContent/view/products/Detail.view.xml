@@ -1,0 +1,128 @@
+<mvc:View displayBlock="true"
+	controllerName="Cloud_Group1_ProjectCloud_Group1_Project.controller.products.Detail"
+	height="100%" xmlns="sap.uxap" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core" xmlns:m="sap.m" xmlns:f="sap.f"
+	xmlns:form="sap.ui.layout.form">
+
+	<ObjectPageLayout id="ObjectPageLayout"
+		showTitleInHeaderContent="true" alwaysShowContentHeader="false"
+		preserveHeaderStateOnScroll="false" headerContentPinnable="true"
+		isChildPage="true" upperCaseAnchorBar="false">
+		<headerTitle>
+			<ObjectPageDynamicHeaderTitle>
+				<expandedHeading>
+					<m:Title text="{products>Name}" wrapping="true"
+						class="sapUiSmallMarginEnd" />
+				</expandedHeading>
+
+				<snappedHeading>
+					<m:FlexBox wrap="Wrap" fitContainer="true"
+						alignItems="Center">
+						<m:FlexBox wrap="NoWrap" fitContainer="true"
+							alignItems="Center" class="sapUiTinyMarginEnd">
+							<f:Avatar src="" displaySize="S" displayShape="Square" />
+							<m:Title text="OA-W16" wrapping="true"
+								class="sapUiTinyMarginEnd" />
+						</m:FlexBox>
+					</m:FlexBox>
+				</snappedHeading>
+
+				<navigationActions>
+					<m:OverflowToolbarButton type="Transparent"
+						icon="sap-icon://decline" press="handleClose"
+						tooltip="Close column"
+						visible="{= ${/actionButtonsInfo/midColumn/closeColumn} !== null }" />
+				</navigationActions>
+
+				<actions>
+					<m:Button id="update" icon="sap-icon://edit"
+						type="Emphasized" press="edit" visible="{edit>/Edit}" />
+					<m:Button id="enter" icon="sap-icon://save"
+						type="Emphasized" visible="{enter>/Enter}" press="enter" />
+					<m:Button icon="sap-icon://delete" type="Reject"
+						visible="{edit>/Edit}" />
+					<m:Button icon="sap-icon://reset" type="Reject"
+						visible="{cancel>/Cancel}" press="cancel" />
+					<m:Button icon="sap-icon://action" type="Transparent" />
+				</actions>
+
+			</ObjectPageDynamicHeaderTitle>
+		</headerTitle>
+
+		<headerContent>
+			<m:FlexBox wrap="Wrap" fitContainer="true"
+				alignItems="Stretch">
+				<f:Avatar
+					src="data:image/jpeg;base64,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"
+					displaySize="L" displayShape="Square" class="sapUiTinyMarginEnd">
+				</f:Avatar>
+				<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
+					<m:Label text="대분류" />
+					<m:Text text="가전" />
+				</m:VBox>
+				<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
+					<m:Label text="중분류" />
+					<m:Text text="노트북" />
+				</m:VBox>
+				<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
+					<m:Label text="상품명" />
+					<m:Text text="OA-W16" />
+				</m:VBox>
+			</m:FlexBox>
+		</headerContent>
+		<sections>
+			<ObjectPageSection title="Information">
+				<subSections>
+					<ObjectPageSubSection>
+						<blocks>
+							<form:SimpleForm maxContainerCols="2"
+								editable="false" layout="ResponsiveGridLayout" labelSpanL="12"
+								labelSpanM="12" emptySpanL="0" emptySpanM="0" columnsL="1"
+								columnsM="1">
+								<form:content>
+									<m:Label text="상품코드" />
+									<m:Text text="AB05001" />
+									<m:Label text="상품명" />
+									<m:Input valueState="{color>/Color}" value="OA-W16"
+										editable="{enter>/Enter}" />
+									<m:Label text="표준금액" />
+									<m:Input valueState="{color>/Color}"
+										value="1,900,000 원" editable="{enter>/Enter}" />
+									<m:Label text="제조사" />
+									<m:Input valueState="{color>/Color}" value="삼성전자"
+										editable="{enter>/Enter}" />
+									<m:Label text="출시일" />
+									<m:DatePicker valueState="{color>/Color}"
+										value="2019.03.07" editable="{enter>/Enter}" />
+								</form:content>
+							</form:SimpleForm>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+
+			<ObjectPageSection title="계약정보">
+				<subSections>
+					<ObjectPageSubSection>
+						<blocks>
+							<m:Table id="suppliersTable"
+								items="{path : 'products>/ProductCollectionStats/Filters/1/values'}">
+								<m:columns>
+									<m:Column />
+								</m:columns>
+								<m:items>
+									<m:ColumnListItem type="Navigation"
+										press="handleItemPress">
+										<m:cells>
+											<m:ObjectIdentifier text="{products>text}" />
+										</m:cells>
+									</m:ColumnListItem>
+								</m:items>
+							</m:Table>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+		</sections>
+	</ObjectPageLayout>
+</mvc:View>

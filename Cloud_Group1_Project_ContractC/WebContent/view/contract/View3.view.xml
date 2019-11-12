@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mvc:View
+	controllerName="Cloud_Group1_ProjectCloud_Group1_Project.controller.contract.View3"
+	xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout" displayBlock="true">
+	<App id="apps">
+		<Page title="계약등록" showNavButton="true"
+			navButtonPress="goBack">
+			<headerContent text="view3">
+				<Button text="next" id="button" type="Reject" press=".onShow" />
+			</headerContent>
+			<l:Grid defaultSpan="L12" class="white">
+				<l:VerticalLayout />
+			</l:Grid>
+			<l:Grid defaultSpan="L2 M6 S6" class="white">
+				<l:VerticalLayout>
+					<Label text="견적서 조회" design="Bold" />
+					<Input id="productInput" type="Text"
+						textFormatMode="KeyValue" placeholder="견적번호 입력"
+						showSuggestion="true" showValueHelp="true"
+						valueHelpRequest="handleValueHelp"
+						suggestionItems="{MainData>/MainData}"
+						suggestionItemSelected="suggestionItemSelected">
+						<suggestionItems>
+				<core:ListItem key="{MainData>BNum11ber}"
+								text="{MainData>BName}" additionalText="{MainData>BName}" />
+						</suggestionItems>
+					</Input>
+				</l:VerticalLayout>
+				<l:VerticalLayout>
+					<Label text="계약구분" design="Bold" />
+					<Input />
+				</l:VerticalLayout>
+				<l:VerticalLayout>
+					<Label text="계약일자" design="Bold" />
+					<DatePicker />
+				</l:VerticalLayout>
+				<l:VerticalLayout>
+					<Label text="종료일자" design="Bold" />
+					<DatePicker />
+				</l:VerticalLayout>
+				<l:VerticalLayout>
+					<Label text="공급업체명" design="Bold" />
+					<Input />
+				</l:VerticalLayout>
+				<l:VerticalLayout>
+					<Label text="대표자명" design="Bold" />
+					<Input value="asdfsdf" />
+				</l:VerticalLayout>
+			</l:Grid>
+			<l:Grid defaultSpan="L2" class="white">
+				<l:VerticalLayout>
+					<Label text="사업자등록번호" design="Bold" />
+					<Input />
+				</l:VerticalLayout>
+				<l:VerticalLayout width="100%">
+					<Label text="주소" design="Bold" />
+					<Input value="서울 동대문구 제기로 131, 청량리 한신아파트 108동 202호" />
+				</l:VerticalLayout>
+				<l:VerticalLayout>
+					<Label text="전화번호" design="Bold" />
+					<Input />
+				</l:VerticalLayout>
+				<l:VerticalLayout>
+					<Label text="팩스" design="Bold" />
+					<Input />
+				</l:VerticalLayout>
+				<l:VerticalLayout>
+					<Label text="이메일" design="Bold" />
+					<Input />
+				</l:VerticalLayout>
+
+			</l:Grid>
+
+			<Table items="{view>/data}" id="idTable"> <!-- items="{path: '/ProductCollection'}" -->
+				<columns>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="계약상태" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="계약구분" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="공급업체" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="대분류" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="중분류" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="물품명" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="수량" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="단가" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="총합계" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="계약일자" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="종료일자" />
+					</Column>
+
+				</columns>
+
+				<items>
+					<ColumnListItem type="Navigation" vAlign="Middle"
+						press=".onPress" id="idColumnListItem">
+						<cells>
+							<ObjectIdentifier title="{data>/data}" /> <!-- text="{ProductId}" -->
+							<Text text="{view>Zname}" />
+							<Text text="{view>Zcategory}" />
+						</cells>
+
+					</ColumnListItem>
+
+				</items>
+			</Table>
+		</Page>
+	</App>
+</mvc:View>

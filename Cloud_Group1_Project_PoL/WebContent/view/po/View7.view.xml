@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mvc:View
+	controllerName="Cloud_Group1_ProjectCloud_Group1_Project.controller.po.View7"
+	xmlns:core="sap.ui.core" xmlns:t="sap.ui.table" xmlns="sap.m"
+	xmlns:u="sap.uxap" xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+	xmlns:fb="sap.ui.comp.filterbar" xmlns:f="sap.f"
+	xmlns:fA="sap.ui.layout.form">
+
+	<App id="apps">
+		<Page title="view7 : 발주조회" showNavButton="true"
+			navButtonPress="goBack">
+			<IconTabBar id="idIconTabBar"
+				select="handleIconTabBarSelect"
+				class="sapUiResponsiveContentPadding">
+				<items>
+					<IconTabFilter showAll="true" text="Products"
+						key="All">
+						<fb:FilterBar id="filterbar" reset="onReset"
+							search="onSearch" useToolbar="false" showGoOnFB="false"> <!-- search="onSearch" -->
+							<fb:filterItems>
+								<fb:FilterItem name="PO_N" label="발주번호">
+									<fb:control>
+										<Input id="PO_N" maxLength="11" />											
+									</fb:control>
+								</fb:FilterItem>
+								<fb:FilterItem name="PO_DF" label="발주일자(From)">
+									<fb:control>
+										<DatePicker id="PO_DF"
+											class="sapUiSmallMarginBottom" />
+									</fb:control>
+								</fb:FilterItem>
+								<fb:FilterItem name="PO_DT" label="발주일자(To)">
+									<fb:control>
+										<DatePicker id="PO_DT"
+											class="sapUiSmallMarginBottom" />
+									</fb:control>
+								</fb:FilterItem>
+								<fb:FilterItem name="VN" label="공급업체명">
+									<fb:control>
+										<Input id="VN" maxLength="15" />
+									</fb:control>
+								</fb:FilterItem>
+								<fb:FilterItem name="VC" label="공급업체코드">
+									<fb:control>
+										<Input id="VC" maxLength="15" />
+									</fb:control>
+								</fb:FilterItem>
+								<fb:FilterItem name="PN" label="제품명">
+									<fb:control>
+										<Input id="PN" maxLength="15" />
+									</fb:control>
+								</fb:FilterItem>
+								<fb:FilterItem name="PC" label="제품코드">
+									<fb:control>
+										<Input id="PC" maxLength="15" />
+									</fb:control>
+								</fb:FilterItem>
+								<fb:FilterItem name="IN_DF" label="입고예정일(From)">
+									<fb:control>
+										<DatePicker id="IN_DF"
+											class="sapUiSmallMarginBottom" />
+									</fb:control>
+								</fb:FilterItem>
+								<fb:FilterItem name="IN_DT" label="입고예정일(To)">
+									<fb:control>
+										<DatePicker id="IN_DT"
+											class="sapUiSmallMarginBottom" />
+									</fb:control>
+								</fb:FilterItem>
+							</fb:filterItems>
+						</fb:FilterBar>
+					</IconTabFilter>
+					<IconTabFilter icon="sap-icon://begin"
+						iconColor="Positive" text="Ok" key="A">
+						<fb:FilterBar id="filterbar1" reset="onReset"
+							search="onSearch" useToolbar="false" showGoOnFB="false"> <!-- search="onSearch" -->
+							<fb:filterItems>
+								<fb:FilterItem name="PO_N1" label="발주번호">
+									<fb:control>
+										<Input id="PO_N1" maxLength="11"
+											textFormatMode="KeyValue" showSuggestion="true"
+											showValueHelp="true" valueHelpRequest="handleValueHelp"
+											suggestionItems="{/ProductCollection}"
+											suggestionItemSelected="suggestionItemSelected">
+											<suggestionItems>
+												<core:ListItem key="{ProductId}" text="{Name}"
+													additionalText="{ProductId}" />
+											</suggestionItems>
+										</Input>
+									</fb:control>
+								</fb:FilterItem>
+								<fb:FilterItem name="PO_DF1" label="발주일자(From)">
+									<fb:control>
+										<DatePicker id="PO_DF1"
+											class="sapUiSmallMarginBottom" />
+									</fb:control>
+								</fb:FilterItem>
+								<fb:FilterItem name="PO_DT1" label="발주일자(To)">
+									<fb:control>
+										<DatePicker id="PO_DT1"
+											class="sapUiSmallMarginBottom" />
+									</fb:control>
+								</fb:FilterItem>
+								<fb:FilterItem name="VN1" label="공급업체명">
+									<fb:control>
+										<Input id="VN1" maxLength="15" />
+									</fb:control>
+								</fb:FilterItem>
+								<fb:FilterItem name="VC1" label="공급업체코드">
+									<fb:control>
+										<Input id="VC1" maxLength="15" />
+									</fb:control>
+								</fb:FilterItem>
+								<fb:FilterItem name="PN1" label="제품명">
+									<fb:control>
+										<Input id="PN1" maxLength="15" />
+									</fb:control>
+								</fb:FilterItem>
+								<fb:FilterItem name="PC1" label="제품코드">
+									<fb:control>
+										<Input id="PC1" maxLength="15" />
+									</fb:control>
+								</fb:FilterItem>
+								<fb:FilterItem name="IN_DF1" label="입고예정일(From)">
+									<fb:control>
+										<DatePicker id="IN_DF1"
+											class="sapUiSmallMarginBottom" />
+									</fb:control>
+								</fb:FilterItem>
+								<fb:FilterItem name="IN_DT1" label="입고예정일(To)">
+									<fb:control>
+										<DatePicker id="IN_DT1"
+											class="sapUiSmallMarginBottom" />
+									</fb:control>
+								</fb:FilterItem>
+							</fb:filterItems>
+						</fb:FilterBar>
+					</IconTabFilter>
+					<!-- Icon tabfilter 3 -->
+					<IconTabFilter icon="sap-icon://compare"
+						iconColor="Critical" text="Heavy" key="B" >
+						<fb:FilterBar id="filterbar2" reset="onReset"
+							search="onSearch" useToolbar="false" showGoOnFB="false">
+							<fb:filterItems>
+								<fb:FilterItem name="PO_N2" label="발주번호">
+									<fb:control>
+										<Input id="PO_N2" maxLength="11"
+											textFormatMode="KeyValue" showSuggestion="true"
+											showValueHelp="true" valueHelpRequest="handleValueHelp"
+											suggestionItems="{/ProductCollection}"
+											suggestionItemSelected="suggestionItemSelected">
+											<suggestionItems>
+												<core:ListItem key="{ProductId}" text="{Name}"
+													additionalText="{ProductId}" />
+											</suggestionItems>
+										</Input>
+									</fb:control>
+								</fb:FilterItem>
+								<fb:FilterItem name="PO_DF2" label="발주일자(From)">
+									<fb:control>
+										<DatePicker id="PO_DF2"
+											class="sapUiSmallMarginBottom" />
+									</fb:control>
+								</fb:FilterItem>
+								<fb:FilterItem name="PO_DT2" label="발주일자(To)">
+									<fb:control>
+										<DatePicker id="PO_DT2"
+											class="sapUiSmallMarginBottom" />
+									</fb:control>
+								</fb:FilterItem>
+								<fb:FilterItem name="VN2" label="공급업체명">
+									<fb:control>
+										<Input id="VN2" maxLength="15" />
+									</fb:control>
+								</fb:FilterItem>
+								<fb:FilterItem name="VC2" label="공급업체코드">
+									<fb:control>
+										<Input id="VC2" maxLength="15" />
+									</fb:control>
+								</fb:FilterItem>
+								<fb:FilterItem name="PN2" label="제품명">
+									<fb:control>
+										<Input id="PN2" maxLength="15" />
+									</fb:control>
+								</fb:FilterItem>
+								<fb:FilterItem name="PC2" label="제품코드">
+									<fb:control>
+										<Input id="PC2" maxLength="15" />
+									</fb:control>
+								</fb:FilterItem>
+								<fb:FilterItem name="IN_DF2" label="입고예정일(From)">
+									<fb:control>
+										<DatePicker id="IN_DF2"
+											class="sapUiSmallMarginBottom" />
+									</fb:control>
+								</fb:FilterItem>
+								<fb:FilterItem name="IN_DT2" label="입고예정일(To)">
+									<fb:control>
+										<DatePicker id="IN_DT2"
+											class="sapUiSmallMarginBottom" />
+									</fb:control>
+								</fb:FilterItem>
+							</fb:filterItems>
+						</fb:FilterBar>
+					</IconTabFilter>
+
+					<!-- Icon tabfilter 4 -->
+					<!-- <IconTabFilter -->
+					<!-- icon="sap-icon://inventory" -->
+					<!-- iconColor="Negative" -->
+					<!-- text="Overweight" -->
+					<!-- key="C" > -->
+
+					<!-- </IconTabFilter> -->
+					<!-- count="{/ProductCollectionStats/Counts/Weight/Overweight}" -->
+
+				</items>
+			</IconTabBar>
+
+			<!-- </f:content> -->
+			<!-- </f:DynamicPageHeader> -->
+
+			<!-- DynamicPage Content -->
+
+			<fA:SimpleForm id="Form1" editable="false"
+				layout="ResponsiveGridLayout" title="발주 LIST" labelSpanXL="4"
+				labelSpanL="3" labelSpanM="12" labelSpanS="12"
+				adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+				emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2"
+				columnsM="1" singleContainerFullSize="false">
+			</fA:SimpleForm>
+
+			<Table items="{MainData>/MainData}" id="esttable" inset="false">
+				<columns>
+					<Column minScreenWidth="Tablet" demandPopin="true"
+						mergeDuplicates="true">
+						<Text text="발주번호" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="발주일자" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="대분류" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="중분류" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="제품명" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="제품코드" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="공급업체코드" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="발주수량" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="단가" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="합계" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="입고예정일" />
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem vAlign="Middle" press=".onPress" type="Navigation">
+						<cells>
+							<!-- <ObjectIdentifier title="{/data}" /> text="{ProductId}" -->
+							<Text text="{MainData>BName}" />
+							<Text text="{MainData>BName}" />
+							<Text text="{MainData>BName}" />
+							<Text text="{MainData>BName}" />
+							<Text text="{MainData>BName}" />
+							<Text text="{MainData>BName}" />
+							<Text text="{MainData>BName}" />
+							<Text text="{MainData>BName}" />
+							<Text text="{MainData>BName}" />
+							<Text text="{MainData>BName}" />
+							<Text text="{MainData>BName}" />
+							<Text text="{MainData>BName}" />
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			<!-- <Table id="esttable" inset="false"> -->
+			<!-- rows="{/ProductCollection}" -->
+
+			<!-- <columns> -->
+			<!-- <Column minScreenWidth="Tablet" demandPopin="true"> -->
+			<!-- <Text text="발주번호" /> -->
+			<!-- </Column> -->
+			<!-- <Column minScreenWidth="Tablet" demandPopin="true"> -->
+			<!-- <Text text="발주일자" /> -->
+			<!-- </Column> -->
+
+
+
+
+
+			<!-- <Column minScreenWidth="Tablet" demandPopin="true"> -->
+			<!-- <Text text="제품명" /> -->
+			<!-- </Column> -->
+			<!-- <Column minScreenWidth="Tablet" demandPopin="true"> -->
+			<!-- <Text text="공급업체명" /> -->
+			<!-- </Column> -->
+			<!-- <Column minScreenWidth="Tablet" demandPopin="true"> -->
+			<!-- <Text text="공급업체코드" /> -->
+			<!-- </Column> -->
+			<!-- <Column minScreenWidth="Tablet" demandPopin="true"> -->
+			<!-- <Text text="잔여수량" /> -->
+			<!-- </Column> -->
+			<!-- <Column minScreenWidth="Tablet" demandPopin="true"> -->
+			<!-- <Text text="발주수량" /> -->
+			<!-- </Column> -->
+
+			<!-- <Column minScreenWidth="Tablet" demandPopin="true"> -->
+			<!-- <Text text="단가" /> -->
+			<!-- </Column> -->
+			<!-- <Column minScreenWidth="Tablet" demandPopin="true"> -->
+			<!-- <Text text="총금액" /> -->
+			<!-- </Column> -->
+			<!-- <Column minScreenWidth="Tablet" demandPopin="true"> -->
+			<!-- <Text text="입고예정일" /> -->
+			<!-- </Column> -->
+			<!-- <Column minScreenWidth="Tablet" demandPopin="true"> -->
+			<!-- <Text text="결제예정일" /> -->
+			<!-- </Column> -->
+
+			<!-- </columns> -->
+			<!-- <items> -->
+			<!-- <ColumnListItem type="Navigation" vAlign="Middle" -->
+			<!-- press=".onPress"> -->
+			<!-- <cells> -->
+			<!-- <ObjectIdentifier title="{/data}" /> text="{ProductId}" -->
+			<!-- <Text text="A" /> -->
+			<!-- <Text text="B" /> -->
+			<!-- <Text text="C" /> -->
+			<!-- <Text text="D" /> -->
+			<!-- <Text text="E" /> -->
+			<!-- <Text text="F" /> -->
+			<!-- <Text text="G" /> -->
+			<!-- <Text text="H" /> -->
+			<!-- <Text text="I" /> -->
+			<!-- <Text text="J" /> -->
+			<!-- <Text text="K" /> -->
+			<!-- <Text text="L" /> -->
+			<!-- </cells> -->
+			<!-- </ColumnListItem> -->
+			<!-- </items> -->
+			<!-- </Table> -->
+		</Page>
+	</App>
+</mvc:View>

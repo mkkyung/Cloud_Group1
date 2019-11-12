@@ -1,0 +1,110 @@
+<mvc:View displayBlock="true"
+	controllerName="Cloud_Group1_ProjectCloud_Group1_Project.controller.vendor.Detail"
+	height="100%" xmlns="sap.uxap" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core" xmlns:m="sap.m" xmlns:f="sap.f"
+	xmlns:form="sap.ui.layout.form">
+
+	<ObjectPageLayout id="ObjectPageLayout"
+		showTitleInHeaderContent="true" alwaysShowContentHeader="false"
+		preserveHeaderStateOnScroll="false" headerContentPinnable="true"
+		isChildPage="true" upperCaseAnchorBar="false">
+		<headerTitle>
+			<ObjectPageDynamicHeaderTitle>
+				<expandedHeading>
+					<m:Title text="ERP상사 (VE02)" wrapping="true"
+						class="sapUiSmallMarginEnd" />
+				</expandedHeading>
+
+				<snappedHeading>
+					<m:FlexBox wrap="Wrap" fitContainer="true"
+						alignItems="Center">
+						<m:FlexBox wrap="NoWrap" fitContainer="true"
+							alignItems="Center" class="sapUiTinyMarginEnd">							
+							<m:Title text="ERP상사" wrapping="true"
+								class="sapUiTinyMarginEnd" />
+						</m:FlexBox>
+					</m:FlexBox>
+				</snappedHeading>
+
+				<navigationActions>
+					<m:OverflowToolbarButton type="Transparent"
+						icon="sap-icon://decline" press="handleClose"
+						tooltip="Close column"
+						visible="{= ${/actionButtonsInfo/midColumn/closeColumn} !== null }" />
+				</navigationActions>
+
+				<actions>
+					<m:Button id="update" icon="sap-icon://edit"
+						type="Emphasized" press="edit" visible="{edit>/Edit}" />
+					<m:Button id="enter" icon="sap-icon://save"
+						type="Emphasized" visible="{enter>/Enter}" press="enter" />
+					<m:Button icon="sap-icon://delete" type="Reject"
+						visible="{edit>/Edit}" />
+					<m:Button icon="sap-icon://reset" type="Reject"
+						visible="{cancel>/Cancel}" press="cancel" />
+					<m:Button icon="sap-icon://action" type="Transparent" />
+				</actions>
+
+			</ObjectPageDynamicHeaderTitle>
+		</headerTitle>
+
+		<headerContent>
+			<m:FlexBox wrap="Wrap" fitContainer="true"
+				alignItems="Stretch">				
+				<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
+					<m:Label text="대표자" />
+					<m:Text text="홍길동" />
+				</m:VBox>
+				<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
+					<m:Label text="사업자번호" />
+					<m:Text text="110-03-12312" />
+				</m:VBox>
+				<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
+					<m:Label text="전화번호" />
+					<m:Text text="02-123-4244" />
+				</m:VBox>
+			</m:FlexBox>
+		</headerContent>
+		<sections>
+			<ObjectPageSection title="Information">
+				<subSections>
+					<ObjectPageSubSection>
+						<blocks>
+							<form:SimpleForm maxContainerCols="2"
+								editable="false" layout="ResponsiveGridLayout" labelSpanL="12"
+								labelSpanM="12" emptySpanL="0" emptySpanM="0" columnsL="1"
+								columnsM="1">
+								<form:content>
+									<m:Label text="공급업체명" />
+									<m:Input valueState="{color>/Color}" value="ERP상사"
+										editable="{enter>/Enter}" />
+									<m:Label text="구분" />
+									<m:Input valueState="{color>/Color}"
+										value="법인" editable="{enter>/Enter}" />
+									<m:Label text="사업자번호" />
+									<m:Input valueState="{color>/Color}" value="110-03-12312"
+										editable="{enter>/Enter}" />								
+									<m:Label text="주소" />
+									<m:Input valueState="{color>/Color}"
+										value="서울 서대문구 홍은동 가나다길 12-42" editable="{enter>/Enter}" />
+									<m:Label text="업태/종목" />
+									<m:Input valueState="{color>/Color}"
+										value="AA/CC" editable="{enter>/Enter}" />
+									<m:Label text="팩스" />
+									<m:Input valueState="{color>/Color}"
+										value="02-123-4523" editable="{enter>/Enter}" />
+									<m:Label text="이메일" />
+									<m:Input valueState="{color>/Color}"
+										value="cdjsdk123@naver.com" editable="{enter>/Enter}" />
+									<m:Label text="은행 / 계좌번호" />
+									<m:Input valueState="{color>/Color}"
+										value="신한 / 110-223-123456" editable="{enter>/Enter}" />
+								</form:content>
+							</form:SimpleForm>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>			
+		</sections>
+	</ObjectPageLayout>
+</mvc:View>

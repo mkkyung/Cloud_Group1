@@ -1,0 +1,137 @@
+<mvc:View height="100%"
+	controllerName="Cloud_Group1_ProjectCloud_Group1_Project.controller.estimate.estlookup"
+	xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
+	<Page title="견적서 상세 화면" showNavButton="true"
+		navButtonPress="goBack">
+		<headerContent>
+			<Button type="Accept" text="계약서 등록" id="button"
+				press=".onShow" />
+		</headerContent>
+
+		<content>
+			<l:Grid defaultSpan="L4 M6 S6" class="white">
+				<l:VerticalLayout class="sapUiTinyMarginEnd">
+					<f:SimpleForm title="견적번호"
+						layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="3"
+						labelSpanM="12" labelSpanS="12" adjustLabelSpan="false"
+						emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0"
+						columnsXL="2" columnsL="2" columnsM="1"
+						singleContainerFullSize="false">
+						<Text text="유효여부 : 유효" class="sapUiTinyMarginBottom" />
+						<Text text="상품명 : OA-W123" class="sapUiTinyMarginBottom" />
+						<Text text="총 합계 : 4,500,000" class="sapUiTinyMarginBottom" />
+					</f:SimpleForm>
+				</l:VerticalLayout>
+				<l:VerticalLayout class="sapUiTinyMarginEnd">
+					<f:SimpleForm title="공급업체"
+						layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="3"
+						labelSpanM="12" labelSpanS="12" adjustLabelSpan="false"
+						emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0"
+						columnsXL="2" columnsL="2" columnsM="1"
+						singleContainerFullSize="false">
+						<!-- <Title level="H2" titleStyle="H2" text="공급업체" -->
+						<!-- class="sapUiMediumMarginBottom" /> -->
+						<f:content>
+							<Text text="공급업체명 : ERP상사" class="sapUiTinyMarginBottom" />
+							<Text text="공급업체코드 : VE01" class="sapUiTinyMarginBottom" />
+							<Text text="사업자등록번호 : 110-32-29342" class="sapUiTinyMarginBottom" />
+							<Text text="공급업체 주소 : 서울 동대문구 제기로 29길 12, 2층" class="sapUiTinyMarginBottom" />
+							<Text text="대표자 : 손경세" class="sapUiTinyMarginBottom" />
+						</f:content>
+					</f:SimpleForm>
+				</l:VerticalLayout>
+				<l:VerticalLayout class="sapUiTinyMarginEnd">
+					<f:SimpleForm layout="ResponsiveGridLayout"
+						labelSpanXL="4" labelSpanL="3" labelSpanM="12" labelSpanS="12"
+						adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+						emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2"
+						columnsM="1" singleContainerFullSize="false">
+						<Title class="sapUiMediumMarginBottom" />
+						<Text text="업태 : 도소매" class="sapUiTinyMarginBottom" />
+						<Text text="종목 : 사무기기판매" class="sapUiTinyMarginBottom" />
+						<Text text="이메일 : asd123@naver.com" class="sapUiTinyMarginBottom" />
+					</f:SimpleForm>
+				</l:VerticalLayout>
+			</l:Grid>
+			<VBox class="sapUiSmallMargin">
+				<f:SimpleForm title="제품 설명"
+					layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="3"
+					labelSpanM="12" labelSpanS="12" adjustLabelSpan="false"
+					emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0"
+					columnsXL="2" columnsL="2" columnsM="1"
+					singleContainerFullSize="false">
+				</f:SimpleForm>
+				<Table  id="esttable" inset="false">
+					<columns>
+						<Column minScreenWidth="Tablet" demandPopin="true">
+							<Text text="대분류 코드" />
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true">
+							<Text text="중분류 코드" />
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true">
+							<Text text="제품명" />
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true">
+							<Text text="제품코드" />
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true">
+							<Text text="수량" />
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true">
+							<Text text="단가" />
+						</Column>					
+						<Column minScreenWidth="Tablet" demandPopin="true">
+							<Text text="합계" />
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true">
+							<Text text="금액단위" />
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<!-- <ObjectIdentifier title="{/data}" /> text="{ProductId}" -->
+								<Text text="AA" />
+								<Text text="01" />
+								<Text text="MF2083" />
+								<Text text="AA01002" />
+								<Text text="1" />
+								<Text text="1,900,000" />							
+								<Text text="1,900,000" />
+								<Text text="KRW" />
+							</cells>
+						</ColumnListItem>
+						<ColumnListItem>
+							<cells>
+								<!-- <ObjectIdentifier title="{/data}" /> text="{ProductId}" -->
+								<Text text="AA" />
+								<Text text="01" />
+								<Text text="MF2081" />
+								<Text text="AA01004" />
+								<Text text="1" />
+								<Text text="1,500,000" />							
+								<Text text="1,500,000" />
+								<Text text="KRW" />
+							</cells>
+						</ColumnListItem>
+						<ColumnListItem>
+							<cells>
+								<!-- <ObjectIdentifier title="{/data}" /> text="{ProductId}" -->
+								<Text text="AA" />
+								<Text text="01" />
+								<Text text="MF2087" />
+								<Text text="AA01009" />
+								<Text text="1" />
+								<Text text="1,100,000" />								
+								<Text text="1,100,000" />
+								<Text text="KRW" />
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</VBox>
+		</content>
+	</Page>
+</mvc:View>

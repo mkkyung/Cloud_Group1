@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mvc:View
+	controllerName="Cloud_Group1_ProjectCloud_Group1_Project.controller.po.View6"
+	xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout" xmlns:f="sap.f" displayBlock="true">
+	<App id="apps">
+		<Page title="발주서 등록" showNavButton="true" navButtonPress="goBack">
+			<headerContent text="view2">
+				<Button id="enter" icon="sap-icon://save" type="Emphasized"
+					press=".onPress" />
+				<Button id="cancel" icon="sap-icon://decline" type="Reject"
+					press="cancel" />
+			</headerContent>
+			<l:Grid defaultSpan="L12">
+				<l:VerticalLayout />
+			</l:Grid>
+			<l:Grid defaultSpan="L2 M6 S6">
+				<l:VerticalLayout>
+					<Label text="계약서 조회" design="Bold" />
+					<Input id="productInput" type="Text"
+						textFormatMode="KeyValue" placeholder="계약번호 입력"
+						showValueHelp="true"
+						valueHelpRequest="handleTableSelectDialogPress">
+						<customData>
+							<core:CustomData key="multi" value="true" />
+						</customData>
+					</Input>
+				</l:VerticalLayout>
+				<l:VerticalLayout>
+					<Label text="계약구분" design="Bold" />
+					<Input />
+				</l:VerticalLayout>
+				<l:VerticalLayout>
+					<Label text="계약일자" design="Bold" />
+					<Input />
+				</l:VerticalLayout>
+				<l:VerticalLayout>
+					<Label text="발주일자" design="Bold" />
+					<DatePicker />
+				</l:VerticalLayout>
+				<l:VerticalLayout>
+					<Label text="발주 담당자" design="Bold" />
+					<Input />
+				</l:VerticalLayout>
+			</l:Grid>
+			<l:Grid defaultSpan="L2">
+				<l:VerticalLayout>
+					<Label text="공급업체코드" design="Bold" />
+					<Input value="" />
+				</l:VerticalLayout>
+				<l:VerticalLayout>
+					<Label text="공급업체명" design="Bold" />
+					<Input value="" />
+				</l:VerticalLayout>
+				<l:VerticalLayout>
+					<Label text="사업자등록번호" design="Bold" />
+					<Input />
+				</l:VerticalLayout>
+				<l:VerticalLayout>
+					<Label text="전화번호" design="Bold" />
+					<Input value="" />
+				</l:VerticalLayout>
+				<l:VerticalLayout>
+					<Label text="팩스" design="Bold" />
+					<Input value="" />
+				</l:VerticalLayout>
+				<l:VerticalLayout width="100%">
+					<Label text="이메일" design="Bold" />
+					<Input value="" />
+				</l:VerticalLayout>
+			</l:Grid>
+			<Table items="{estlist>/data}" id="esttable" inset="false">
+				<columns>
+					<Column minScreenWidth="Tablet" demandPopin="true"
+						mergeDuplicates="true">
+						<Text text="계약번호" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="계약구분" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="공급업체명" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="대분류" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="중분류" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="제품명" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="제품코드" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="수량" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="단가" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="합계" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="금액단위" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="입고예정일" />
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem vAlign="Middle" press=".onPress">
+						<cells>
+							<!-- <ObjectIdentifier title="{/data}" /> text="{ProductId}" -->
+							<Text text="{estlist>EstNo}" />
+							<Text text="{estlist>EstAva}" />
+							<Text text="{estlist>EstCat1}" />
+							<Text text="{estlist>EstCat2}" />
+							<Text text="{estlist>EstCat3}" />
+							<Text text="{estlist>EstVname}" />
+							<Text text="{estlist>EstVcode}" />
+							<Text text="{estlist>EstAmt}" />
+							<Text text="{estlist>EstPrice}" />
+							<Text text="{estlist>EstTotal}" />
+							<Text text="{estlist>EstCuky}" />
+							<Text text="{estlist>EstDate}" />
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</Page>
+	</App>
+</mvc:View>

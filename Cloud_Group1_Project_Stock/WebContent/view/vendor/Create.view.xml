@@ -1,0 +1,67 @@
+<mvc:View displayBlock="true"
+	controllerName="Cloud_Group1_ProjectCloud_Group1_Project.controller.vendor.Create"
+	height="100%" xmlns="sap.uxap" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core" xmlns:m="sap.m" xmlns:f="sap.f"
+	xmlns:form="sap.ui.layout.form" xmlns:u="sap.ui.unified"
+	xmlns:l="sap.ui.layout">
+
+	<ObjectPageLayout id="ObjectPageLayout">
+		<headerTitle>
+			<ObjectPageDynamicHeaderTitle>
+				<navigationActions>
+					<m:Button id="enter" icon="sap-icon://save" press="enter" type="Transparent"/>
+					<m:OverflowToolbarButton type="Transparent"
+						icon="sap-icon://decline" press="handleClose"
+						tooltip="Close column" />
+				</navigationActions>
+			</ObjectPageDynamicHeaderTitle>
+		</headerTitle>
+
+		<sections>
+			<ObjectPageSection title="공급업체 등록">
+				<subSections>
+					<ObjectPageSubSection>
+						<blocks>
+							<form:SimpleForm maxContainerCols="2"
+								editable="false" layout="ResponsiveGridLayout" labelSpanL="12"
+								labelSpanM="12" emptySpanL="0" emptySpanM="0" columnsL="1"
+								columnsM="1">
+								<form:content>
+									<l:VerticalLayout>
+										<u:FileUploader id="fileUploader"
+											name="myFileUpload" uploadUrl="upload/"
+											tooltip="Upload your file to the local server"
+											uploadComplete="handleUploadComplete"
+											typeMissmatch="handleTypeMissmatch" fileType="png,jpg" />
+										<m:Button text="Upload File"
+											press="handleUploadPress" />
+									</l:VerticalLayout>
+									<m:Label text="대분류" labelFor="001" />
+									<m:ComboBox>
+										<m:items>
+											<core:Item key="001" text="EMEA" />
+										</m:items>
+									</m:ComboBox>
+									<m:Label text="중분류" labelFor="002" />
+									<m:ComboBox>
+										<m:items>
+											<core:Item key="002" text="EMEA" />
+										</m:items>
+									</m:ComboBox>
+									<m:Label text="상품명" />
+									<m:Input />
+									<m:Label text="표준금액" />
+									<m:Input />
+									<m:Label text="제조사" />
+									<m:Input />
+									<m:Label text="출시일" />
+									<m:DatePicker  />
+								</form:content>
+							</form:SimpleForm>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+		</sections>
+	</ObjectPageLayout>
+</mvc:View>
