@@ -10,7 +10,7 @@ sap.ui
 
 					return Controller
 							.extend(
-									"Cloud_Group1_ProjectCloud_Group1_Project.controller.po.View7",
+									"Cloud_Group1_ProjectCloud_Group1_Project.controller.po.List",
 									{
 										MainData : function(searchData) {
 											var sServiceUrl = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000"

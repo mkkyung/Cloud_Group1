@@ -54,7 +54,7 @@ sap.ui.define([
 				window.history.go(-1);							//just before screen
 			} else {
 				var oRouter = UIComponent.getRouterFor(this);	//before screen in process flow
-				oRouter.navTo("view7", {}, true);
+				oRouter.navTo("List", {}, true);
 			}
 		},
 		

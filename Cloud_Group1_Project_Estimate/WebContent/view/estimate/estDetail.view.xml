@@ -1,5 +1,5 @@
 <mvc:View height="100%"
-	controllerName="Cloud_Group1_ProjectCloud_Group1_Project.controller.estimate.estlookup"
+	controllerName="Cloud_Group1_ProjectCloud_Group1_Project.controller.estimate.estDetail"
 	xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
 	xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
 	<Page title="견적서 상세 화면" showNavButton="true"

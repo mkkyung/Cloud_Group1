@@ -13,7 +13,7 @@ sap.ui.define([
 ], function(Controller, History, UIComponent, ODataModel, JSONModel, Label, Filter, MessageBox, jQuery, MessageToast, Fragment) {
    "use strict";
 
-   return Controller.extend("Cloud_Group1_ProjectCloud_Group1_Project.controller.contract.View4", {
+   return Controller.extend("Cloud_Group1_ProjectCloud_Group1_Project.controller.contract.List", {
       onInit: function() {
       
            var sServiceUrl = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000/";   //CORSerror나면 http:// 를 proxy/http/로

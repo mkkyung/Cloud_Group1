@@ -10,7 +10,7 @@ sap.ui.define([
 ], function(Controller, History, UIComponent, ODataModel, JSONModel, Label, Filter, MessageBox) {
 	"use strict";
 
-	return Controller.extend("Cloud_Group1_ProjectCloud_Group1_Project.controller.estimate.View2", {
+	return Controller.extend("Cloud_Group1_ProjectCloud_Group1_Project.controller.estimate.List", {
 		
 		onInit: function() {
 			this.getData();
@@ -90,7 +90,7 @@ sap.ui.define([
 		},
 		
 		onClose: function(oRouter, routerData){
-			oRouter.navTo("estlookup", {
+			oRouter.navTo("estDetail", {
 				EstPath: routerData
 			});
 		},

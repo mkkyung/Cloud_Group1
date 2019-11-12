@@ -9,7 +9,7 @@ sap.ui.define([
 ], function(Controller, History, UIComponent, Fragment, Filter, MessageBox, JSONModel) {
 	"use strict";
 
-	return Controller.extend("Cloud_Group1_ProjectCloud_Group1_Project.controller.po.View6", {
+	return Controller.extend("Cloud_Group1_ProjectCloud_Group1_Project.controller.po.Create", {
 			
 		MainData : function(searchData) {
 			var sServiceUrl = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000"

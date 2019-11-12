@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mvc:View
-	controllerName="Cloud_Group1_ProjectCloud_Group1_Project.controller.contract.View4"
+	controllerName="Cloud_Group1_ProjectCloud_Group1_Project.controller.contract.List"
 	xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"
 	xmlns:f="sap.f" xmlns:fb="sap.ui.comp.filterbar"
 	xmlns:vm="sap.ui.comp.variants" xmlns:layout="sap.ui.layout"

@@ -10,11 +10,11 @@ sap.ui.define([
 	], function(jQuery, Controller, JSONModel , History, UIComponent, Label, Filter, MessageBox) {
 	"use strict";
 
-	return Controller.extend("Cloud_Group1_ProjectCloud_Group1_Project.controller.estimate.estlookup", {
+	return Controller.extend("Cloud_Group1_ProjectCloud_Group1_Project.controller.estimate.estDetail", {
 
 		onInit: function () {
 			var oRouter = UIComponent.getRouterFor(this);
-			oRouter.getRoute("estlookup").attachPatternMatched(this._onObjectMatched, this);
+			oRouter.getRoute("estDetail").attachPatternMatched(this._onObjectMatched, this);
 			this.getData();
 			
 			

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mvc:View
-	controllerName="Cloud_Group1_ProjectCloud_Group1_Project.controller.po.View6"
+	controllerName="Cloud_Group1_ProjectCloud_Group1_Project.controller.po.Create"
 	xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"
 	xmlns:l="sap.ui.layout" xmlns:f="sap.f" displayBlock="true">
 	<App id="apps">
