@@ -12,12 +12,12 @@ sap.ui
 							.extend(
 									"Cloud_Group1_ProjectCloud_Group1_Project.controller.po.List",
 									{
-										MainData : function(searchData) {
+										GETPOSet : function(searchData) {
 											var sServiceUrl = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000"
-													+ "/sap/opu/odata/sap/ZFIORI_STU03_DEV03_SRV";
+													+ "/sap/opu/odata/sap/Z_CLOUD_PO_SRV";
 
 											if (searchData != null) {
-												var url = "/MainDataSet?$filter=PName eq '"
+												var url = "/GETPOSet?$filter=PName eq '"
 														+ searchData[0]
 														+ "'"
 														+ " and PCode eq '"
@@ -29,13 +29,13 @@ sap.ui
 														+ " and PCan eq '"
 														+ searchData[3] + "'";
 											} else {
-												var url = "/MainDataSet";
+												var url = "/GETPOSet";
 											}
 
 											var oDataModel = new sap.ui.model.odata.ODataModel(
 													sServiceUrl, true);
 
-											var MainData;
+											var GETPOSet;
 
 											oDataModel
 													.read(
@@ -44,21 +44,21 @@ sap.ui
 															null,
 															false,
 															function(oData) {
-																MainData = oData.results;
+																GETPOSet = oData.results;
 															});
 
 											var oModel = new sap.ui.model.json.JSONModel(
 													{
-														"MainData" : MainData
+														"GETPOSet" : GETPOSet
 													});
 
 											this.getView().setModel(oModel,
-													"MainData");
+													"GETPOSet");
 
 										},
 
 										onInit : function() {
-											this.MainData();
+											this.GETPOSet();
 										},
 
 										handleValueHelp : function(oEvent) {

@@ -62,14 +62,14 @@
 					columnsXL="2" columnsL="2" columnsM="1"
 					singleContainerFullSize="false">
 				</f:SimpleForm>
-				<Table items="{estlist>/data}" id="esttable" inset="false">
+				<Table items="{GETPOSet>/GETPOSet}" id="esttable" inset="false">
 					<columns>
-						<Column minScreenWidth="Tablet" demandPopin="true">
-							<Text text="대분류 코드" />
-						</Column>
-						<Column minScreenWidth="Tablet" demandPopin="true">
-							<Text text="중분류 코드" />
-						</Column>
+<!-- 						<Column minScreenWidth="Tablet" demandPopin="true"> -->
+<!-- 							<Text text="대분류 코드" /> -->
+<!-- 						</Column> -->
+<!-- 						<Column minScreenWidth="Tablet" demandPopin="true"> -->
+<!-- 							<Text text="중분류 코드" /> -->
+<!-- 						</Column> -->
 						<Column minScreenWidth="Tablet" demandPopin="true">
 							<Text text="제품명" />
 						</Column>
@@ -80,30 +80,28 @@
 							<Text text="발주수량" />
 						</Column>							
 						<Column minScreenWidth="Tablet" demandPopin="true">
+							<Text text="총 수량" />
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true">
 							<Text text="단가" />
 						</Column>
 						<Column minScreenWidth="Tablet" demandPopin="true">
 							<Text text="합계" />
-						</Column>
-						<Column minScreenWidth="Tablet" demandPopin="true">
-							<Text text="금액단위" />
 						</Column>
 					</columns>
 					<items>
 						<ColumnListItem>
 							<cells>
 								<!-- <ObjectIdentifier title="{/data}" /> text="{ProductId}" -->
-								<Text text="{estlist>EstNo}" />
-								<Text text="{estlist>EstAva}" />
-								<Text text="{estlist>EstCat1}" />
-								<Text text="{estlist>EstCat2}" />
-								<Text text="{estlist>EstCat3}" />
-								<Text text="{estlist>EstVname}" />
-								<Text text="{estlist>EstVcode}" />
-								<Text text="{estlist>EstAmt}" />
-								<Text text="{estlist>EstPrice}" />
-								<Text text="{estlist>EstTotal}" />
-								<Text text="{estlist>EstCuky}" />
+							
+							
+							<Text text="{GETPOSet>PoPname}" />
+							<Text text="{GETPOSet>PoCat3}" />
+							<Text text="{GETPOSet>PoAmt}" />
+							<Text text="{GETPOSet>PoTotal}" />
+							<Text text="{GETPOSet>PoEprice}" />
+							<Text text="{GETPOSet>PoTprice}" />
+							
 							</cells>
 						</ColumnListItem>
 					</items>
