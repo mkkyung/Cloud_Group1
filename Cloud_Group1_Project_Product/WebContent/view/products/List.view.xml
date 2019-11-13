@@ -61,27 +61,27 @@
 			</fb:FilterBar>
 			<content>
 				<Table id="productsTable" inset="false"
-					class="sapFDynamicPageAlignContent" width="auto">
+					class="sapFDynamicPageAlignContent"  items="{MainData>/MainData}">
 					<columns>
-						<Column>
+						<Column width="10em">
 							<Text text="대분류" />
 						</Column>
-						<Column>
+						<Column width="10em">
 							<Text text="중분류" />
 						</Column>
-						<Column width="12em">
+						<Column width="15em">
 							<Text text="상품코드" />
 						</Column>
-						<Column>
+						<Column width="30em">
 							<Text text="상품명" />
 						</Column>
-						<Column>
+						<Column width="10em">
 							<Text text="표준금액" />
 						</Column>
-						<Column>
+						<Column width="20em">
 							<Text text="제조사" />
 						</Column>
-						<Column>
+						<Column width="20em">
 							<Text text="출시일" />
 						</Column>
 					</columns>
@@ -89,123 +89,20 @@
 						<ColumnListItem type="Navigation"
 							press="handleMasterPress">
 							<cells>
-								<Text text="가전" />
-								<Text text="노트북" />
-								<Text text="AH05001" />
-								<Text text="OA-W11" />
-								<ObjectIdentifier title="1,900,000" text="KRW" />
-								<Text text="삼성전자" />
-								<Text text="2019.03.07" />
+								<Text text="{MainData>Cat1No}" />
+								<Text text="{MainData>Cat2No}" />
+								<Text text="{MainData>Cat3No}" />
+								<Text text="{MainData>Cat3Name}" />
+								<ObjectNumber
+										number="{
+												parts:[{path: 'MainData>Cat3Price'},{path:'MainData>Cat3Cuky'}],
+												type: 'sap.ui.model.type.Currency',
+												formatOptions: {showMeasure: false}
+												}"/>
+								<Text text="{MainData>Cat3Made}" />
+								<Text text="{MainData>Cat3Date}" />
 							</cells>
-						</ColumnListItem>						
-						<ColumnListItem type="Navigation"
-							press="handleMasterPress">
-							<cells>
-								<Text text="가전" />
-								<Text text="노트북" />
-								<Text text="AB05080" />
-								<Text text="OZ-W16" />
-								<ObjectIdentifier title="1,560,000" text="KRW" />
-								<Text text="LG전자" />
-								<Text text="2015.03.07" />
-							</cells>
-						</ColumnListItem>						
-						<ColumnListItem type="Navigation"
-							press="handleMasterPress">
-							<cells>
-								<Text text="가전" />
-								<Text text="노트북" />
-								<Text text="AB05033" />
-								<Text text="OA-W11" />
-								<ObjectIdentifier title="1,209,000" text="KRW" />
-								<Text text="DELL" />
-								<Text text="2019.01.22" />
-							</cells>
-						</ColumnListItem>						
-						<ColumnListItem type="Navigation"
-							press="handleMasterPress">
-							<cells>
-								<Text text="가전" />
-								<Text text="노트북" />
-								<Text text="AQ05001" />
-								<Text text="OA-W20" />
-								<ObjectIdentifier title="2,200,000" text="KRW" />
-								<Text text="삼성전자" />
-								<Text text="2019.04.07" />
-							</cells>
-						</ColumnListItem>						
-						<ColumnListItem type="Navigation"
-							press="handleMasterPress">
-							<cells>
-								<Text text="가전" />
-								<Text text="노트북" />
-								<Text text="AL05001" />
-								<Text text="OA-Z16" />
-								<ObjectIdentifier title="1,650,000" text="KRW" />
-								<Text text="DELL" />
-								<Text text="2018.12.03" />
-							</cells>
-						</ColumnListItem>						
-						<ColumnListItem type="Navigation"
-							press="handleMasterPress">
-							<cells>
-								<Text text="가전" />
-								<Text text="노트북" />
-								<Text text="AZ05001" />
-								<Text text="OA-Q16" />
-								<ObjectIdentifier title="1,970,000" text="KRW" />
-								<Text text="LG전자" />
-								<Text text="2018.05.12" />
-							</cells>
-						</ColumnListItem>						
-						<ColumnListItem type="Navigation"
-							press="handleMasterPress">
-							<cells>
-								<Text text="가전" />
-								<Text text="노트북" />
-								<Text text="AK05001" />
-								<Text text="OC-W20" />
-								<ObjectIdentifier title="1,345,000" text="KRW" />
-								<Text text="삼성전자" />
-								<Text text="2019.02.23" />
-							</cells>
-						</ColumnListItem>						
-						<ColumnListItem type="Navigation"
-							press="handleMasterPress">
-							<cells>
-								<Text text="가전" />
-								<Text text="노트북" />
-								<Text text="AB05012" />
-								<Text text="OA-X80" />
-								<ObjectIdentifier title="1,120,000" text="KRW" />
-								<Text text="HP" />
-								<Text text="2019.01.23" />
-							</cells>
-						</ColumnListItem>						
-						<ColumnListItem type="Navigation"
-							press="handleMasterPress">
-							<cells>
-								<Text text="가전" />
-								<Text text="노트북" />
-								<Text text="AB05023" />
-								<Text text="KA-W16" />
-								<ObjectIdentifier title="1,800,000" text="KRW" />
-								<Text text="LG전자" />
-								<Text text="2019.08.01" />
-							</cells>
-						</ColumnListItem>						
-						<ColumnListItem type="Navigation"
-							press="handleMasterPress">
-							<cells>
-								<Text text="가전" />
-								<Text text="노트북" />
-								<Text text="AC05001" />
-								<Text text="OA-W46" />
-								<ObjectIdentifier title="1,430,000" text="KRW" />
-								<Text text="HP" />
-								<Text text="2018.05.28" />
-							</cells>
-						</ColumnListItem>						
+						</ColumnListItem>				
 					</items>
 				</Table>
 			</content>

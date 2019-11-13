@@ -146,7 +146,6 @@ sap.ui.define([
          var oItem = oEvent.getSource();
          var oRouter = UIComponent.getRouterFor(this);
          var routerData = oItem.mAggregations.cells[0].mProperties.text;
-//         routerData = oItem.getBindingContext("estlist").getPath().substr(1);
          this.onClose(oRouter, 0);
       },
       onClose: function(oRouter, routerData){
