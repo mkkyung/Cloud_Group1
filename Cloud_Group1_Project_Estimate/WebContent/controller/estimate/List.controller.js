@@ -13,9 +13,14 @@ sap.ui.define([
 	return Controller.extend("Cloud_Group1_ProjectCloud_Group1_Project.controller.estimate.List", {
 		
 		onInit: function() {
-			this.getData();
+			this.GtEstiSet();
+			this.GtVnameSet();
+			this.GtVcodeSet();
+			this.GtCat1Set();
+			this.GtCat2Set();
 			this.GtCat3Set();
-			this.GtVenSet();
+			this.GtAvaSet();
+			this.GtType1Set();
 //			통화설정
 			var oViewModel = new JSONModel({
 				currency: "KRW"
@@ -42,11 +47,11 @@ sap.ui.define([
 			}
 		},
 	
-		getData : function(){
+		GtEstiSet : function(){
 	        var sServiceUrl = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000"; // 로컬 서버 연결 하는 거 
-	        sServiceUrl += "/sap/opu/odata/sap/Z_FUNC_ESTIMATE_TEST_SRV";   // 여기를 /n/iwfnd/maint_service 에 들어가서 내가 만든 경로를 복사 해와야 함.
+	        sServiceUrl += "/sap/opu/odata/sap/Z_CLOUD_ESTIMATE_SRV";   // 여기를 /n/iwfnd/maint_service 에 들어가서 내가 만든 경로를 복사 해와야 함.
 	        var url;
-	        url = "/getestSet";
+	        url = "/getestiSet";
 	     
 	        var oDataModel = new sap.ui.model.odata.ODataModel(sServiceUrl, true);
 	        var data;
@@ -57,29 +62,90 @@ sap.ui.define([
 	        this.getView().setModel(oModel , "estlist");
 		},
 		
-		GtCat3Set : function() {
-	    	var sServiceUrl= "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000/sap/opu/odata/sap/Z_FUNC_ESTIMATE_TEST_SRV";
-				
-	        var url = "/getcat3Set";
-	        var oDataModel= new sap.ui.model.odata.ODataModel(sServiceUrl,true);
-	        var data;
-	        oDataModel.read(url, null, null, false, function(oData) {
-	        data = oData.results;});
-	        var oModel = new sap.ui.model.json.JSONModel({ "cat3" : data});
-	        this.getView().setModel(oModel, "cat3");
-	     },
-	     
-	     GtVenSet : function() {
-		    	var sServiceUrl= "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000/sap/opu/odata/sap/Z_FUNC_ESTIMATE_TEST_SRV";
+	    GtVnameSet : function() {
+		    	var sServiceUrl= "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000/sap/opu/odata/sap/Z_CLOUD_ESTIMATE_SRV";
 					
-		        var url = "/getvenSet";
+		        var url = "/getvnameSet";
 		        var oDataModel= new sap.ui.model.odata.ODataModel(sServiceUrl,true);
 		        var data;
 		        oDataModel.read(url, null, null, false, function(oData) {
 		        data = oData.results;});
-		        var oModel = new sap.ui.model.json.JSONModel({ "ven" : data});
-		        this.getView().setModel(oModel, "ven");
+		        var oModel = new sap.ui.model.json.JSONModel({ "vname" : data});
+		        this.getView().setModel(oModel, "vname");
 		     },
+		     
+	   GtVcodeSet : function() {
+	    		var sServiceUrl= "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000/sap/opu/odata/sap/Z_CLOUD_ESTIMATE_SRV";
+						
+	        	var url = "/getvcodeSet";
+	        	var oDataModel= new sap.ui.model.odata.ODataModel(sServiceUrl,true);
+	        	var data;
+	        	oDataModel.read(url, null, null, false, function(oData) {
+	        	data = oData.results;});
+	        	var oModel = new sap.ui.model.json.JSONModel({ "vcode" : data});
+	        	this.getView().setModel(oModel, "vcode");
+	   		},
+			     
+	   GtCat1Set : function() {
+				var sServiceUrl= "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000/sap/opu/odata/sap/Z_CLOUD_ESTIMATE_SRV";
+							
+		        var url = "/getcat1Set";
+			    var oDataModel= new sap.ui.model.odata.ODataModel(sServiceUrl,true);
+				var data;
+				oDataModel.read(url, null, null, false, function(oData) {
+				data = oData.results;});
+				var oModel = new sap.ui.model.json.JSONModel({ "cat1" : data});
+				this.getView().setModel(oModel, "cat1");
+			},
+			
+		GtCat2Set : function() {
+				var sServiceUrl= "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000/sap/opu/odata/sap/Z_CLOUD_ESTIMATE_SRV";
+								
+				var url = "/getcat2Set";
+				var oDataModel= new sap.ui.model.odata.ODataModel(sServiceUrl,true);
+				var data;
+				oDataModel.read(url, null, null, false, function(oData) {
+				data = oData.results;});
+				var oModel = new sap.ui.model.json.JSONModel({ "cat2" : data});
+				this.getView().setModel(oModel, "cat2");
+			},
+			
+		GtCat3Set : function() {
+		    	var sServiceUrl= "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000/sap/opu/odata/sap/Z_CLOUD_ESTIMATE_SRV";
+					
+		        var url = "/getcat3Set";
+		        var oDataModel= new sap.ui.model.odata.ODataModel(sServiceUrl,true);
+		        var data;
+		        oDataModel.read(url, null, null, false, function(oData) {
+		        data = oData.results;});
+		        var oModel = new sap.ui.model.json.JSONModel({ "cat3" : data});
+		        this.getView().setModel(oModel, "cat3");
+		     },
+		     
+			
+		GtAvaSet : function() {
+				var sServiceUrl= "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000/sap/opu/odata/sap/Z_CLOUD_ESTIMATE_SRV";
+								
+				var url = "/getavaSet";
+				var oDataModel= new sap.ui.model.odata.ODataModel(sServiceUrl,true);
+				var data;
+				oDataModel.read(url, null, null, false, function(oData) {
+				data = oData.results;});
+				var oModel = new sap.ui.model.json.JSONModel({ "ava" : data});
+				this.getView().setModel(oModel, "ava");
+			},
+			
+		GtType1Set : function() {
+				var sServiceUrl= "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000/sap/opu/odata/sap/Z_CLOUD_ESTIMATE_SRV";
+								
+				var url = "/gettype1Set";
+				var oDataModel= new sap.ui.model.odata.ODataModel(sServiceUrl,true);
+				var data;
+				oDataModel.read(url, null, null, false, function(oData) {
+				data = oData.results;});
+				var oModel = new sap.ui.model.json.JSONModel({ "type1" : data});
+				this.getView().setModel(oModel, "type1");
+			},
 	     
 		onPress : function (oEvent) {	//계약서 눌렀을 때 
 			var oItem = oEvent.getSource();
