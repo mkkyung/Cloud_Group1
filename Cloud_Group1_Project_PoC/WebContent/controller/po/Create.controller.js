@@ -16,12 +16,12 @@ sap.ui.define([
 					+ "/sap/opu/odata/sap/ZFIORI_STU03_DEV03_SRV";
 			
 			if (searchData != null){
-				var url = "/MainDataSet?$filter=PName eq '" + searchData[0] + "'"
+				var url = "/GETPOSet?$filter=PName eq '" + searchData[0] + "'"
 				+ " and PCode eq '" + searchData[1] + "'"
 				+ " and PGrade eq '" + searchData[2] + "'"
 				+ " and PCan eq '" + searchData[3] + "'";
 			} else {
-				var url = "/MainDataSet";
+				var url = "/GETPOSet";
 			}
 
 
@@ -34,11 +34,11 @@ sap.ui.define([
 			});
 
 			var oModel = new sap.ui.model.json.JSONModel({
-				"MainData" : MainData
+				"GETPOSet" : MainData
 			});
 
 			
-			this.getView().setModel(oModel, "MainData");
+			this.getView().setModel(oModel, "GETPOSet");
 
 		},
 		
