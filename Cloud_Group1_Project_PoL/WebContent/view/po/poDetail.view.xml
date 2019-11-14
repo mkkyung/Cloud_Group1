@@ -5,8 +5,10 @@
 	<Page title="발주서 상세 화면" showNavButton="true"
 		navButtonPress="goBack">
 		<headerContent>
-			<Button type="Accept" text="발주서 등록" id="button"
-				press=".onShow" />
+			<Button type="Reject" text="발주서 수정" id="button" press="edit"/>
+<!-- 				press=".onShow" /> -->
+			<Button type="Accept" id="cancel" text="취소"
+					press="cancel" />
 		</headerContent>
 
 		<content>
@@ -17,7 +19,7 @@
 						labelSpanM="12" labelSpanS="12" adjustLabelSpan="false"
 						emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0"
 						columnsXL="2" columnsL="2" columnsM="1"
-						singleContainerFullSize="false">
+						singleContainerFullSize="false" editable="false">
 						<Text text="발주상태" class="sapUiTinyMarginBottom" />
 						<Text text="발주일자" class="sapUiTinyMarginBottom" />
 						<Text text="입고예정일" class="sapUiTinyMarginBottom" />
@@ -62,7 +64,8 @@
 					columnsXL="2" columnsL="2" columnsM="1"
 					singleContainerFullSize="false">
 				</f:SimpleForm>
-				<Table items="{GETPOSet>/GETPOSet}" id="esttable" inset="false">
+				<Table items="{GETPOSet>/GETPOSet}" id="esttable" editable="false" > 
+<!-- 				inset="false" -->
 					<columns>
 <!-- 						<Column minScreenWidth="Tablet" demandPopin="true"> -->
 <!-- 							<Text text="대분류 코드" /> -->
@@ -70,7 +73,7 @@
 <!-- 						<Column minScreenWidth="Tablet" demandPopin="true"> -->
 <!-- 							<Text text="중분류 코드" /> -->
 <!-- 						</Column> -->
-						<Column minScreenWidth="Tablet" demandPopin="true">
+						<Column minScreenWidth="Tablet" demandPopin="true" >
 							<Text text="제품명" />
 						</Column>
 						<Column minScreenWidth="Tablet" demandPopin="true">
@@ -78,6 +81,8 @@
 						</Column>
 						<Column minScreenWidth="Tablet" demandPopin="true">
 							<Text text="발주수량" />
+							
+							
 						</Column>							
 						<Column minScreenWidth="Tablet" demandPopin="true">
 							<Text text="총 수량" />
@@ -95,12 +100,14 @@
 								<!-- <ObjectIdentifier title="{/data}" /> text="{ProductId}" -->
 							
 							
-							<Text text="{GETPOSet>PoPname}" />
-							<Text text="{GETPOSet>PoCat3}" />
-							<Text text="{GETPOSet>PoAmt}" />
-							<Text text="{GETPOSet>PoTotal}" />
-							<Text text="{GETPOSet>PoEprice}" />
-							<Text text="{GETPOSet>PoTprice}" />
+							<Text text="{GETPOSet>PoPname}" class="sapUiSmallMarginTop" />
+							<Text text="{GETPOSet>PoCat3}" class="sapUiSmallMarginTop" />
+							
+							<Input value="{GETPOSet>PoAmt}" width="30%" valueState="{color>/Color}" editable="{enter>/Enter}"/>						
+<!-- 							<Text text="{GETPOSet>PoAmt}" /> -->
+							<Text text="{GETPOSet>PoTotal}" class="sapUiSmallMarginTop" />
+							<Text text="{GETPOSet>PoEprice}" class="sapUiSmallMarginTop" />
+							<Text text="{GETPOSet>PoTprice}" class="sapUiSmallMarginTop" />
 							
 							</cells>
 						</ColumnListItem>
