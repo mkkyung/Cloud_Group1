@@ -26,6 +26,13 @@ sap.ui.define([
 				currency: "KRW"
 			});
 			this.getView().setModel(oViewModel, "view");
+			
+//			var oComp = sap.ui.getCore().createComponent({
+//				name : 'sap.m.sample.Table'
+//			});
+//			oComp.setModel(this.getView().getModel());
+//			this._oTable = oComp.getTable();
+//			this.getView().byId("idIconTabBar").insertContent(this._oTable);
 		},
 		
 //		_______________________________________
@@ -47,17 +54,23 @@ sap.ui.define([
 			}
 		},
 	
-		GtEstiSet : function(){
+		GtEstiSet : function(Cat1,Cat2){
 	        var sServiceUrl = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000"; // 로컬 서버 연결 하는 거 
 	        sServiceUrl += "/sap/opu/odata/sap/Z_CLOUD_ESTIMATE_SRV";   // 여기를 /n/iwfnd/maint_service 에 들어가서 내가 만든 경로를 복사 해와야 함.
 	        var url;
-	        url = "/getestiSet";
-	     
-	        var oDataModel = new sap.ui.model.odata.ODataModel(sServiceUrl, true);
-	        var data;
-	        oDataModel.read(url, null, null, false, function (oData) {
-	           data = oData.results;
-	        });
+        	var ava = this.getView().byId("idIconTabBar").getSelectedKey();
+	        
+	        if (Cat1 == undefined ){
+		       url = "/getestiSet";
+	   		}else{
+	   			 url = "/getestiSet?$filter=PCat1 eq '" + Cat1
+	   	         + "' and PCat2 eq '" + Cat2 + "' and PAva eq '" +  ava   + "'";
+	   		}
+	   			var oDataModel= new sap.ui.model.odata.ODataModel(sServiceUrl,true);
+	   			var data;
+	   			oDataModel.read(url, null, null, false, function(oData) {
+	   				data = oData.results;
+	   			});
 	        var oModel = new sap.ui.model.json.JSONModel({ "data": data });
 	        this.getView().setModel(oModel , "estlist");
 		},
@@ -168,33 +181,39 @@ sap.ui.define([
 			sap.m.MessageToast.show(sMessage);
 		},
 		
-		onSearch: function(oEvent) {
+		onSearch: function() {
 			jQuery.sap.require("sap.m.MessageToast");
 			// var params = oEvent.getParameters();
 			var sMessage = "onSearch trigered";
 			sap.m.MessageToast.show(sMessage);
+			
+		      var Cat1 = this.getView().byId("2cat1").getSelectedKey();
+		      var Cat2 = this.getView().byId("2cat2").getSelectedKey();
+		      
+		      this.GtEstiSet(Cat1,Cat2);
 		},
-////필터바 숨기기 토글 로직
-//		onToggleHeader: function () {
-//			this.getPage().setHeaderExpanded(!this.getPage().getHeaderExpanded());
-//		},
-//		
-//		addSnappedLabel : function() {
-//			var oSnappedLabel = this.getSnappedLabel();
-//			oSnappedLabel.attachBrowserEvent("click", this.onToggleHeader, this);
-//			this.getPageTitle().addSnappedContent(oSnappedLabel);
-//		},
-//		
-//		getSnappedLabel : function () {
-//			return new sap.m.Label({text: " "});
-//		},
-//		
-//		getPageTitle: function() {
-//			return this.getPage().getTitle();
-//		},
-//		getPage : function() {
-//			return this.getView().byId("dynamicPageId");
-//		},
+		
+		IconTabFilter: function (oEvent) {
+//			var oBinding = this.getView().byId("esttable").getBinding("items"),
+//			sKey = oEvent.getParameter("key"),
+//			ava;
+////			aFilters = [];
+//			
+//			if(sKey == "ALL")
+//			{ 			
+//				ava = "";
+//			}else if (sKey === "OK") { 
+//				ava = "O";
+////					aFilters.push(new Filter("EstAva", "EQ", "O"));
+//			}else if (sKey === "NOB") { 
+//				ava = "X";
+////					 aFilters.push(new Filter("EstAva", "EQ", "X"));
+//			 }
+			
+			this.onSearch();
+//			oBinding.filter(aFilters);
+			
 
+		},
 	});
 });
