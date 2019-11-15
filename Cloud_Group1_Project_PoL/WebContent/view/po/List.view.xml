@@ -45,12 +45,12 @@
 										<Input id="VC" maxLength="15" />
 									</fb:control>
 								</fb:FilterItem>
-								<fb:FilterItem name="PN" label="제품명">
+								<fb:FilterItem name="PN" label="상품명">
 									<fb:control>
 										<Input id="PN" maxLength="15" />
 									</fb:control>
 								</fb:FilterItem>
-								<fb:FilterItem name="PC" label="제품코드">
+								<fb:FilterItem name="PC" label="상품코드">
 									<fb:control>
 										<Input id="PC" maxLength="15" />
 									</fb:control>
@@ -111,12 +111,12 @@
 										<Input id="VC1" maxLength="15" />
 									</fb:control>
 								</fb:FilterItem>
-								<fb:FilterItem name="PN1" label="제품명">
+								<fb:FilterItem name="PN1" label="상품명">
 									<fb:control>
 										<Input id="PN1" maxLength="15" />
 									</fb:control>
 								</fb:FilterItem>
-								<fb:FilterItem name="PC1" label="제품코드">
+								<fb:FilterItem name="PC1" label="상품코드">
 									<fb:control>
 										<Input id="PC1" maxLength="15" />
 									</fb:control>
@@ -178,12 +178,12 @@
 										<Input id="VC2" maxLength="15" />
 									</fb:control>
 								</fb:FilterItem>
-								<fb:FilterItem name="PN2" label="제품명">
+								<fb:FilterItem name="PN2" label="상품명">
 									<fb:control>
 										<Input id="PN2" maxLength="15" />
 									</fb:control>
 								</fb:FilterItem>
-								<fb:FilterItem name="PC2" label="제품코드">
+								<fb:FilterItem name="PC2" label="상품코드">
 									<fb:control>
 										<Input id="PC2" maxLength="15" />
 									</fb:control>
@@ -230,6 +230,8 @@
 				columnsM="1" singleContainerFullSize="false">
 			</fA:SimpleForm>
 
+           
+
 			<Table items="{GETPOSet>/GETPOSet}" id="esttable" inset="false">
 				<columns>
 					<Column minScreenWidth="Tablet" demandPopin="true"
@@ -239,17 +241,12 @@
 					<Column minScreenWidth="Tablet" demandPopin="true">
 						<Text text="발주일자" />
 					</Column>
-<!-- 					<Column minScreenWidth="Tablet" demandPopin="true"> -->
-<!-- 						<Text text="대분류" /> -->
-<!-- 					</Column> -->
-<!-- 					<Column minScreenWidth="Tablet" demandPopin="true"> -->
-<!-- 						<Text text="중분류" /> -->
-<!-- 					</Column> -->
+
 					<Column minScreenWidth="Tablet" demandPopin="true">
-						<Text text="제품명" />
+						<Text text="상품명" />
 					</Column>
 					<Column minScreenWidth="Tablet" demandPopin="true">
-						<Text text="제품코드" />
+						<Text text="상품코드" />
 					</Column>
 					<Column minScreenWidth="Tablet" demandPopin="true">
 						<Text text="공급업체" />
@@ -270,7 +267,7 @@
 				<items>
 					<ColumnListItem vAlign="Middle" press=".onPress" type="Navigation">
 						<cells>
-							<!-- <ObjectIdentifier title="{/data}" /> text="{ProductId}" -->
+							<ObjectIdentifier title="{/data}" />
 							<Text text="{GETPOSet>PoNo}" />
 							<Text text="{GETPOSet>PoDate}" />
 							<Text text="{GETPOSet>PoPname}" />
@@ -280,10 +277,7 @@
 							<Text text="{GETPOSet>PoEprice}" />
 							<Text text="{GETPOSet>PoTprice}" />
 							<Text text="{GETPOSet>PoDdate}" />
-<!-- 							<Text text="{GETPOSet>BName}" /> -->
-<!-- 							<Text text="{GETPOSet>BName}" /> -->
-<!-- 							<Text text="{GETPOSet>BName}" /> -->
-<!-- 							<Text text="{GETPOSet>BName}" /> -->
+
 						</cells>
 					</ColumnListItem>
 				</items>

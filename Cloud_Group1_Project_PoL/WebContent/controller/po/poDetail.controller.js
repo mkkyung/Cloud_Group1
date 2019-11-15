@@ -17,6 +17,8 @@ sap.ui.define([
 			oRouter.getRoute("poDetail").attachPatternMatched(this._onObjectMatched, this);
 			this.getData();
 			this.editable(false, true, "None");
+			
+			
 		},
 	
 		editable : function(unvisi, visible, color) {		                             //버튼별 상태변경(수정, 저장, 취소, input 태그 valuestate 변경)
@@ -40,6 +42,9 @@ sap.ui.define([
 			});
 			this.getView().setModel(oModel4, "color");
 				
+				
+			
+			
 		},
 		enter : function() {                                                              //저장버튼
 			this.editable(false, true, "None");
@@ -86,10 +91,18 @@ sap.ui.define([
 	        var oModel = new sap.ui.model.json.JSONModel({ "GETPOSet": data });
 	        this.getView().setModel(oModel , "GETPOSet");
 
+	        var oModel = new sap.ui.model.json.JSONModel();
+			oModel.setProperty("/visible", true);
+			this.getView().setModel(oModel, "test");
+	        
 		},
 	
+		
+		
 	
 		onShow : function(oEvent){
+
+		
 		},
 		
 		cancel : function(oEvent) {

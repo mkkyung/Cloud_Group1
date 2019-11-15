@@ -1,17 +1,20 @@
 <mvc:View height="100%"
 	controllerName="Cloud_Group1_ProjectCloud_Group1_Project.controller.po.poDetail"
 	xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
-	xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
-	<Page title="발주서 상세 화면" showNavButton="true"
+	xmlns="sap.ui.table" xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc" xmlns:m="sap.m">
+	<m:Page title="발주서 상세 화면" showNavButton="true"
 		navButtonPress="goBack">
-		<headerContent>
-			<Button type="Reject" text="발주서 수정" id="button" press="edit"/>
-<!-- 				press=".onShow" /> -->
-			<Button type="Accept" id="cancel" text="취소"
-					press="cancel" />
-		</headerContent>
+		<m:headerContent>
+			<m:Button type="Reject" text="발주서 수정" id="button"
+				visible="{edit>/Edit}" press="edit" />
+			<!-- press=".onShow" /> -->
+			<m:Button id="enter" icon="sap-icon://save" type="Emphasized"
+				visible="{enter>/Enter}" press="enter" />
+			<m:Button type="Accept" id="cancel" text="취소" press="cancel" />
+		</m:headerContent>
 
-		<content>
+		<m:content>
 			<l:Grid defaultSpan="L4 M6 S6" class="white">
 				<l:VerticalLayout class="sapUiTinyMarginEnd">
 					<f:SimpleForm title="발주번호"
@@ -20,9 +23,9 @@
 						emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0"
 						columnsXL="2" columnsL="2" columnsM="1"
 						singleContainerFullSize="false" editable="false">
-						<Text text="발주상태" class="sapUiTinyMarginBottom" />
-						<Text text="발주일자" class="sapUiTinyMarginBottom" />
-						<Text text="입고예정일" class="sapUiTinyMarginBottom" />
+						<m:Text text="발주상태" class="sapUiTinyMarginBottom" />
+						<m:Text text="발주일자" class="sapUiTinyMarginBottom" />
+						<m:Text text="입고예정일" class="sapUiTinyMarginBottom" />
 					</f:SimpleForm>
 				</l:VerticalLayout>
 				<l:VerticalLayout class="sapUiTinyMarginEnd">
@@ -35,11 +38,11 @@
 						<!-- <Title level="H2" titleStyle="H2" text="공급업체" -->
 						<!-- class="sapUiMediumMarginBottom" /> -->
 						<f:content>
-							<Text text="공급업체명" class="sapUiTinyMarginBottom" />
-							<Text text="공급업체코드" class="sapUiTinyMarginBottom" />
-							<Text text="사업자등록번호" class="sapUiTinyMarginBottom" />
-							<Text text="공급업체 주소" class="sapUiTinyMarginBottom" />
-							<Text text="대표자" class="sapUiTinyMarginBottom" />
+							<m:Text text="공급업체명" class="sapUiTinyMarginBottom" />
+							<m:Text text="공급업체코드" class="sapUiTinyMarginBottom" />
+							<m:Text text="사업자등록번호" class="sapUiTinyMarginBottom" />
+							<m:Text text="공급업체 주소" class="sapUiTinyMarginBottom" />
+							<m:Text text="대표자" class="sapUiTinyMarginBottom" />
 						</f:content>
 					</f:SimpleForm>
 				</l:VerticalLayout>
@@ -49,71 +52,130 @@
 						adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
 						emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2"
 						columnsM="1" singleContainerFullSize="false">
-						<Title class="sapUiMediumMarginBottom" />
-						<Text text="업태" class="sapUiTinyMarginBottom" />
-						<Text text="종목" class="sapUiTinyMarginBottom" />
-						<Text text="이메일" class="sapUiTinyMarginBottom" />
+						<m:Title class="sapUiMediumMarginBottom" />
+						<m:Text text="업태" class="sapUiTinyMarginBottom" />
+						<m:Text text="종목" class="sapUiTinyMarginBottom" />
+						<m:Text text="이메일" class="sapUiTinyMarginBottom" />
 					</f:SimpleForm>
 				</l:VerticalLayout>
 			</l:Grid>
-			<VBox class="sapUiSmallMargin">
-				<f:SimpleForm title="제품 리스트"
+			<m:VBox class="sapUiSmallMargin">
+				<f:SimpleForm title="상품 리스트"
 					layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="3"
 					labelSpanM="12" labelSpanS="12" adjustLabelSpan="false"
 					emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0"
 					columnsXL="2" columnsL="2" columnsM="1"
 					singleContainerFullSize="false">
 				</f:SimpleForm>
-				<Table items="{GETPOSet>/GETPOSet}" id="esttable" editable="false" > 
-<!-- 				inset="false" -->
+
+				<Table id="esttable" 
+				         selectionMode="None" 
+				         visibleRowCount="7"
+					     setEnableGrouping="true" 
+					     ariaLabelledBy="title" 
+					     rows="{GETPOSet>/GETPOSet}">
+
 					<columns>
-<!-- 						<Column minScreenWidth="Tablet" demandPopin="true"> -->
-<!-- 							<Text text="대분류 코드" /> -->
-<!-- 						</Column> -->
-<!-- 						<Column minScreenWidth="Tablet" demandPopin="true"> -->
-<!-- 							<Text text="중분류 코드" /> -->
-<!-- 						</Column> -->
-						<Column minScreenWidth="Tablet" demandPopin="true" >
-							<Text text="제품명" />
+						<Column width="11rem">
+							<m:Label text="상품명" />
+							<template>
+								<m:Text text="{GETPOSet>PoPname}" />
+							</template>
 						</Column>
-						<Column minScreenWidth="Tablet" demandPopin="true">
-							<Text text="제품코드" />
+
+						<Column>
+							<m:Label text="상품코드" />
+							<template>
+								<m:Text text="{GETPOSet>PoCat3}" />
+							</template>
 						</Column>
-						<Column minScreenWidth="Tablet" demandPopin="true">
-							<Text text="발주수량" />
-							
-							
-						</Column>							
-						<Column minScreenWidth="Tablet" demandPopin="true">
-							<Text text="총 수량" />
+						<Column>
+							<m:Label text="발주수량" />
+							<template>
+								<m:Input value="{GETPOSet>PoAmt}" editable="{enter>/Enter}"  valueState="{color>/Color}" />
+							</template>
 						</Column>
-						<Column minScreenWidth="Tablet" demandPopin="true">
-							<Text text="단가" />
+						<Column>
+							<m:Label text="총 수량" />
+							<template>
+								<m:Text text="{GETPOSet>PoTotal}" />
+							</template>
 						</Column>
-						<Column minScreenWidth="Tablet" demandPopin="true">
-							<Text text="합계" />
+
+						<Column>
+							<m:Label text="단가" />
+							<template>
+								<m:Text text="{GETPOSet>PoEprice}" />
+							</template>
+						</Column>
+
+						<Column>
+							<m:Label text="합계" />
+							<template>
+								<m:Text text="{GETPOSet>PoTprice}" />
+							</template>
 						</Column>
 					</columns>
-					<items>
-						<ColumnListItem>
-							<cells>
-								<!-- <ObjectIdentifier title="{/data}" /> text="{ProductId}" -->
-							
-							
-							<Text text="{GETPOSet>PoPname}" class="sapUiSmallMarginTop" />
-							<Text text="{GETPOSet>PoCat3}" class="sapUiSmallMarginTop" />
-							
-							<Input value="{GETPOSet>PoAmt}" width="30%" valueState="{color>/Color}" editable="{enter>/Enter}"/>						
-<!-- 							<Text text="{GETPOSet>PoAmt}" /> -->
-							<Text text="{GETPOSet>PoTotal}" class="sapUiSmallMarginTop" />
-							<Text text="{GETPOSet>PoEprice}" class="sapUiSmallMarginTop" />
-							<Text text="{GETPOSet>PoTprice}" class="sapUiSmallMarginTop" />
-							
-							</cells>
-						</ColumnListItem>
-					</items>
 				</Table>
-			</VBox>
-		</content>
-	</Page>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+				<!-- <Table items="{GETPOSet>/GETPOSet}" id="esttable" editable="false" 
+					> -->
+				<!-- <columns> -->
+				<!-- <Column minScreenWidth="Tablet" demandPopin="true" > -->
+				<!-- <Text text="상품명" /> -->
+				<!-- </Column> -->
+				<!-- <Column minScreenWidth="Tablet" demandPopin="true"> -->
+				<!-- <Text text="상품코드" /> -->
+				<!-- </Column> -->
+				<!-- <Column minScreenWidth="Tablet" demandPopin="true"> -->
+				<!-- <Text text="발주수량" /> -->
+
+
+				<!-- </Column> -->
+				<!-- <Column minScreenWidth="Tablet" demandPopin="true"> -->
+				<!-- <Text text="총 수량" /> -->
+				<!-- </Column> -->
+				<!-- <Column minScreenWidth="Tablet" demandPopin="true"> -->
+				<!-- <Text text="단가" /> -->
+				<!-- </Column> -->
+				<!-- <Column minScreenWidth="Tablet" demandPopin="true"> -->
+				<!-- <Text text="합계" /> -->
+				<!-- </Column> -->
+				<!-- </columns> -->
+				<!-- <items> -->
+				<!-- <ColumnListItem> -->
+				<!-- <cells> -->
+				<!-- <ObjectIdentifier title="{/data}" /> text="{ProductId}" -->
+
+
+				<!-- <Text text="{GETPOSet>PoPname}" class="sapUiSmallMarginTop" /> -->
+				<!-- <Text text="{GETPOSet>PoCat3}" class="sapUiSmallMarginTop" /> -->
+
+				<!-- <Input value="{GETPOSet>PoAmt}" width="30%" valueState="{color>/Color}" -->
+				<!-- editable="{enter>/Enter}" /> -->
+				<!-- <Text text="{GETPOSet>PoAmt}" /> -->
+				<!-- <Text text="{GETPOSet>PoTotal}" class="sapUiSmallMarginTop" /> -->
+				<!-- <Text text="{GETPOSet>PoEprice}" class="sapUiSmallMarginTop" /> -->
+				<!-- <Text text="{GETPOSet>PoTprice}" class="sapUiSmallMarginTop" /> -->
+
+				<!-- </cells> -->
+				<!-- </ColumnListItem> -->
+				<!-- </items> -->
+				<!-- </Table> -->
+			</m:VBox>
+		</m:content>
+	</m:Page>
 </mvc:View>
