@@ -30,6 +30,9 @@ sap.ui.define([
 				});
 			}
 			
+			
+//			this.detailView.setModel({"aaa" : "AAA"});
+			
 			this.oFlexibleColumnLayout.setLayout(sap.f.LayoutType.OneColumn);	
 			this.oFlexibleColumnLayout.removeAllMidColumnPages();
 			this.oFlexibleColumnLayout.addMidColumnPage(this.detailView);

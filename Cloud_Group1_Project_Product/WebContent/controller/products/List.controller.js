@@ -1,7 +1,8 @@
 sap.ui.define([
+	"sap/ui/model/json/JSONModel",
 	"sap/ui/core/mvc/Controller",
 	"sap/m/MessageToast"
-], function (Controller, MessageToast) {
+], function (JSONModel, Controller, MessageToast) {
 	"use strict";
 
 	return Controller.extend("Cloud_Group1_ProjectCloud_Group1_Project.controller.products.List", {
@@ -38,7 +39,10 @@ sap.ui.define([
 			this.bus = sap.ui.getCore().getEventBus();
 			this.MainData();
 		},
-		handleMasterPress: function () {
+		handleMasterPress: function (oEvent) {
+			var productPath = oEvent.getSource().getBindingContext("MainData").getPath();
+			var product = productPath.split("/").slice(-1).pop();
+
 			this.bus.publish("flexible", "setDetailPage");            //상세페이지 이동
 		},
 		handleCreatePress: function () {
