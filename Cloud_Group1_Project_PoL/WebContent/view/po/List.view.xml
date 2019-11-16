@@ -13,7 +13,7 @@
 				select="handleIconTabBarSelect"
 				class="sapUiResponsiveContentPadding">
 				<items>
-					<IconTabFilter showAll="true" text="Products"
+					<IconTabFilter showAll="false" text="polist"
 						key="All">
 						<fb:FilterBar id="filterbar" reset="onReset"
 							search="onSearch" useToolbar="false" showGoOnFB="false"> <!-- search="onSearch" -->
@@ -71,7 +71,7 @@
 						</fb:FilterBar>
 					</IconTabFilter>
 					<IconTabFilter icon="sap-icon://begin"
-						iconColor="Positive" text="Ok" key="A">
+						iconColor="Positive" text="승인" key="A">
 						<fb:FilterBar id="filterbar1" reset="onReset"
 							search="onSearch" useToolbar="false" showGoOnFB="false"> <!-- search="onSearch" -->
 							<fb:filterItems>
@@ -138,7 +138,7 @@
 					</IconTabFilter>
 					<!-- Icon tabfilter 3 -->
 					<IconTabFilter icon="sap-icon://compare"
-						iconColor="Critical" text="Heavy" key="B" >
+						iconColor="Critical" text="완료" key="B" >
 						<fb:FilterBar id="filterbar2" reset="onReset"
 							search="onSearch" useToolbar="false" showGoOnFB="false">
 							<fb:filterItems>
