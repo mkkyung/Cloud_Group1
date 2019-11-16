@@ -58,15 +58,15 @@
 				</f:Avatar>
 				<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
 					<m:Label text="대분류" />
-					<m:Text text="가전" />
+					<m:Text text="AA" />
 				</m:VBox>
 				<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
 					<m:Label text="중분류" />
-					<m:Text text="노트북" />
+					<m:Text text="4" />
 				</m:VBox>
 				<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
 					<m:Label text="상품명" />
-					<m:Text text="OA-W16" />
+					<m:Text text="KS-235M" />
 				</m:VBox>
 			</m:FlexBox>
 		</headerContent>
@@ -81,19 +81,19 @@
 								columnsM="1">
 								<form:content>
 									<m:Label text="상품코드" />
-									<m:Text text="AB05001" />
+									<m:Text text="AA04002" />
 									<m:Label text="상품명" />
 									<m:Input valueState="{color>/Color}" value="OA-W16"
 										editable="{enter>/Enter}" />
 									<m:Label text="표준금액" />
 									<m:Input valueState="{color>/Color}"
-										value="1,900,000 원" editable="{enter>/Enter}" />
+										value="484,000 원" editable="{enter>/Enter}" />
 									<m:Label text="제조사" />
-									<m:Input valueState="{color>/Color}" value="삼성전자"
+									<m:Input valueState="{color>/Color}" value="주식회사 대진코스탈"
 										editable="{enter>/Enter}" />
 									<m:Label text="출시일" />
 									<m:DatePicker valueState="{color>/Color}"
-										value="2019.03.07" editable="{enter>/Enter}" />
+										value="2017.03.08" editable="{enter>/Enter}" />
 								</form:content>
 							</form:SimpleForm>
 						</blocks>

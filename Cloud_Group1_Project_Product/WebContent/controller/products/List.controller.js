@@ -43,7 +43,7 @@ sap.ui.define([
 			var productPath = oEvent.getSource().getBindingContext("MainData").getPath();
 			var product = productPath.split("/").slice(-1).pop();
 
-			this.bus.publish("flexible", "setDetailPage");            //상세페이지 이동
+			this.bus.publish("flexible", "setDetailPage", {product : product});            //상세페이지 이동
 		},
 		handleCreatePress: function () {
 			this.bus.publish("flexible", "setCreatePage")
