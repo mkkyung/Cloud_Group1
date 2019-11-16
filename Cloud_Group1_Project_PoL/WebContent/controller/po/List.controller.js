@@ -162,6 +162,9 @@ sap.ui
 													.getRouterFor(this);
 											var routerData = oItem.mAggregations.cells[0].mProperties.text;
 											this.onClose(oRouter, 0);
+											
+										
+											
 										},
 										onClose : function(oRouter, routerData) {
 											oRouter.navTo("poDetail", {
