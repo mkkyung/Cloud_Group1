@@ -63,20 +63,20 @@
 				<Table id="productsTable" inset="false"
 					class="sapFDynamicPageAlignContent"  items="{MainData>/MainData}">
 					<columns>
-						<Column width="10em">
+						<Column width="5em">
 							<Text text="대분류" />
 						</Column>
-						<Column width="10em">
+						<Column width="5em">
 							<Text text="중분류" />
 						</Column>
 						<Column width="15em">
 							<Text text="상품코드" />
 						</Column>
-						<Column width="30em">
+						<Column width="25em">
 							<Text text="상품명" />
 						</Column>
 						<Column width="10em">
-							<Text text="표준금액" />
+							<Text text="표준금액(원)" />
 						</Column>
 						<Column width="20em">
 							<Text text="제조사" />
