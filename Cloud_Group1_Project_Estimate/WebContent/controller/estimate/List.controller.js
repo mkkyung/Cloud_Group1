@@ -48,7 +48,7 @@ sap.ui.define([
 			}
 		},
 	
-		GtEstiSet : function(Cat1,Cat2){
+		GtEstiSet : function(Cat1,Cat2,Cat3,Vcode,Vname,Made,Type1){
 	        var sServiceUrl = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000"; // 로컬 서버 연결 하는 거 
 	        sServiceUrl += "/sap/opu/odata/sap/Z_CLOUD_ESTIMATE_SRV";   // 여기를 /n/iwfnd/maint_service 에 들어가서 내가 만든 경로를 복사 해와야 함.
 	        var url;
@@ -67,7 +67,13 @@ sap.ui.define([
 		       url = "/getestiSet";
 	   		}else{
 	   			 url = "/getestiSet?$filter=PCat1 eq '" + Cat1
-	   	         + "' and PCat2 eq '" + Cat2 + "' and PAva eq '" + pava + "'";
+	   	         + "' and PCat2 eq '" + Cat2
+	   	         + "' and PCat3 eq '" + Cat3
+	   	         + "' and PVcode eq '" + Vcode
+	   	         + "' and PVname eq '" + Vname
+	   	         + "' and PType1 eq '" + Type1
+	   	         + "' and PMade eq '" + Made
+	   	         + "' and PAva eq '" + pava + "'";
 	   		}
 	   			var oDataModel= new sap.ui.model.odata.ODataModel(sServiceUrl,true);
 	   			var data;
@@ -185,29 +191,43 @@ sap.ui.define([
 		},
 		
 		onSearch: function() {
-			jQuery.sap.require("sap.m.MessageToast");
-			// var params = oEvent.getParameters();
-			var sMessage = "onSearch trigered";
-			sap.m.MessageToast.show(sMessage);
 			var Cat1 = "";
 			var Cat2 = "";
+			var Cat3 = "";
+//			var Date = this.getView().byId("1date").getDateValue();
+			var Made = "";
+			var Vcode = "";
+			var Vname = "";
+			var Type1 = "";
 			var change = this.getView().byId("idIconTabBar").getSelectedKey();
 			
 			if(change === "ALL"){
 				Cat1 = this.getView().byId("1cat1").getSelectedKey();
 				Cat2 = this.getView().byId("1cat2").getSelectedKey();
-//				if(Cat2 < 10){
-//					Cat2 = "0" + Cat2;
-//				}
+				Cat3 = this.getView().byId("1cat3").getSelectedKey();
+				Vcode = this.getView().byId("1vcode").getSelectedKey();
+				Vname = this.getView().byId("1vname").getSelectedKey();
+				Type1 = this.getView().byId("1type1").getSelectedKey();
+				Made = this.getView().byId("1made").getValue();
 			}else if (change === "OK"){
 				Cat1 = this.getView().byId("2cat1").getSelectedKey();
 				Cat2 = this.getView().byId("2cat2").getSelectedKey();
+				Cat3 = this.getView().byId("2cat3").getSelectedKey();
+				Vcode = this.getView().byId("2vcode").getSelectedKey();
+				Vname = this.getView().byId("2vname").getSelectedKey();
+				Type1 = this.getView().byId("2type1").getSelectedKey();
+				Made = this.getView().byId("2made").getValue();
 			}
 			else if (change === "NOB"){
 				Cat1 = this.getView().byId("3cat1").getSelectedKey();
 				Cat2 = this.getView().byId("3cat2").getSelectedKey();
+				Cat3 = this.getView().byId("3cat3").getSelectedKey();
+				Vcode = this.getView().byId("3vcode").getSelectedKey();
+				Vname = this.getView().byId("3vname").getSelectedKey();
+				Type1 = this.getView().byId("3type1").getSelectedKey();
+				Made = this.getView().byId("3made").getValue();
 			}
-		    this.GtEstiSet(Cat1,Cat2);
+		    this.GtEstiSet(Cat1,Cat2,Cat3,Vcode,Vname,Made,Type1);
 		},
 		
 		IconTabFilter: function (oEvent) {

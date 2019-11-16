@@ -28,7 +28,7 @@
 									<fb:control>
 										<ComboBox id="1cat1" type="Text" items="{cat1>/cat1}">
 											<items>
-												<core:Item key="{cat1>Cat1No}" text="{cat1>Cat1Name}" />
+												<core:Item key="{cat1>Cat1Name}" text="{cat1>Cat1Name}" />
 											</items>
 										</ComboBox>
 									</fb:control>
@@ -39,7 +39,7 @@
 									<fb:control>
 										<ComboBox id="1cat2" type="Text" items="{cat2>/cat2}">
 											<items>
-												<core:Item key="{cat2>Cat2No}" text="{cat2>Cat2Name}" />
+												<core:Item key="{cat2>Cat2Name}" text="{cat2>Cat2Name}" />
 											</items>
 										</ComboBox>
 									</fb:control>
@@ -59,7 +59,7 @@
 								<fb:FilterItem name="1D" label="공급업체명"
 									labelTooltip="Tooltip Example" mandatory="true">
 									<fb:control>
-										<ComboBox id="1ven" type="Text" items="{vname>/vname}">
+										<ComboBox id="1vname" type="Text" items="{vname>/vname}">
 											<items>
 												<core:Item key="{vname>VName}" text="{vname>VName}" />
 											</items>
@@ -96,7 +96,7 @@
 								<fb:FilterItem name="1G" label="제조사"
 									labelTooltip="Tooltip Example">
 									<fb:control>
-										<Input id="1make" />
+										<Input id="1made" text="" />
 									</fb:control>
 								</fb:FilterItem>
 								
@@ -128,7 +128,7 @@
 									<fb:control>
 										<ComboBox id="2cat1" type="Text" items="{cat1>/cat1}">
 											<items>
-												<core:Item key="{cat1>Cat1No}" text="{cat1>Cat1No}" />
+												<core:Item key="{cat1>Cat1Name}" text="{cat1>Cat1Name}" />
 											</items>
 										</ComboBox>
 									</fb:control>
@@ -139,7 +139,7 @@
 									<fb:control>
 										<ComboBox id="2cat2" type="Text" items="{cat2>/cat2}">
 											<items>
-												<core:Item key="{cat2>Cat2No}" text="{cat2>Cat2No}" />
+												<core:Item key="{cat2>Cat2Name}" text="{cat2>Cat2Name}" />
 											</items>
 										</ComboBox>
 									</fb:control>
@@ -159,7 +159,7 @@
 								<fb:FilterItem name="1D" label="공급업체명"
 									labelTooltip="Tooltip Example" mandatory="true">
 									<fb:control>
-										<ComboBox id="2ven" type="Text" items="{vname>/vname}">
+										<ComboBox id="2vname" type="Text" items="{vname>/vname}">
 											<items>
 												<core:Item key="{vname>VName}" text="{vname>VName}" />
 											</items>
@@ -196,7 +196,7 @@
 								<fb:FilterItem name="1G" label="제조사"
 									labelTooltip="Tooltip Example">
 									<fb:control>
-										<Input id="2make" />
+										<Input id="2made" text=""/>
 									</fb:control>
 								</fb:FilterItem>
 								
@@ -226,7 +226,7 @@
 									<fb:control>
 										<ComboBox id="3cat1" type="Text" items="{cat1>/cat1}">
 											<items>
-												<core:Item key="{cat1>Cat1No}" text="{cat1>Cat1No}" />
+												<core:Item key="{cat1>Cat1Name}" text="{cat1>Cat1Name}" />
 											</items>
 										</ComboBox>
 									</fb:control>
@@ -237,7 +237,7 @@
 									<fb:control>
 										<ComboBox id="3cat2" type="Text" items="{cat2>/cat2}">
 											<items>
-												<core:Item key="{cat2>Cat2No}" text="{cat2>Cat2No}" />
+												<core:Item key="{cat2>Cat2Name}" text="{cat2>Cat2Name}" />
 											</items>
 										</ComboBox>
 									</fb:control>
@@ -257,7 +257,7 @@
 								<fb:FilterItem name="1D" label="공급업체명"
 									labelTooltip="Tooltip Example" mandatory="true">
 									<fb:control>
-										<ComboBox id="3ven" type="Text" items="{vname>/vname}">
+										<ComboBox id="3vname" type="Text" items="{vname>/vname}">
 											<items>
 												<core:Item key="{vname>VName}" text="{vname>VName}" />
 											</items>
@@ -294,7 +294,7 @@
 								<fb:FilterItem name="1G" label="제조사"
 									labelTooltip="Tooltip Example">
 									<fb:control>
-										<Input id="3make" />
+										<Input id="3make" text=""/>
 									</fb:control>
 								</fb:FilterItem>
 								
@@ -357,6 +357,9 @@
 					<Column minScreenWidth="Tablet" demandPopin="true">
 						<Text text="금액단위" />
 					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="제조사" />
+					</Column>
 				</columns>
 				<items>
 					<ColumnListItem type="Navigation" vAlign="Middle"
@@ -368,7 +371,7 @@
 							<Text text="{estlist>EstType1}" />
 							<Text text="{estlist>EstCat1}" />
 							<Text text="{estlist>EstCat2}" />
-							<Text text="{estlist>EstCat3}" />
+							<Text text="{estlist>EstPname}" />
 							<Text text="{estlist>EstVname}" />
 							<Text text="{estlist>EstVcode}" />
 							<Text text="{estlist>EstAmt}" />
@@ -388,6 +391,7 @@
 <!-- 							<Text text="{estlist>EstTotal}" /> -->
 							<Text text="{estlist>EstDate}" />
 							<Text text="{estlist>EstCuky}" />
+							<Text text="{estlist>EstMade}" />
 <!-- 							<Text text="1" /> -->
 <!-- 							<Text text="2" /> -->
 <!-- 							<Text text="3" /> -->
