@@ -17,7 +17,7 @@
 				class="sapUiResponsiveContentPadding">
 				<items>
 
-					<IconTabFilter showAll="true" text="전체조회" key="All">
+					<IconTabFilter showAll="true" text="전체조회" key="ALL">
 						<fb:FilterBar reset="onReset" search="onSearch"
 							showRestoreButton="true" showClearButton="true">
 
@@ -28,7 +28,7 @@
 									<fb:control>
 										<ComboBox id="1cat1" type="Text" items="{cat1>/cat1}">
 											<items>
-												<core:Item key="{cat1>Cat1No}" text="{cat1>Cat1No}" />
+												<core:Item key="{cat1>Cat1No}" text="{cat1>Cat1Name}" />
 											</items>
 										</ComboBox>
 									</fb:control>
@@ -39,7 +39,7 @@
 									<fb:control>
 										<ComboBox id="1cat2" type="Text" items="{cat2>/cat2}">
 											<items>
-												<core:Item key="{cat2>Cat2No}" text="{cat2>Cat2No}" />
+												<core:Item key="{cat2>Cat2No}" text="{cat2>Cat2Name}" />
 											</items>
 										</ComboBox>
 									</fb:control>

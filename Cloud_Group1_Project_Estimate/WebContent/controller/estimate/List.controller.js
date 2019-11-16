@@ -27,12 +27,6 @@ sap.ui.define([
 			});
 			this.getView().setModel(oViewModel, "view");
 			
-//			var oComp = sap.ui.getCore().createComponent({
-//				name : 'sap.m.sample.Table'
-//			});
-//			oComp.setModel(this.getView().getModel());
-//			this._oTable = oComp.getTable();
-//			this.getView().byId("idIconTabBar").insertContent(this._oTable);
 		},
 		
 //		_______________________________________
@@ -60,11 +54,20 @@ sap.ui.define([
 	        var url;
         	var ava = this.getView().byId("idIconTabBar").getSelectedKey();
 	        
+        	var pava = "";
+			if(ava === "ALL")
+			{ 			
+			}else if (ava === "OK") { 
+				pava = "O";
+			}else if (ava === "NOB") { 
+				pava = "X";
+			 }
+        	
 	        if (Cat1 == undefined ){
 		       url = "/getestiSet";
 	   		}else{
 	   			 url = "/getestiSet?$filter=PCat1 eq '" + Cat1
-	   	         + "' and PCat2 eq '" + Cat2 + "' and PAva eq '" +  ava   + "'";
+	   	         + "' and PCat2 eq '" + Cat2 + "' and PAva eq '" + pava + "'";
 	   		}
 	   			var oDataModel= new sap.ui.model.odata.ODataModel(sServiceUrl,true);
 	   			var data;
@@ -186,11 +189,25 @@ sap.ui.define([
 			// var params = oEvent.getParameters();
 			var sMessage = "onSearch trigered";
 			sap.m.MessageToast.show(sMessage);
+			var Cat1 = "";
+			var Cat2 = "";
+			var change = this.getView().byId("idIconTabBar").getSelectedKey();
 			
-		      var Cat1 = this.getView().byId("2cat1").getSelectedKey();
-		      var Cat2 = this.getView().byId("2cat2").getSelectedKey();
-		      
-		      this.GtEstiSet(Cat1,Cat2);
+			if(change === "ALL"){
+				Cat1 = this.getView().byId("1cat1").getSelectedKey();
+				Cat2 = this.getView().byId("1cat2").getSelectedKey();
+//				if(Cat2 < 10){
+//					Cat2 = "0" + Cat2;
+//				}
+			}else if (change === "OK"){
+				Cat1 = this.getView().byId("2cat1").getSelectedKey();
+				Cat2 = this.getView().byId("2cat2").getSelectedKey();
+			}
+			else if (change === "NOB"){
+				Cat1 = this.getView().byId("3cat1").getSelectedKey();
+				Cat2 = this.getView().byId("3cat2").getSelectedKey();
+			}
+		    this.GtEstiSet(Cat1,Cat2);
 		},
 		
 		IconTabFilter: function (oEvent) {
@@ -209,6 +226,7 @@ sap.ui.define([
 //				ava = "X";
 ////					 aFilters.push(new Filter("EstAva", "EQ", "X"));
 //			 }
+			
 			
 			this.onSearch();
 //			oBinding.filter(aFilters);
