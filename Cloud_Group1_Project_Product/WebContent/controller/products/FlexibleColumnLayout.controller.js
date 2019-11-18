@@ -22,13 +22,19 @@ sap.ui.define([
 		// Lazy loader for the mid page - only on demand (when the user clicks)
 		setDetailPage: function (oChannel, oEvent, oData) {
 
+			
 			if (!this.detailView) {
-				this.detailView = sap.ui.view({
+				sap.ui.getCore().setModel({oData : oData.productKey}, "SelectKey");
+				this.detailView = new sap.ui.view({
 					id: "midView",
 					viewName: "Cloud_Group1_ProjectCloud_Group1_Project.view.products.Detail",
 					type: "XML"
+//					oData: new sap.ui.model.json.JSONModel({"data" : "data"}, "data2")
 				});
+			} else {
+				this.detailView.setModel({oData : oData.productKey}, "SelectKey"); 
 			}			
+			
 			
 			this.oFlexibleColumnLayout.setLayout(sap.f.LayoutType.OneColumn);	
 			this.oFlexibleColumnLayout.removeAllMidColumnPages();
