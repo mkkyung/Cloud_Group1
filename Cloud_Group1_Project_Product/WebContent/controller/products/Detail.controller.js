@@ -7,7 +7,7 @@ sap.ui.define([
 	"use strict";
 
 	return Controller.extend("Cloud_Group1_ProjectCloud_Group1_Project.controller.products.Detail", {
-		onInit: function (oData) {
+		onInit: function () {
 			this.editable(false, true, "None");
 		},
 		editable : function(unvisi, visible, color) {		                             //버튼별 상태변경(수정, 저장, 취소, input 태그 valuestate 변경)
