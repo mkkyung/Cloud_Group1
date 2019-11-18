@@ -42,8 +42,9 @@ sap.ui.define([
 		handleMasterPress: function (oEvent) {
 			var productPath = oEvent.getSource().getBindingContext("MainData").getPath();
 			var product = productPath.split("/").slice(-1).pop();
+			var productKey = oEvent.getSource().getBindingContext("MainData").oModel.aBindings["0"].oList[product].Cat3No;
 
-			this.bus.publish("flexible", "setDetailPage", {product});            //상세페이지 이동
+			this.bus.publish("flexible", "setDetailPage", {productKey});            //상세페이지 이동
 		},
 		handleCreatePress: function () {
 			this.bus.publish("flexible", "setCreatePage")

@@ -1,309 +1,184 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller",
-	"sap/ui/core/routing/History",
-	"sap/ui/core/UIComponent"
-], function(Controller, History, UIComponent) {
+	'jquery.sap.global',
+	'sap/ui/core/mvc/Controller',
+	'sap/ui/model/Filter',
+	'sap/ui/model/json/JSONModel',
+	'sap/m/Text'
+], function(jQuery, Controller, Filter, JSONModel, Text) {
 	"use strict";
 
-	return Controller.extend("Cloud_Group1_ProjectCloud_Group1_Project.controller.stock.View8", {	//입고화면
+	return Controller.extend("Cloud_Group1_ProjectCloud_Group1_Project.controller.stock.In", {	//입고화면
 		onInit: function() {
-			this.getData();
+			this.getData('display');
+			this.getData('filter');
 			
-			var testData = {
-					"OutCollection": [
-						{
-							"outNo": "out001",
-							"outCat3": "AWFE145",
-							"outTotal": "10",
-							"outDate": "2019.11.05",
-							"outPart": "SS574",
-							"outPic": "KEE",
-							"outEtc": "ASB",
-							
-							
-						},
-						{
-							"outNo": "out002",
-							"outCat3": "DDD9S",
-							"outTotal": "2",
-							"outDate": "2019.11.05",
-							"outPart": "AAA",
-							"outPic": "KS",
-							"outEtc": "A66",
-							
-						},
-						{
-							"outNo": "out003",
-							"outCat3": "AD5",
-							"outTotal": "20",
-							"outDate": "2019.11.07",
-							"outPart": "BMW",
-							"outPic": "KO",
-							"outEtc": "VVV",
-							
-						}
-					],
-
-			"ProductCollectionStats": {
-								"Counts": {
-									"Total": 123,
-									"Weight": {
-										"Ok": 53,
-										"Heavy": 51,
-										"Overweight": 19
-									}
-								},
-								"Groups": {
-									"Category": {
-										"Accessories" : 34,
-										"Desktop Computers" : 7,
-										"Flat Screens" : 2,
-										"Keyboards" : 4,
-										"Laptops" : 11,
-										"Printers" : 9,
-										"Smartphones and Tablets" : 9,
-										"Mice" : 7,
-										"Computer System Accessories" : 8,
-										"Graphics Card" : 4,
-										"Scanners" : 4,
-										"Speakers" : 3,
-										"Software" : 8,
-										"Telekommunikation" : 3,
-										"Servers" : 3,
-										"Flat Screen TVs" : 3
-									},
-									"SupplierName": {
-										"Titanium": 21,
-										"Technocom": 22,
-										"Red Point Stores": 7,
-										"Very Best Screens": 14,
-										"Smartcards": 2,
-										"Alpha Printers": 5,
-										"Printer for All": 8,
-										"Oxynum": 8,
-										"Fasttech": 15,
-										"Ultrasonic United": 15,
-										"Speaker Experts": 3,
-										"Brainsoft": 3
-									}
-								},
-								"Filters": [
-									{
-										"type": "Category",
-										"values": [
-											{
-												"text": "Accessories",
-												"data": 34
-											},
-											{
-												"text": "Desktop Computers",
-												"data": 7
-											},
-											{
-												"text": "Flat Screens",
-												"data": 2
-											},
-											{
-												"text": "Keyboards",
-												"data": 4
-											},
-											{
-												"text": "Laptops",
-												"data": 11
-											},
-											{
-												"text": "Printers",
-												"data": 9
-											},
-											{
-												"text": "Smartphones and Tablets",
-												"data": 9
-											},
-											{
-												"text": "Mice",
-												"data": 7
-											},
-											{
-												"text": "Computer System Accessories",
-												"data": 8
-											},
-											{
-												"text": "Graphics Card",
-												"data": 4
-											},
-											{
-												"text": "Scanners",
-												"data": 4
-											},
-											{
-												"text": "Speakers",
-												"data": 3
-											},
-											{
-												"text": "Software",
-												"data": 8
-											},
-											{
-												"text": "Telekommunikation",
-												"data": 3
-											},
-											{
-												"text": "Servers",
-												"data": 3
-											},
-											{
-											  "text": "Flat Screen TVs",
-											  "data": 3
-											}
-										]
-									},
-									{
-										"type": "SupplierName",
-										"values": [
-											{
-											"text": "Titanium",
-											"data": 21
-										  },
-										  {
-											"text": "Technocom",
-											"data": 22
-										  },
-										  {
-											"text": "Red Point Stores",
-											"data": 7
-										  },
-										  {
-											"text": "Very Best Screens",
-											"data": 14
-										  },
-										  {
-											"text": "Smartcards",
-											"data": 2
-										  },
-										  {
-											"text": "Alpha Printers",
-											"data": 5
-										  },
-										  {
-											"text": "Printer for All",
-											"data": 8
-										  },
-										  {
-											"text": "Oxynum",
-											"data": 8
-										  },
-										  {
-											"text": "Fasttech",
-											"data": 15
-										  },
-										  {
-											"text": "Ultrasonic United",
-											"data": 15
-										  },
-										  {
-											"text": "Speaker Experts",
-											"data": 3
-										  },
-										  {
-											"text": "Brainsoft",
-											"data": 3
-										  }
-										]
-									}
-								]
-						}
-					};
-			var oJSONModel = new sap.ui.model.json.JSONModel();
-			oJSONModel.setData(testData);
-			this.getView().setModel(oJSONModel);
-			//var oModel = new sap.ui.model.json.JSONModel({ "data": testData });
-	        //this.getView().setModel(oModel , "polist");
-	        
-	        console.log(this.getView().getModel());
-		},
-		onExit : function () {
-			if (this._oDialog) {
-				this._oDialog.destroy();
-			}
-		},
-		handleValueHelp : function (oEvent) {						  //Table Dialog
-			var sInputValue = oEvent.getSource().getValue();
-
-			this.inputId = oEvent.getSource().getId();
-			// create value help dialog
-			if (!this._valueHelpDialog) {
-				this._valueHelpDialog = sap.ui.xmlfragment(
-					"Cloud_Group1_ProjectCloud_Group1_Project.view.stock.DialogIn",
-					this
-				);
-				this.getView().addDependent(this._valueHelpDialog);
-			}
-
-			// create a filter for the binding
-			this._valueHelpDialog.getBinding("items").filter([new sap.ui.model.Filter(
-				"BName",
-				sap.ui.model.FilterOperator.Contains, sInputValue
-			)]);
-
-			// open value help dialog filtered by the input value
-			this._valueHelpDialog.open(sInputValue);
-		},
-		_handleValueHelpSearch : function (evt) {
-			var sValue = evt.getParameter("value");
-			var oFilter = new sap.ui.model.Filter(
-				"BName",
-				sap.ui.model.FilterOperator.Contains, sValue
-			);
-			evt.getSource().getBinding("items").filter([oFilter]);
-		},
-
-		_handleValueHelpClose : function (evt) {
-			var oSelectedItem = evt.getParameter("selectedItem");
-			if (oSelectedItem) {
-				var productInput = this.getView().byId(this.inputId),
-					oText = this.getView().byId('selectedKey'),
-					sDescription = oSelectedItem.getDescription();
-
-				productInput.setSelectedKey(sDescription);
-				oText.setText(sDescription);
-			}
-			evt.getSource().getBinding("items").filter([]);
-		},
-
-		suggestionItemSelected: function (evt) {
-
-			var oItem = evt.getParameter('selectedItem'),
-				oText = this.getView().byId('selectedKey'),
-				sKey = oItem ? oItem.getKey() : '';
-
-			oText.setText(sKey);
 		},
 		
-		getData : function(){
-	        var sServiceUrl = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000"; // 로컬 서버 연결 하는 거 
-	        sServiceUrl += "/sap/opu/odata/sap/Z_FUNC_ESTIMATE_TEST_SRV";   // 여기를 /n/iwfnd/maint_service 에 들어가서 내가 만든 경로를 복사 해와야 함.
-	        var url;
-	        url = "/getestSet";
-	     
-	        var oDataModel = new sap.ui.model.odata.ODataModel(sServiceUrl, true);
+		onApproveDialog : function(oEvent){
+			var oItem = oEvent.getSource();
+			
+			var oContext = oItem.getBindingContext("view");
+			var sPath = oContext.getPath();
+//			var oIdProductsTable= this.byId("idProductsTable");
+//			oProductDetailPanel.bindElement({ path: sPath, model: "view" });
+			
+//	         var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+//	         var routerData = oItem.mAggregations.cells[0].mProperties.text;
+//	         routerData = oItem.getBindingContext("estlist").getPath().substr(1);
+//	         this.onClose(oRouter, 0);
+			var a = sPath.substr(6,7);
+		
+			var dialog = new sap.m.Dialog({
+				title: '입고등록',
+				type: 'Message',
+				content: new sap.ui.layout.HorizontalLayout({
+					content: [
+						new sap.ui.layout.VerticalLayout({
+							width: '120px',
+							content: [
+								new Text({ text: '입고번호  : ' }),
+								new Text({ text: '입고일자 : ' }),
+								new Text({ text: '입고수량 :' }),
+								new Text({ text: '입고담당 :' }),
+								new Text({ text: '제품명 :' }),
+								new Text({ text: '제품코드 :' })
+							]
+						}),
+						new sap.ui.layout.VerticalLayout({
+							content: [
+								new Text({ text: oContext.oModel.oData.data[a].Mandt }),
+								new Text({ text: oContext.oModel.oData.data[a].Zcolu }),
+								new Text({ text: oContext.oModel.oData.data[a].Mandt }),
+								new Text({ text: oContext.oModel.oData.data[a].Zcolu }),
+								new Text({ text: oContext.oModel.oData.data[a].Mandt }),
+								new sap.m.TextArea({ value: oContext.oModel.oData.data[a].Zwfac, height: '50px', width: '80%'})
+//								new Input({ text:oItem.mAggregations.cells[1].mProperties.text  }),
+//								new Text({ text: oItem.mAggregations.cells[1].mProperties.text }),
+//								new Text({ text: oItem.mAggregations.cells[1].mProperties.text }),
+//								new Text({ text: oItem.mAggregations.cells[1].mProperties.text }),
+//								new Text({ text: oItem.mAggregations.cells[2].mProperties.text })
+							]
+						})
+					]
+				}),
+
+				beginButton: new sap.m.Button({
+					text: 'Submit',
+					press: function () {
+						MessageToast.show('Submit pressed!');
+						dialog.close();
+					}
+				}),
+				endButton: new sap.m.Button({
+					text: 'Cancel',
+					press: function () {
+						dialog.close();
+					}
+				}),
+				afterClose: function() {
+					dialog.destroy();
+				}
+			});
+
+			dialog.open();
+		},
+		
+		onPress : function(oEvent){
+//			var oSelectedItem = oEvent.getSource();
+//			var oContext = oSelectedItem.getBindingContext("view");
+//			var sPath = oContext.getPath();
+//			var oProductDetailPanel = this.byId("idProductsTable");
+//			oProductDetailPanel.bindElement({ path: sPath, model: "view" });
+			
+			 var oItem = oEvent.getSource();
+	         var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+	         var routerData = oItem.mAggregations.cells[0].mProperties.text;
+//	         routerData = oItem.getBindingContext("estlist").getPath().substr(1);
+//	         this.onClose(oRouter, 0);
+			var i;
+			var dialog = new sap.m.Dialog({
+				title: '자재정보',
+				type: 'Message',
+				content: new sap.ui.layout.HorizontalLayout({
+					content: [
+						new sap.ui.layout.VerticalLayout({
+							width: '120px',
+							content: [
+								new Text({ text: '제품명  : ' }),
+								new Text({ text: '제품코드 : ' }),
+								new Text({ text: '공급업체명 :' })
+							]
+						}),
+						new sap.ui.layout.VerticalLayout({
+							content: [
+								new Text({ text: oItem.mAggregations.cells[0].mProperties.text }),
+								new Text({ text: oItem.mAggregations.cells[1].mProperties.text }),
+								new Text({ text: oItem.mAggregations.cells[2].mProperties.text })
+							]
+						})
+					]
+				}),
+
+				beginButton: new sap.m.Button({
+					text: 'Submit',
+					press: function () {
+						MessageToast.show('Submit pressed!');
+						dialog.close();
+					}
+				}),
+				endButton: new sap.m.Button({
+					text: 'Cancel',
+					press: function () {
+						dialog.close();
+					}
+				}),
+				afterClose: function() {
+					dialog.destroy();
+				}
+			});
+
+			dialog.open();
+		},
+		
+		getData : function(type){
+			
+			var sServiceUrl = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000/";   //CORSerror나면 http:// 를 proxy/http/로
+	         	sServiceUrl +=  "/sap/opu/odata/sap/ZGROUP06_FUCNMOD_03_SRV/"; // 여기를 /n/iwfnd/maint_service 에 들어가서 내가 만든 경로를 복사 해와야 함.
+
+//	        var url = this.filter(type);
+	        var url =  "/getdata1Set";
+            var oDataModel = new sap.ui.model.odata.ODataModel(sServiceUrl,true);
+            this.oModel = new JSONModel();
 	        var data;
-	        oDataModel.read(url, null, null, false, function (oData) {
-	           data = oData.results;
-	        });
-	        var oModel = new sap.ui.model.json.JSONModel({ "data": data });
-	        this.getView().setModel(oModel , "outlist");
-		},
-//		go 재고
-		onShowStock : function(){
-			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-			oRouter.navTo("view9");
-		},
-//		go 분출
-		onShowOut : function(){
-			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-			oRouter.navTo("view10");
+	        oDataModel.read(url, null, null, false, function(oData){
+	            data = oData.results;
+	         });
+	         var oModel = new sap.ui.model.json.JSONModel({ "data" : data });
+//	         var oModel = new sap.ui.model.json.JSONModel(data); // {results : [] }
+	         this.getView().setModel(oModel, "view"); 
 		},
 		
+		filter : function(type){
+			var url;
+			if(type == 'filter'){//필터 검색
+				var title = this.byId("slName");//.getValue();//.toUpperCase();
+//				var text = this.byId("text").getSelectedKey();
+				var text = this.byId("slCategory");//.getValue();//.toUpperCase();
+				
+				if(title || text){
+					url = "/getdata1Set?$filter=LvTitle eq '" + title + 
+			  	   	  "' and LvText eq '" + text +"'";
+				}else{
+					url = "/getdata1Set";
+				}
+				
+			}else if(type == 'display'){//조회
+				url = "/getdata1Set";
+			}
+				
+			return url;
+		},
+
 		goBack : function(oEvent) {
 			var oHistory = History.getInstance();
 			var sPreviousHash = oHistory.getPreviousHash();

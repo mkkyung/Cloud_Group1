@@ -11,6 +11,8 @@
 		<headerTitle>
 			<ObjectPageDynamicHeaderTitle>
 				<expandedHeading>
+<!-- 					<m:Title text="{test>data}" wrapping="true" -->
+<!-- 						class="sapUiSmallMarginEnd" /> -->
 					<m:Title text="{products>Name}" wrapping="true"
 						class="sapUiSmallMarginEnd" />
 				</expandedHeading>
