@@ -89,7 +89,9 @@
 												 strictParsing: true
 												 } 
 												 }"
-											class="sapUiSmallMarginBottom" />
+											class="sapUiSmallMarginBottom"
+											valueFormat="yyyyMMdd"
+											displayFormat="yyyy-MM-dd" />
 									</fb:control>
 								</fb:FilterItem>
 
@@ -189,7 +191,9 @@
 												 strictParsing: true
 												 } 
 												 }"
-											class="sapUiSmallMarginBottom" />
+											class="sapUiSmallMarginBottom"
+											valueFormat="yyyyMMdd"
+											displayFormat="yyyy-MM-dd" />
 									</fb:control>
 								</fb:FilterItem>
 
@@ -224,7 +228,7 @@
 								<fb:FilterItem name="1A" label="대분류"
 									labelTooltip="Tooltip Example" mandatory="true">
 									<fb:control>
-										<ComboBox id="3cat1" type="Text" items="{cat1>/cat1}">
+										<ComboBox id="3cat1" type="Text" items="{cat1>/cat1}" >
 											<items>
 												<core:Item key="{cat1>Cat1Name}" text="{cat1>Cat1Name}" />
 											</items>
@@ -287,14 +291,16 @@
 												 strictParsing: true
 												 } 
 												 }"
-											class="sapUiSmallMarginBottom" />
+											class="sapUiSmallMarginBottom"
+											valueFormat="yyyyMMdd"
+											displayFormat="yyyy-MM-dd" />
 									</fb:control>
 								</fb:FilterItem>
 
 								<fb:FilterItem name="1G" label="제조사"
 									labelTooltip="Tooltip Example">
 									<fb:control>
-										<Input id="3make" text=""/>
+										<Input id="3made" text=""/>
 									</fb:control>
 								</fb:FilterItem>
 								
