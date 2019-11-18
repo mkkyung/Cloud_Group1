@@ -20,7 +20,7 @@ sap.ui.define([
 		},
 
 		// Lazy loader for the mid page - only on demand (when the user clicks)
-		setDetailPage: function () {
+		setDetailPage: function (oChannel, oEvent, oData) {
 
 			if (!this.detailView) {
 				this.detailView = sap.ui.view({
@@ -28,10 +28,7 @@ sap.ui.define([
 					viewName: "Cloud_Group1_ProjectCloud_Group1_Project.view.products.Detail",
 					type: "XML"
 				});
-			}
-			
-			
-//			this.detailView.setModel({"aaa" : "AAA"});
+			}			
 			
 			this.oFlexibleColumnLayout.setLayout(sap.f.LayoutType.OneColumn);	
 			this.oFlexibleColumnLayout.removeAllMidColumnPages();
