@@ -163,6 +163,10 @@ sap.ui
 											var routerData = oItem.mAggregations.cells[0].mProperties.text;
 											this.onClose(oRouter, 0);
 											
+											
+											
+											
+											
 										
 											
 										},
