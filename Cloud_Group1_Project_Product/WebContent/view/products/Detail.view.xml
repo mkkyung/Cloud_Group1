@@ -11,10 +11,8 @@
 		<headerTitle>
 			<ObjectPageDynamicHeaderTitle>
 				<expandedHeading>
-<!-- 					<m:Title text="{test>data}" wrapping="true" -->
-<!-- 						class="sapUiSmallMarginEnd" /> -->
-					<m:Title text="{products>Name}" wrapping="true"
-						class="sapUiSmallMarginEnd" />
+					<m:Title text="{Detail>/DetailData/Cat3Name}" wraPPING="TRUE"
+						CLASS="SAPUISMALLMARGINEND" />
 				</expandedHeading>
 
 				<snappedHeading>
@@ -23,7 +21,7 @@
 						<m:FlexBox wrap="NoWrap" fitContainer="true"
 							alignItems="Center" class="sapUiTinyMarginEnd">
 							<f:Avatar src="" displaySize="S" displayShape="Square" />
-							<m:Title text="OA-W16" wrapping="true"
+							<m:Title text="{Detail>/DetailData/Cat3Name}" wrapping="true"
 								class="sapUiTinyMarginEnd" />
 						</m:FlexBox>
 					</m:FlexBox>
@@ -60,15 +58,15 @@
 				</f:Avatar>
 				<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
 					<m:Label text="대분류" />
-					<m:Text text="AA" />
+					<m:Text text="{Detail>/DetailData/Cat1Name}" />
 				</m:VBox>
 				<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
 					<m:Label text="중분류" />
-					<m:Text text="4" />
+					<m:Text text="{Detail>/DetailData/Cat2Name}" />
 				</m:VBox>
 				<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
 					<m:Label text="상품명" />
-					<m:Text text="KS-235M" />
+					<m:Text text="{Detail>/DetailData/Cat3Name}" />
 				</m:VBox>
 			</m:FlexBox>
 		</headerContent>
@@ -83,19 +81,23 @@
 								columnsM="1">
 								<form:content>
 									<m:Label text="상품코드" />
-									<m:Text text="AA04002" />
+									<m:Text text="{Detail>/DetailData/Cat3No}" />
 									<m:Label text="상품명" />
-									<m:Input valueState="{color>/Color}" value="OA-W16"
+									<m:Input valueState="{color>/Color}" value="{Detail>/DetailData/Cat3Name}"
 										editable="{enter>/Enter}" />
-									<m:Label text="표준금액" />
+									<m:Label text="표준금액(원)" />
 									<m:Input valueState="{color>/Color}"
-										value="484,000 원" editable="{enter>/Enter}" />
+										value="{
+												parts:[{path: 'Detail>/DetailData/Cat3Price'},{path:'Detail>/DetailData/Cat3Cuky'}],
+												type: 'sap.ui.model.type.Currency',
+												formatOptions: {showMeasure: false}
+												}" editable="{enter>/Enter}" />
 									<m:Label text="제조사" />
-									<m:Input valueState="{color>/Color}" value="주식회사 대진코스탈"
+									<m:Input valueState="{color>/Color}" value="{Detail>/DetailData/Cat3Made}"
 										editable="{enter>/Enter}" />
 									<m:Label text="출시일" />
 									<m:DatePicker valueState="{color>/Color}"
-										value="2017.03.08" editable="{enter>/Enter}" />
+										value="{Detail>/DetailData/Cat3Date}" editable="{enter>/Enter}" />
 								</form:content>
 							</form:SimpleForm>
 						</blocks>

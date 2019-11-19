@@ -2,52 +2,20 @@ sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"sap/m/MessageToast",
 	"sap/ui/core/UIComponent",
-	"sap/m/routing/Router" 
-], function (Controller, MessageToast, UIComponent, Router) {
+	"sap/m/routing/Router",
+	"sap/ui/model/json/JSONModel"
+], function (Controller, MessageToast, UIComponent, Router, JSONModel) {
 	"use strict";
 
 	return Controller.extend("Cloud_Group1_ProjectCloud_Group1_Project.controller.products.Detail", {
-		DetailData : function(key) {
-			var sServiceUrl = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000"
-					+ "/sap/opu/odata/sap/Z_CLOUD_PRODUCTS_SRV";
-			var url = "/ZTG1_CAT3Set?$filter=Cat3No eq '" + key + "'";
-
-			var oDataModel = new sap.ui.model.odata.ODataModel(
-					sServiceUrl, true);
-
-			var DetailData;
-
-			oDataModel
-					.read(
-							url,
-							null,
-							null,
-							false,
-							function(oData) {
-								DetailData = oData.results;
-							});
-
-			var oModel = new sap.ui.model.json.JSONModel(
-					{
-						"DetailData" : DetailData
-					});
-
-			this.getView().setModel(oModel,
-					"DetailData");
-		},
 		
 		onInit: function () {
 			this.editable(false, true, "None");
 			
-			this.getView().setModel(sap.ui.getCore().getModel("SelectKey"), "SelectKey");
-			var key = this.getView().getModel("SelectKey").oData
-			this.DetailData(key);
-			
-			
+			this.getView().setModel(sap.ui.getCore().getModel("Detail"), "Detail");			
 		},
-		editable : function(unvisi, visible, color) {		                             //버튼별 상태변경(수정, 저장, 취소, input 태그 valuestate 변경)
-			
-			console.log(this.getView().getModel("SelectKey"));
+		
+		editable : function(unvisi, visible, color) {
 			
 			var oModel = new sap.ui.model.json.JSONModel({
 				"Edit" : visible
