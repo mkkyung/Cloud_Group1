@@ -1,206 +1,129 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mvc:View
 	controllerName="Cloud_Group1_ProjectCloud_Group1_Project.controller.stock.In"
-	xmlns:core="sap.ui.core" 
-	xmlns:f="sap.ui.comp.filterbar"
+	height="100%"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns:layout="sap.ui.layout"
 	xmlns="sap.m"
-	xmlns:mvc="sap.ui.core.mvc" 
-	displayBlock="true"
-	xmlns:t="sap.ui.table"
-	xmlns:fd="sap.ui.layout.form">
-	
-	<!-- 입고 -->
+	xmlns:f="sap.f"
+	xmlns:fb="sap.ui.comp.filterbar"
+	xmlns:vm="sap.ui.comp.variants">
 	<App id="apps">
-		<Page title="view8 : 입고조회" showNavButton="true"
-			navButtonPress="goBack">
-			<Button text="button" press="getData" />
-			<headerContent>
-				<Button text="재고" id="button" type="Reject"
-					press=".onShowStock" />
-				<Button text="분출" id="button1" type="Reject"
-					press=".onShowOut" />
-			</headerContent>
-			
-			<IconTabBar id="idIconTabBar"
-						select="handleIconTabBarSelect"
-						class="sapUiResponsiveContentPadding">
-						<items>
-						<IconTabFilter showAll="true" text="Products" key="All" >
-								<f:FilterBar id="filterbar" reset="onReset"
-									search="onSearch" useToolbar="false" showGoOnFB="false" > <!-- search="onSearch" -->
-									<f:filterItems>
-			
-										<f:FilterItem name="A" label="공급업체 명">
-											<f:control>
-												<Input id="A" required="true" maxLength="11" textFormatMode="KeyValue"
-														showSuggestion="true"
-														showValueHelp="true"
-														valueHelpRequest="handleValueHelp"
-														suggestionItems="{/ProductCollection}"
-														suggestionItemSelected="suggestionItemSelected">
-												<suggestionItems>
-													<core:ListItem key="{ProductId}" text="{Name}" additionalText="{ProductId}" />
-												</suggestionItems>
-												</Input>
-											</f:control>
-										</f:FilterItem>
-										
-										<f:FilterItem name="B" label="제품명" >
-											<f:control>
-												<Input id="B" required="true" maxLength="15"/>
-											</f:control>
-										</f:FilterItem>
-										
-										<f:FilterItem name="C" label="발주일자">
-											<f:control>
-												<DatePicker id="C"
-													value="{
-														path:'/dateValue', 
-														type:'sap.ui.model.type.Date', 
-														formatOptions: { 
-															style: 'medium', 
-															strictParsing: true
-															}
-													}"
-													class="sapUiSmallMarginBottom"
-													change="handleChange" />
-											</f:control>
-										</f:FilterItem>
-										
-								</f:filterItems>
-								</f:FilterBar>
-						</IconTabFilter>	
-						
-						<IconTabFilter icon="sap-icon://begin"
-								iconColor="Positive"
-								text="Ok"
-								key="A" >
-								<f:FilterBar id="filterbar1" reset="onReset"
-									search="onSearch" useToolbar="false" showGoOnFB="false" > <!-- search="onSearch" -->
-									<f:filterItems>
-										
-										<f:FilterItem name="A" label="공급업체 명">
-											<f:control>
-												<Input id="A1" required="true" maxLength="11" textFormatMode="KeyValue" suggestionItemSelected="suggestionItemSelected">
-<!-- 												<suggestionItems> -->
-<!-- 												<core:ListItem key="{ProductId}" text="{Name}" additionalText="{ProductId}" /> -->
-<!-- 												</suggestionItems> -->
-												</Input>
-											</f:control>
-										</f:FilterItem>
-										
-										
-										<f:FilterItem name="B" label="제품명">
-											<f:control>
-												<Input id="B1" required="true" maxLength="15"/>
-											</f:control>
-										</f:FilterItem>
-										
-										<f:FilterItem name="c" label="발주일자">
-											<f:control>
-												<DatePicker id="c1"
-													value="{
-														path:'/dateValue', 
-														type:'sap.ui.model.type.Date', 
-														formatOptions: { 
-															style: 'medium', 
-															strictParsing: true
-															}
-													}"
-													class="sapUiSmallMarginBottom"
-													change="handleChange" />
-											</f:control>
-										</f:FilterItem>
-										
-									</f:filterItems>
-								</f:FilterBar>
-							</IconTabFilter>
-<!-- 	Icon tabfilter 3						 -->							
-							<IconTabFilter
-								icon="sap-icon://compare"
-								iconColor="Critical"
-								text="Heavy"
-								key="B" >
-									
-							</IconTabFilter>
-						
-								
-						</items>
-					</IconTabBar>
-			
-		<t:Table id ="out" rows="{/OutCollection}" selectionMode="MultiToggle">
-		   <t:columns>
-			    <t:Column>
-			     <Label text = "제품명"/>
-			      <t:template>
-			       <Text text= "{outNo}"/>
-			      </t:template>
-			    </t:Column>
-			    <t:Column>
-			     <Label text = "공급업체명"/>
-			      <t:template>
-			       <Text text= "{outCat3}"/>
-			      </t:template>
-			    </t:Column>
-			    <t:Column>
-			     <Label text = "입고수량(총수량)"/>
-			      <t:template>
-			       <Text text= "{outTotal}"/>
-			      </t:template>
-			    </t:Column>
-			    <t:Column>
-			     <Label text = "가용수량"/>
-			      <t:template>
-			       <Text text= "{outDate}"/>
-			      </t:template>
-			    </t:Column>
-			    <t:Column>
-			     <Label text = "발주가능수량"/>
-			      <t:template>
-			       <Text text= "{outPart}"/>
-			      </t:template>
-			    </t:Column>
-			    <t:Column>
-			     <Label text = "계약번호"/>
-			      <t:template>
-			       <Text text= "{outPic}"/>
-			      </t:template>
-			    </t:Column>
-			    <t:Column>
-			     <Label text = "발주번호"/>
-			      <t:template>
-			       <Text text= "{outEtc}"/>
-			      </t:template>
-			    </t:Column>
-			    <t:Column>
-			     <Label text = "발주일자"/>
-			      <t:template>
-			       <Text text= "{outEtc}"/>
-			      </t:template>
-			    </t:Column>
-			    <t:Column>
-			     <Label text = "입고위치"/>
-			      <t:template>
-			       <Text text= "{outEtc}"/>
-			      </t:template>
-			    </t:Column>
-			    <t:Column>
-			     <Label text = "입고상태"/>
-			      <t:template>
-			       <Text text= "{outEtc}"/>
-			      </t:template>
-			    </t:Column>
-			    <t:Column>
-			     <Label text = "비고"/>
-			      <t:template>
-			       <Text text= "{outEtc}"/>
-			      </t:template>
-			    </t:Column>
-		    
-			 </t:columns>
-		  </t:Table>
-			
-			
-		</Page>
+		<f:DynamicPage id="dynamicPageId" headerExpanded="{/headerExpanded}">
+			<!-- DynamicPage Header -->
+			<f:header>
+				<f:DynamicPageHeader pinnable="false">
+					<f:content>
+						<fb:FilterBar search="onSearch" useToolbar="false" showGoOnFB="false">
+							<fb:filterItems>
+								<fb:FilterItem name="A" label="공급업체명">
+									<fb:control>
+										<Select
+											id="slName"
+											forceSelection="true"
+											change="onSelectChange"
+											items="{view>/data}">
+										<core:Item  text="{view>Zcolu}"/> <!-- key="{view>Zcolu}" -->
+										</Select>
+									</fb:control>				
+								</fb:FilterItem>								
+								<fb:FilterItem name="B" label="제품명">
+									<fb:control>
+										<Select
+											id="slCategory"
+											change="onSelectChange"
+											forceSelection="true"
+											items="{view>/data}">
+										<core:Item  text="{view>Zwnam}"/>	<!-- key="{view>Zwfac}" -->		
+										</Select>
+									</fb:control>				
+								</fb:FilterItem>				
+								<fb:FilterItem name="C" label="발주일자">
+									<fb:control>
+										<Select
+											id="slSupplierName"
+											change="onSelectChange"
+											forceSelection="true"
+											items="{view>/data}">
+										<core:Item text="{view>/Zfalo}"/>
+										</Select>
+									</fb:control>				
+								</fb:FilterItem>
+							</fb:filterItems>
+						</fb:FilterBar>
+					</f:content>
+				</f:DynamicPageHeader>
+			</f:header>
+
+			<!-- DynamicPage Content -->
+			<f:content>
+				<Table  id="idProductsTable"
+						inset="false"
+						items="{view>/data}"
+						>
+					<columns>
+						<Column
+								minScreenWidth="Tablet"
+								demandPopin="true">
+							<Text text="제품명"/>
+						</Column>
+						<Column
+								minScreenWidth="Tablet"
+								demandPopin="true">
+							<Text text="공급업체"/>
+						</Column>
+						<Column
+								minScreenWidth="Tablet"
+								demandPopin="true">
+							<Text text="발주수량"/>
+						</Column>
+						<Column
+								minScreenWidth="Tablet"
+								demandPopin="true">
+							<Text text="입고수량"/>
+						</Column>
+						<Column
+								minScreenWidth="Tablet"
+								demandPopin="true">
+							<Text text="가용수량"/>
+						</Column>
+						<Column
+								minScreenWidth="Tablet"
+								demandPopin="true">
+							<Text text="입고상태"/>
+						</Column>
+						<Column
+								minScreenWidth="Tablet"
+								demandPopin="true"
+								hAlign="Center">
+							<Text text="상세정보"/>
+						</Column>
+					</columns>
+
+					<items >
+						<ColumnListItem 
+								type="Active"
+								vAlign="Middle"
+								press=".onPress" 
+								id="idColumnListItem" >
+							<cells>
+								<ObjectIdentifier
+										title="{view>Mandt}"
+										text="{view>Zwnam}"/>
+								<Text text="{view>Zwfac}"/>
+								<Text text="{view>Zsect}"/>
+								<Text text="{view>Zsect}"/>
+								<Text text="{view>Zsect}"/>
+								<Text text="{view>Zfalo1}"/>
+								<Button icon="sap-icon://action" press="onApproveDialog" ariaLabelledBy="actionButtonLabel"/>
+
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</f:content>
+
+		</f:DynamicPage>
 	</App>
 </mvc:View>

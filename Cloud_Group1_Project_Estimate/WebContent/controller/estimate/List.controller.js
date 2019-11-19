@@ -234,27 +234,8 @@ sap.ui.define([
 		    this.GtEstiSet(Cat1,Cat2,Cat3,Vcode,Vname,Made,Type1,Date);
 		},
 		
-		IconTabFilter: function (oEvent) {
-//			var oBinding = this.getView().byId("esttable").getBinding("items"),
-//			sKey = oEvent.getParameter("key"),
-//			ava;
-////			aFilters = [];
-//			
-//			if(sKey == "ALL")
-//			{ 			
-//				ava = "";
-//			}else if (sKey === "OK") { 
-//				ava = "O";
-////					aFilters.push(new Filter("EstAva", "EQ", "O"));
-//			}else if (sKey === "NOB") { 
-//				ava = "X";
-////					 aFilters.push(new Filter("EstAva", "EQ", "X"));
-//			 }
-			
-			
-			this.onSearch();
-//			oBinding.filter(aFilters);
-			
+		IconTabFilter: function (oEvent) {		
+			this.onSearch();		
 
 		},
 	});

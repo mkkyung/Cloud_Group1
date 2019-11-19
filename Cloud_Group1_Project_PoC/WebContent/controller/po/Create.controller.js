@@ -13,7 +13,7 @@ sap.ui.define([
 			
 		MainData : function(searchData) {
 			var sServiceUrl = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000"
-					+ "/sap/opu/odata/sap/ZFIORI_STU03_DEV03_SRV";
+					+ "/sap/opu/odata/sap/Z_CLOUD_PO_SRV";
 			
 			if (searchData != null){
 				var url = "/GETPOSet?$filter=PName eq '" + searchData[0] + "'"
