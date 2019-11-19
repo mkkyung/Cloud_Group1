@@ -70,7 +70,7 @@
 
 				<Table id="esttable" 
 				         selectionMode="None" 
-				         visibleRowCount="7"
+				         visibleRowCount="3"
 					     setEnableGrouping="true" 
 					     ariaLabelledBy="title" 
 					     rows="{GETPOSet>/GETPOSet}">

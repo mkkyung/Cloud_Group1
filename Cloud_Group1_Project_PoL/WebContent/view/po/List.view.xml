@@ -13,14 +13,13 @@
 				select="handleIconTabBarSelect"
 				class="sapUiResponsiveContentPadding">
 				<items>
-					<IconTabFilter showAll="true" text="polist"
-						key="All">
+					<IconTabFilter showAll="true" text="polist" key="All">
 						<fb:FilterBar id="filterbar" reset="onReset"
 							search="onSearch" showRestoreButton="true" showClearButton="true"> <!-- search="onSearch" -->
 							<fb:filterItems>
 								<fb:FilterItem name="PO_N" label="발주번호">
 									<fb:control>
-										<Input id="PO_N" maxLength="11" />											
+										<Input id="PO_N" maxLength="11" />
 									</fb:control>
 								</fb:FilterItem>
 								<fb:FilterItem name="PO_DF" label="발주일자(From)">
@@ -71,9 +70,9 @@
 						</fb:FilterBar>
 					</IconTabFilter>
 					<IconTabFilter icon="sap-icon://begin"
-						iconColor="Positive" text="승인" key="A">
+						iconColor="Positive" text="대기" key="A">
 						<fb:FilterBar id="filterbar1" reset="onReset"
-							search="onSearch" useToolbar="false" showGoOnFB="false"> <!-- search="onSearch" -->
+							search="onSearch" useToolbar="false"  showRestoreButton="true" showClearButton="true"> <!-- search="onSearch" -->
 							<fb:filterItems>
 								<fb:FilterItem name="PO_N1" label="발주번호">
 									<fb:control>
@@ -138,9 +137,9 @@
 					</IconTabFilter>
 					<!-- Icon tabfilter 3 -->
 					<IconTabFilter icon="sap-icon://compare"
-						iconColor="Critical" text="완료" key="B" >
+						iconColor="Critical" text="완료" key="B">
 						<fb:FilterBar id="filterbar2" reset="onReset"
-							search="onSearch" useToolbar="false" showGoOnFB="false">
+							search="onSearch" useToolbar="false" showRestoreButton="true" showClearButton="true">
 							<fb:filterItems>
 								<fb:FilterItem name="PO_N2" label="발주번호">
 									<fb:control>
@@ -230,7 +229,7 @@
 				columnsM="1" singleContainerFullSize="false">
 			</fA:SimpleForm>
 
-           
+
 
 			<Table items="{GETPOSet>/GETPOSet}" id="esttable" inset="false">
 				<columns>
@@ -241,7 +240,9 @@
 					<Column minScreenWidth="Tablet" demandPopin="true">
 						<Text text="발주일자" />
 					</Column>
-
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="발주상태" />
+					</Column>
 					<Column minScreenWidth="Tablet" demandPopin="true">
 						<Text text="상품명" />
 					</Column>
@@ -265,11 +266,13 @@
 					</Column>
 				</columns>
 				<items>
-					<ColumnListItem vAlign="Middle" press=".onPress" type="Navigation">
+					<ColumnListItem vAlign="Middle" press=".onPress"
+						type="Navigation">
 						<cells>
-<!-- 							<ObjectIdentifier title="{/data}" /> -->
+							<!-- <ObjectIdentifier title="{/data}" /> -->
 							<Text text="{GETPOSet>PoNo}" />
 							<Text text="{GETPOSet>PoDate}" />
+							<Text text="{GETPOSet>PoLight}" />
 							<Text text="{GETPOSet>PoPname}" />
 							<Text text="{GETPOSet>PoCat3}" />
 							<Text text="{GETPOSet>PoVname}" />

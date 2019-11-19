@@ -1,23 +1,23 @@
 <core:FragmentDefinition xmlns="sap.m"
 	xmlns:core="sap.ui.core">
 	<TableSelectDialog noDataText="No Data Found"
-		title="Contract" class="sapUiPopupWithPadding" items="{MainData>/MainData}"
+		title="Contract" class="sapUiPopupWithPadding" items="{getAll1Set>getAll1Set}"
 		search="handleSearch" confirm="handleClose" cancel="handleClose">
 		<ColumnListItem>
 			<!-- title="{estlist>EstCat1}" -->
 			<!-- description="{estlist>EstVname}" /> -->
 
 			<cells>
-				<ObjectIdentifier title="{MainData>BName}" text="{MainData>BName}" />
-					<Text text="{MainData>BName}" />
-					<Text text="{MainData>BName}" />
-					<Text text="{MainData>BName}" />
-					<Text text="{MainData>BName}" />
-					<Text text="{MainData>BName}" />
-					<Text text="{MainData>BName}" />
-					<Text text="{MainData>BName}" />
-					<Text text="{MainData>BName}" />
-					<Text text="{MainData>BName}" />
+				<ObjectIdentifier title="{getAll1Set>getAll1Set}" text="{getAll1Set>getAll1Set}" />
+					<Text text="{getAll1Set>ContNo}" />
+					<Text text="{getAll1Set>ContType}" />
+					<Text text="{getAll1Set>ContVname}" />
+					<Text text="{getAll1Set>ContPname}" />
+					<Text text="{getAll1Set>ContCat3}" />
+					<Text text="{getAll1Set>ContAmt}" />
+					<Text text="{getAll1Set>ContPrice}" />
+					<Text text="{getAll1Set>ContSdate}" />
+					
 
 			</cells>
 		</ColumnListItem>

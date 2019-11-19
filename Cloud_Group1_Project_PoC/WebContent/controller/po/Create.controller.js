@@ -11,30 +11,23 @@ sap.ui.define([
 
 	return Controller.extend("Cloud_Group1_ProjectCloud_Group1_Project.controller.po.Create", {
 			
-		MainData : function(searchData) {
+		GETPOSet : function() {
 			var sServiceUrl = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000"
-					+ "/sap/opu/odata/sap/Z_CLOUD_PO_SRV";
+							+ "/sap/opu/odata/sap/Z_CLOUD_PO_SRV";			
 			
-			if (searchData != null){
-				var url = "/GETPOSet?$filter=PName eq '" + searchData[0] + "'"
-				+ " and PCode eq '" + searchData[1] + "'"
-				+ " and PGrade eq '" + searchData[2] + "'"
-				+ " and PCan eq '" + searchData[3] + "'";
-			} else {
 				var url = "/GETPOSet";
-			}
-
+			
 
 			var oDataModel = new sap.ui.model.odata.ODataModel(sServiceUrl, true);
 
-			var MainData;
+			var GETPOSet;
 
 			oDataModel.read(url, null, null, false, function(oData) {
-				MainData = oData.results;
+				GETPOSet = oData.results;
 			});
 
 			var oModel = new sap.ui.model.json.JSONModel({
-				"GETPOSet" : MainData
+				"GETPOSet" : GETPOSet
 			});
 
 			
@@ -43,7 +36,7 @@ sap.ui.define([
 		},
 		
 		onInit: function() {
-			this.MainData();
+			this.GETPOSet();
 		
 //		var oModel = new JSONModel(jQuery.sap.getModulePath("sap.ui.demo.mock", "/products.json"));
 //		// the default limit of the model is set to 100. We want to show all the entries.
@@ -160,7 +153,7 @@ sap.ui.define([
 
 	handleSearch: function(oEvent) {
 		var sValue = oEvent.getParameter("value");
-		var oFilter = new sap.ui.model.Filter("BName", sap.ui.model.FilterOperator.Contains, sValue);
+		var oFilter = new sap.ui.model.Filter("getAll1Set", sap.ui.model.FilterOperator.Contains, sValue);
 		var oBinding = oEvent.getSource().getBinding("items");
 		oBinding.filter([oFilter]);
 	},
@@ -174,7 +167,7 @@ sap.ui.define([
 	},
 	
 	
-	onPress : function (oEvent) {	//계약서 눌렀을 때 
+	onPress : function (oEvent) {	//발주서 눌렀을 때 
 //		var oItem = oEvent.getSource();
 		var oRouter = UIComponent.getRouterFor(this);
 //		var routerData = oItem.mAggregations.cells[1].mProperties.text;

@@ -12,53 +12,68 @@ sap.ui
 							.extend(
 									"Cloud_Group1_ProjectCloud_Group1_Project.controller.po.List",
 									{
-										GETPOSet : function(searchData) {
+										GETPOSet : function() {
 											var sServiceUrl = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000"
-													+ "/sap/opu/odata/sap/Z_CLOUD_PO_SRV";
+												sServiceUrl += "/sap/opu/odata/sap/Z_CLOUD_PO_SRV";
+											var url = "/GETPOSet";
+//											var sServiceUrl = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000/sap/opu/odata/sap/Z_CLOUD_PO_SRV";
+////													+ "/sap/opu/odata/sap/Z_CLOUD_PO_SRV";
+//											var LIGHT = this.getView().byId("idIconTabBar").getSelectedKey();
+//											var url = "/GETPOSet";
+//								        	var PoLight = "";
+//											if( LIGHT === "ALL")
+//											{ 			
+//											}else if (LIGHT === "A") { 
+//												PoLight = "대기";
+//											}else if (LIGHT === "B") { 
+//												PoLight = "완료";
+//											 }
+//											if (searchData != null) {
+//												var url = "/GETPOSet?$filter=PPoLight eq '"
+//														+ PoLight + "'";
+//											} else {
+//												var url = "/GETPOSet";
+//											}
+//
+//											var oDataModel = new sap.ui.model.odata.ODataModel(
+//													sServiceUrl, true);
+//
+//											var GETPOSet;
+//
+//											oDataModel
+//													.read(
+//															url,
+//															null,
+//															null,
+//															false,
+//															function(oData) {
+//																GETPOSet = oData.results;
+//															});
+//
+//											var oModel = new sap.ui.model.json.JSONModel(
+//													{
+//														"GETPOSet" : GETPOSet
+//													});
+//
+//											this.getView().setModel(oModel,
+//													"GETPOSet");
 
-											if (searchData != null) {
-												var url = "/GETPOSet?$filter=PName eq '"
-														+ searchData[0]
-														+ "'"
-														+ " and PCode eq '"
-														+ searchData[1]
-														+ "'"
-														+ " and PGrade eq '"
-														+ searchData[2]
-														+ "'"
-														+ " and PCan eq '"
-														+ searchData[3] + "'";
-											} else {
-												var url = "/GETPOSet";
-											}
-
-											var oDataModel = new sap.ui.model.odata.ODataModel(
-													sServiceUrl, true);
-
-											var GETPOSet;
-
-											oDataModel
-													.read(
-															url,
-															null,
-															null,
-															false,
-															function(oData) {
-																GETPOSet = oData.results;
-															});
-
-											var oModel = new sap.ui.model.json.JSONModel(
-													{
-														"GETPOSet" : GETPOSet
-													});
-
-											this.getView().setModel(oModel,
-													"GETPOSet");
-
+								   			var oDataModel= new sap.ui.model.odata.ODataModel(sServiceUrl,true);
+								   			var data;
+								   			oDataModel.read(url, null, null, false, function(oData) {
+								   				data = oData.results;
+								   			});
+								        var oModel = new sap.ui.model.json.JSONModel({ "GETPOSet": data });
+								        this.getView().setModel(oModel , "GETPOSet");
 										},
 
 										onInit : function() {
 											this.GETPOSet();
+											
+											
+											
+											
+											
 										},
 
 										handleValueHelp : function(oEvent) {
@@ -155,6 +170,11 @@ sap.ui
 														.navTo("view6", {},
 																true);
 											}
+											
+										
+											
+											
+											
 										},
 										onPress : function(oEvent) { // 계약서  눌렀을 때
 											var oItem = oEvent.getSource();
@@ -162,18 +182,69 @@ sap.ui
 											var routerData = oItem.mAggregations.cells[0].mProperties.text;
 											this.onClose(oRouter, routerData);
 											
+										},	
 											
+											onSearch: function() {
+												var PONO = "";
+												var PODATE = "";
+												var PODDATE = "";
+												var POVNAME = "";
+												var POVCODE = "";
+												var POPNAME = "";
+												var POPCODE = "";
+												var POEDATE = "";
+												var POEDDATE = "";
+												var change = this.getView().byId("idIconTabBar").getSelectedKey();
+//												
+//												if(change === "ALL"){
+//													PONO = this.getView().byId("PO_N").getValue();
+//													PODATE = this.getView().byId("PO_DF").getValue();
+//													PODDATE = this.getView().byId("PO_DT").getValue();
+//													POVNAME = this.getView().byId("VN").getValue();
+//													POVCODE = this.getView().byId("VC").getValue();
+//													POPNAME = this.getView().byId("PN").getValue();
+//													POPCODE = this.getView().byId("PC").getValue();
+//													POEDATE = this.getView().byId("IN_DF").getValue();
+//													POEDDATE = this.getView().byId("IN_DT").getValue();
+//												}else if (change === "A"){
+//													PONO = this.getView().byId("PO_N").getValue();
+//													PODATE = this.getView().byId("PO_DF").getValue();
+//													PODDATE = this.getView().byId("PO_DT").getValue();
+//													POVNAME = this.getView().byId("VN").getValue();
+//													POVCODE = this.getView().byId("VC").getValue();
+//													POPNAME = this.getView().byId("PN").getValue();
+//													POPCODE = this.getView().byId("PC").getValue();
+//													POEDATE = this.getView().byId("IN_DF").getValue();
+//													POEDDATE = this.getView().byId("IN_DT").getValue();
+//												}
+//												else if (change === "B"){
+//													PONO = this.getView().byId("PO_N").getValue();
+//													PODATE = this.getView().byId("PO_DF").getValue();
+//													PODDATE = this.getView().byId("PO_DT").getValue();
+//													POVNAME = this.getView().byId("VN").getValue();
+//													POVCODE = this.getView().byId("VC").getValue();
+//													POPNAME = this.getView().byId("PN").getValue();
+//													POPCODE = this.getView().byId("PC").getValue();
+//													POEDATE = this.getView().byId("IN_DF").getValue();
+//													POEDDATE = this.getView().byId("IN_DT").getValue();
+//												}
+//												
+											    this.GETPOSet(PONO,PODATE,PODDATE,POVNAME,POVCODE,POPNAME,POPCODE,POEDATE,POEDDATE);
+											},
 											
-											
+											handleIconTabBarSelect: function (oEvent) {		
+												this.onSearch();		
+
+											},	
 											
 										
 											
-										},
-										onClose : function(oRouter, routerData) {
+									
+										onClose: function(oRouter, routerData) {
 											oRouter.navTo("poDetail", {
 												poDetail : routerData
 											});
 										},
-
-									});
+									
+					});
 				});
