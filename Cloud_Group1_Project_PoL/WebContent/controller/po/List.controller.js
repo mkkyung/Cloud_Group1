@@ -158,10 +158,9 @@ sap.ui
 										},
 										onPress : function(oEvent) { // 계약서  눌렀을 때
 											var oItem = oEvent.getSource();
-											var oRouter = UIComponent
-													.getRouterFor(this);
+											var oRouter = UIComponent.getRouterFor(this);
 											var routerData = oItem.mAggregations.cells[0].mProperties.text;
-											this.onClose(oRouter, 0);
+											this.onClose(oRouter, routerData);
 											
 											
 											

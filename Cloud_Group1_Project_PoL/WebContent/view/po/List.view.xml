@@ -13,10 +13,10 @@
 				select="handleIconTabBarSelect"
 				class="sapUiResponsiveContentPadding">
 				<items>
-					<IconTabFilter showAll="false" text="polist"
+					<IconTabFilter showAll="true" text="polist"
 						key="All">
 						<fb:FilterBar id="filterbar" reset="onReset"
-							search="onSearch" useToolbar="false" showGoOnFB="false"> <!-- search="onSearch" -->
+							search="onSearch" showRestoreButton="true" showClearButton="true"> <!-- search="onSearch" -->
 							<fb:filterItems>
 								<fb:FilterItem name="PO_N" label="발주번호">
 									<fb:control>

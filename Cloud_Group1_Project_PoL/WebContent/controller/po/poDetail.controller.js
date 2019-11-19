@@ -15,7 +15,7 @@ sap.ui.define([
 		onInit: function () {
 			var oRouter = UIComponent.getRouterFor(this);
 			oRouter.getRoute("poDetail").attachPatternMatched(this._onObjectMatched, this);
-			this.getData();
+			
 			this.editable(false, true, "None");
 			
 			
@@ -69,19 +69,21 @@ sap.ui.define([
 		
 		_onObjectMatched: function (oEvent) {
 			var oRouter = UIComponent.getRouterFor(this);
-			this.getView().bindElement({
-				path: "/" + oEvent.getParameter("arguments").EstPath,
-				model: "poDetail"
-			});
-			
+//			this.getView().bindElement({
+//				path: "/" + oEvent.getParameter("arguments").EstPath,
+//				model: "poDetail"
+//			});
+			var filter = oEvent.getParameter("arguments").poDetail;
+			this.getData(filter);
 		},
 		
 		//임시 데이터 전달 필드
-		getData : function(){
+		getData : function(filter){
 	        var sServiceUrl = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000"; // 로컬 서버 연결 하는 거 
 	        sServiceUrl += "/sap/opu/odata/sap/Z_CLOUD_PO_SRV";   // 여기를 /n/iwfnd/maint_service 에 들어가서 내가 만든 경로를 복사 해와야 함.
 	        var url;
-	        url = "/GETPOSet";
+	        url = "/GETPOSet?$filter=PPoNo eq '" + filter + "' and PPoCrud eq 'A'";
+//	        url = "/GETPOSet"
 	     
 	        var oDataModel = new sap.ui.model.odata.ODataModel(sServiceUrl, true);
 	        var data;
@@ -90,10 +92,6 @@ sap.ui.define([
 	        });
 	        var oModel = new sap.ui.model.json.JSONModel({ "GETPOSet": data });
 	        this.getView().setModel(oModel , "GETPOSet");
-
-	        var oModel = new sap.ui.model.json.JSONModel();
-			oModel.setProperty("/visible", true);
-			this.getView().setModel(oModel, "test");
 	        
 		},
 	

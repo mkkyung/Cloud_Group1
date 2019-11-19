@@ -10,28 +10,31 @@
 		</headerContent>
 
 		<content>
-			<l:Grid defaultSpan="L4 M6 S6" class="white">
-				<l:VerticalLayout class="sapUiTinyMarginEnd">
+			<l:Grid defaultSpan="L4 M4 S4" class="white">
+				<l:VerticalLayout class="sapUiTinyMarginEnd" width="100%">
 					<f:SimpleForm title="견적번호"
-						layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="3"
+						layout="ResponsiveGridLayout" labelSpanXL="12" labelSpanL="12"
 						labelSpanM="12" labelSpanS="12" adjustLabelSpan="false"
 						emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0"
-						columnsXL="2" columnsL="2" columnsM="1"
+						columnsXL="12" columnsL="12" columnsM="1"
 						singleContainerFullSize="false">
-						<Text text="유효여부 : 유효" class="sapUiTinyMarginBottom" />
-						<Text text="상품명 : OA-W123" class="sapUiTinyMarginBottom" />
-						<Text text="총 합계 : 4,500,000" class="sapUiTinyMarginBottom" />
+						<Label text="유효여부 " />
+						<Text text="유효 " class="sapUiTinyMarginBottom" />
+						<Label text="상품명 " />
+						<Text text="OA-W123" class="sapUiTinyMarginBottom" />
+						<Label text="총 합계 " />
+						<Text text="{sum>/sum}" class="sapUiTinyMarginBottom" />
 					</f:SimpleForm>
 				</l:VerticalLayout>
-				<l:VerticalLayout class="sapUiTinyMarginEnd">
+				<l:VerticalLayout class="sapUiTinyMarginEnd" width="100%">
 					<f:SimpleForm title="공급업체"
 						layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="3"
 						labelSpanM="12" labelSpanS="12" adjustLabelSpan="false"
 						emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0"
 						columnsXL="2" columnsL="2" columnsM="1"
 						singleContainerFullSize="false">
-						<!-- <Title level="H2" titleStyle="H2" text="공급업체" -->
-						<!-- class="sapUiMediumMarginBottom" /> -->
+						<Title level="H2" titleStyle="H2" text="공급업체"
+						class="sapUiMediumMarginBottom" />
 						<f:content>
 							<Text text="공급업체명 : ERP상사" class="sapUiTinyMarginBottom" />
 							<Text text="공급업체코드 : VE01" class="sapUiTinyMarginBottom" />
@@ -41,7 +44,7 @@
 						</f:content>
 					</f:SimpleForm>
 				</l:VerticalLayout>
-				<l:VerticalLayout class="sapUiTinyMarginEnd">
+				<l:VerticalLayout class="sapUiTinyMarginEnd" width="100%">
 					<f:SimpleForm layout="ResponsiveGridLayout"
 						labelSpanXL="4" labelSpanL="3" labelSpanM="12" labelSpanS="12"
 						adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
@@ -62,13 +65,13 @@
 					columnsXL="2" columnsL="2" columnsM="1"
 					singleContainerFullSize="false">
 				</f:SimpleForm>
-				<Table  id="esttable" inset="false">
+				<Table id="esttable" inset="false" items="{estlist>/estlist}">
 					<columns>
 						<Column minScreenWidth="Tablet" demandPopin="true">
-							<Text text="대분류 코드" />
+							<Text text="대분류" />
 						</Column>
 						<Column minScreenWidth="Tablet" demandPopin="true">
-							<Text text="중분류 코드" />
+							<Text text="중분류" />
 						</Column>
 						<Column minScreenWidth="Tablet" demandPopin="true">
 							<Text text="제품명" />
@@ -93,40 +96,26 @@
 						<ColumnListItem>
 							<cells>
 								<!-- <ObjectIdentifier title="{/data}" /> text="{ProductId}" -->
-								<Text text="AA" />
-								<Text text="01" />
-								<Text text="MF2083" />
-								<Text text="AA01002" />
-								<Text text="1" />
-								<Text text="1,900,000" />							
-								<Text text="1,900,000" />
-								<Text text="KRW" />
-							</cells>
-						</ColumnListItem>
-						<ColumnListItem>
-							<cells>
-								<!-- <ObjectIdentifier title="{/data}" /> text="{ProductId}" -->
-								<Text text="AA" />
-								<Text text="01" />
-								<Text text="MF2081" />
-								<Text text="AA01004" />
-								<Text text="1" />
-								<Text text="1,500,000" />							
-								<Text text="1,500,000" />
-								<Text text="KRW" />
-							</cells>
-						</ColumnListItem>
-						<ColumnListItem>
-							<cells>
-								<!-- <ObjectIdentifier title="{/data}" /> text="{ProductId}" -->
-								<Text text="AA" />
-								<Text text="01" />
-								<Text text="MF2087" />
-								<Text text="AA01009" />
-								<Text text="1" />
-								<Text text="1,100,000" />								
-								<Text text="1,100,000" />
-								<Text text="KRW" />
+								<Text text="{estlist>EstCat1}" />
+								<Text text="{estlist>EstCat2}" />
+								<Text text="{estlist>EstPname}" />
+								<Text text="{estlist>EstCat3}" />
+								<Text text="{estlist>EstAmt}" />
+								<ObjectNumber
+										number="{
+												parts:[{path: 'estlist>EstPrice'},{path:'view>/currency'}],
+												type: 'sap.ui.model.type.Currency',
+												formatOptions: {showMeasure: false}
+												}"/>
+								<ObjectNumber
+										number="{
+												parts:[{path: 'estlist>EstTotal'},{path:'view>/currency'}],
+												type: 'sap.ui.model.type.Currency',
+												formatOptions: {showMeasure: false}
+												}"/>
+<!-- 								<Text text="{estlist>EstPrice}" />							 -->
+<!-- 								<Text text="{estlist>EstTotal}" /> -->
+								<Text text="{estlist>EstCuky}" />
 							</cells>
 						</ColumnListItem>
 					</items>

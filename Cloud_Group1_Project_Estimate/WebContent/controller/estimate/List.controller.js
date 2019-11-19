@@ -48,7 +48,7 @@ sap.ui.define([
 			}
 		},
 	
-		GtEstiSet : function(Cat1,Cat2,Cat3,Vcode,Vname,Made,Type1){
+		GtEstiSet : function(Cat1,Cat2,Cat3,Vcode,Vname,Made,Type1,Date){
 	        var sServiceUrl = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000"; // 로컬 서버 연결 하는 거 
 	        sServiceUrl += "/sap/opu/odata/sap/Z_CLOUD_ESTIMATE_SRV";   // 여기를 /n/iwfnd/maint_service 에 들어가서 내가 만든 경로를 복사 해와야 함.
 	        var url;
@@ -73,6 +73,7 @@ sap.ui.define([
 	   	         + "' and PVname eq '" + Vname
 	   	         + "' and PType1 eq '" + Type1
 	   	         + "' and PMade eq '" + Made
+	   	         + "' and PDate eq '" + Date
 	   	         + "' and PAva eq '" + pava + "'";
 	   		}
 	   			var oDataModel= new sap.ui.model.odata.ODataModel(sServiceUrl,true);
@@ -174,7 +175,7 @@ sap.ui.define([
 			var oRouter = UIComponent.getRouterFor(this);
 			var routerData = oItem.mAggregations.cells[0].mProperties.text;
 //			routerData = oItem.getBindingContext("estlist").getPath().substr(1);
-			this.onClose(oRouter, 0);
+			this.onClose(oRouter, routerData);
 		},
 		
 		onClose: function(oRouter, routerData){
@@ -194,7 +195,7 @@ sap.ui.define([
 			var Cat1 = "";
 			var Cat2 = "";
 			var Cat3 = "";
-//			var Date = this.getView().byId("1date").getDateValue();
+			var Date = "";
 			var Made = "";
 			var Vcode = "";
 			var Vname = "";
@@ -209,6 +210,7 @@ sap.ui.define([
 				Vname = this.getView().byId("1vname").getSelectedKey();
 				Type1 = this.getView().byId("1type1").getSelectedKey();
 				Made = this.getView().byId("1made").getValue();
+				Date = this.getView().byId("1date").getValue();
 			}else if (change === "OK"){
 				Cat1 = this.getView().byId("2cat1").getSelectedKey();
 				Cat2 = this.getView().byId("2cat2").getSelectedKey();
@@ -217,6 +219,7 @@ sap.ui.define([
 				Vname = this.getView().byId("2vname").getSelectedKey();
 				Type1 = this.getView().byId("2type1").getSelectedKey();
 				Made = this.getView().byId("2made").getValue();
+				Date = this.getView().byId("2date").getValue();
 			}
 			else if (change === "NOB"){
 				Cat1 = this.getView().byId("3cat1").getSelectedKey();
@@ -226,31 +229,13 @@ sap.ui.define([
 				Vname = this.getView().byId("3vname").getSelectedKey();
 				Type1 = this.getView().byId("3type1").getSelectedKey();
 				Made = this.getView().byId("3made").getValue();
+				Date = this.getView().byId("3date").getValue();
 			}
-		    this.GtEstiSet(Cat1,Cat2,Cat3,Vcode,Vname,Made,Type1);
+		    this.GtEstiSet(Cat1,Cat2,Cat3,Vcode,Vname,Made,Type1,Date);
 		},
 		
-		IconTabFilter: function (oEvent) {
-//			var oBinding = this.getView().byId("esttable").getBinding("items"),
-//			sKey = oEvent.getParameter("key"),
-//			ava;
-////			aFilters = [];
-//			
-//			if(sKey == "ALL")
-//			{ 			
-//				ava = "";
-//			}else if (sKey === "OK") { 
-//				ava = "O";
-////					aFilters.push(new Filter("EstAva", "EQ", "O"));
-//			}else if (sKey === "NOB") { 
-//				ava = "X";
-////					 aFilters.push(new Filter("EstAva", "EQ", "X"));
-//			 }
-			
-			
-			this.onSearch();
-//			oBinding.filter(aFilters);
-			
+		IconTabFilter: function (oEvent) {		
+			this.onSearch();		
 
 		},
 	});
