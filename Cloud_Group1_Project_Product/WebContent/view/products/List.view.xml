@@ -11,50 +11,46 @@
 				<Button icon="sap-icon://add" press="handleCreatePress" />
 				<Button icon="sap-icon://excel-attachment" />
 			</headerContent>
-			<fb:FilterBar reset="onReset" search="onSearch"
+			<fb:FilterBar reset="onReset" search="search"
 				showRestoreButton="true" showClearButton="true" useToolbar="false">
 				<fb:filterItems>
 					<fb:FilterItem name="Cat1" label="대분류"
 						mandatory="true">
 						<fb:control>
-							<ComboBox>
+							<ComboBox id="Cat1" items="{Cat1>/Cat1}">
 								<items>
-									<core:Item key="001" text="EMEA" />
+									<core:Item key="001" text="{Cat1>Cat1Name}" />
 								</items>
 							</ComboBox>
 						</fb:control>
 					</fb:FilterItem>
 					<fb:FilterItem name="Cat2" label="중분류">
 						<fb:control>
-							<ComboBox>
+							<ComboBox id="Cat2" items="{Cat2>/Cat2}">
 								<items>
-									<core:Item key="001" text="America" />
+									<core:Item key="001" text="{Cat2>Cat2Name}" />
 								</items>
 							</ComboBox>
 						</fb:control>
 					</fb:FilterItem>
 					<fb:FilterItem name="Cat3" label="상품명">
 						<fb:control>
-							<ComboBox>
-								<items>
-									<core:Item key="001" text="America" />
-								</items>
-							</ComboBox>
+							<Input id="Cat3" />
 						</fb:control>
 					</fb:FilterItem>
 					<fb:FilterItem name="Made" label="제조사">
 						<fb:control>
-							<Input />
+							<Input id="Made" />
 						</fb:control>
 					</fb:FilterItem>
 					<fb:FilterItem name="Date1" label="출시일(From)">
 						<fb:control>
-							<DatePicker />
+							<DatePicker id="FromDate" />
 						</fb:control>
 					</fb:FilterItem>
 					<fb:FilterItem name="Date2" label="출시일(To)">
 						<fb:control>
-							<DatePicker />
+							<DatePicker id="ToDate" />
 						</fb:control>
 					</fb:FilterItem>
 				</fb:filterItems>
