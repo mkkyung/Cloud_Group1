@@ -19,7 +19,7 @@
 						columnsXL="12" columnsL="12" columnsM="1"
 						singleContainerFullSize="false">
 						<Label text="유효여부 " />
-						<Text text="유효 " class="sapUiTinyMarginBottom" />
+						<Text text="{estlist>/EstCat1}" class="sapUiTinyMarginBottom" />
 						<Label text="상품명 " />
 						<Text text="OA-W123" class="sapUiTinyMarginBottom" />
 						<Label text="총 합계 " />
