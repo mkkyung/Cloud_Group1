@@ -7,40 +7,25 @@ sap.ui.define([
 
 	return Controller.extend("Cloud_Group1_ProjectCloud_Group1_Project.controller.products.List", {
 		MainData : function() {
-			 var addr        = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000";
-		      addr          += "/sap/opu/odata/sap/Z_CLOUD_PRODUCTS_SRV/ZTG1_CAT3Set";
+			
+			var sServiceUrl = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000"
+					+ "/sap/opu/odata/sap/Z_CLOUD_PRODUCTS_SRV";
+			var url = "/ZTG1_CAT3Set";
 
-//			var sServiceUrl = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000"
-//					+ "/sap/opu/odata/sap/Z_CLOUD_PRODUCTS_SRV";
-//			var url = "/ZTG1_CAT3Set";
-
-//			var oDataModel = new sap.ui.model.odata.ODataModel(
-//					sServiceUrl, true);
+			var oDataModel = new sap.ui.model.odata.ODataModel(
+					sServiceUrl, true);
 
 			var MainData;
 
-//			oDataModel
-//					.read(
-//							url,
-//							null,
-//							null,
-//							false,
-//							function(oData) {
-//								MainData = oData.results;
-//							});
-			 $.ajax({
-		         type : "GET",
-		         url  : addr,
-		         data : JSON.stringify(MainData),
-		            contentType: "application/json" ,
-		              success: function(aa, bb, cc) {
-		                 console.log("13 " + cc);
-		              },
-		            error: function(aa, bb, cc) { 
-		               console.log("23 " + cc);
-		            }
-		      });
-
+			oDataModel
+					.read(
+							url,
+							null,
+							null,
+							false,
+							function(oData) {
+								MainData = oData.results;
+							});
 
 			var oModel = new sap.ui.model.json.JSONModel(
 					{

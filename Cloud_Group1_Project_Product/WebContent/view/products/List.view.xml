@@ -63,10 +63,10 @@
 				<Table id="productsTable" inset="false"
 					class="sapFDynamicPageAlignContent"  items="{MainData>/MainData}">
 					<columns>
-						<Column width="5em">
+						<Column width="10em">
 							<Text text="대분류" />
 						</Column>
-						<Column width="5em">
+						<Column width="10em">
 							<Text text="중분류" />
 						</Column>
 						<Column width="15em">
@@ -81,7 +81,7 @@
 						<Column width="20em">
 							<Text text="제조사" />
 						</Column>
-						<Column width="20em">
+						<Column width="15em">
 							<Text text="출시일" />
 						</Column>
 					</columns>
@@ -89,8 +89,8 @@
 						<ColumnListItem type="Navigation"
 							press="handleMasterPress">
 							<cells>
-								<Text text="{MainData>Cat1No}" />
-								<Text text="{MainData>Cat2No}" />
+								<Text text="{MainData>Cat1Name}" />
+								<Text text="{MainData>Cat2Name}" />
 								<Text text="{MainData>Cat3No}" />
 								<Text text="{MainData>Cat3Name}" />
 								<ObjectNumber

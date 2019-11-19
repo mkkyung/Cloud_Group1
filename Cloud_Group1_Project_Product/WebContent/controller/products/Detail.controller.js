@@ -2,15 +2,16 @@ sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"sap/m/MessageToast",
 	"sap/ui/core/UIComponent",
-	"sap/m/routing/Router" 
-], function (Controller, MessageToast, UIComponent, Router) {
+	"sap/m/routing/Router",
+	"sap/ui/model/json/JSONModel"
+], function (Controller, MessageToast, UIComponent, Router, JSONModel) {
 	"use strict";
 
 	return Controller.extend("Cloud_Group1_ProjectCloud_Group1_Project.controller.products.Detail", {
 		DetailData : function(key) {
 			var sServiceUrl = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000"
 					+ "/sap/opu/odata/sap/Z_CLOUD_PRODUCTS_SRV";
-			var url = "/ZTG1_CAT3Set?$filter=Cat3No eq '" + key + "'";
+			var url = "/ZTG1_CAT3Set('" + key + "')";
 
 			var oDataModel = new sap.ui.model.odata.ODataModel(
 					sServiceUrl, true);
