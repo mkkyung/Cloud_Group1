@@ -14,25 +14,37 @@ sap.ui.define([
    "use strict";
 
    return Controller.extend("Cloud_Group1_ProjectCloud_Group1_Project.controller.contract.List", {
-      onInit: function() {
+
+	   onInit: function() {
+  		
+    	  
+    	  
       
-           var sServiceUrl = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000/";   //CORSerror나면 http:// 를 proxy/http/로
-         sServiceUrl +=  "/sap/opu/odata/sap/ZFIORI_STU07_DEV02_SRV/"; // 여기를 /n/iwfnd/maint_service 에 들어가서 내가 만든 경로를 복사 해와야 함.
-           var url;
-   
-           url = "/getData2Set";
-        
-           var oDataModel = new sap.ui.model.odata.ODataModel(sServiceUrl,true);
-           this.oModel = new JSONModel();
-         var data;
-         oDataModel.read(url, null, null, false, function(oData){
-//            data = oData;
-            data = oData.results;
-         });
-         var oModel = new sap.ui.model.json.JSONModel({ "data" : data });
-//         var oModel = new sap.ui.model.json.JSONModel(data); // {results : [] }
-         this.getView().setModel(oModel, "view"); 
-         
+    	  this.OngetData();
+    	  this.OngetCat1Set();
+    	  this.OngetCat2Set();
+    	  this.OngetCat3Set();	
+    	  this.OngetType1Set();
+//           var sServiceUrl = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000/";   //CORSerror나면 http:// 를 proxy/http/로
+//         sServiceUrl +=  "/sap/opu/odata/sap/Z_CLOUD_CONT_SRV_01"; // 여기를 /n/iwfnd/maint_service 에 들어가서 내가 만든 경로를 복사 해와야 함.
+//           var url;
+//   
+//           url = "/getAll1Set";
+//        
+//           var oDataModel = new sap.ui.model.odata.ODataModel(sServiceUrl,true);
+//           this.oModel = new JSONModel();
+//         var data;
+//         oDataModel.read(url, null, null, false, function(oData){
+////            data = oData;
+//            data = oData.results;
+//         });
+//         var oModel = new sap.ui.model.json.JSONModel({ "data" : data });
+////         var oModel = new sap.ui.model.json.JSONModel(data); // {results : [] }
+//         this.getView().setModel(oModel, "view"); 
+			var oViewModel = new JSONModel({
+				currency: "KRW"
+			});
+			this.getView().setModel(oViewModel, "view");
          
 
          this.aKeys = [
@@ -145,15 +157,221 @@ sap.ui.define([
       onPress : function (oEvent) {   //계약서 눌렀을 때 
          var oItem = oEvent.getSource();
          var oRouter = UIComponent.getRouterFor(this);
-         var routerData = oItem.mAggregations.cells[0].mProperties.text;
-         this.onClose(oRouter, 0);
+         var routerData = oItem.mAggregations.cells[2].mProperties.text;
+         this.onClose(oRouter, routerData);
       },
       onClose: function(oRouter, routerData){
          oRouter.navTo("contDetail", {
             contDetail: routerData
          });
       },
+      OngetData : function (PContType,PContNo,PContCat1,PContCat2,PContPname,PContVname,PContVno,PContSdate,PContEdate){
+    	  var sServiceUrl = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000/"; 
+          sServiceUrl +=  "sap/opu/odata/sap/Z_CLOUD_CONT_SRV_01"; 
+          	var url;
+          	var PCr = 'R';
+          	var Light = this.getView().byId("idIconTabBar").getSelectedKey();
+        	var PContLight;
+			if(Light === "All")
+			{ 		
+				PContLight = "";
+			}else if (Light === "A") { 
+				PContLight = "승인";
+			}else if (Light === "B") { 
+				PContLight = "대기";
+			}
+			 else if (Light === "C") {
+				PContLight = "종료";
+			}
+
+            if (PContType == undefined && PContNo== undefined && PContCat1 == undefined &&
+          	      PContCat2 == undefined && PContPname == undefined && PContVname == undefined && PContVno == undefined &&
+          	      PContSdate == undefined && PContEdate == undefined){
+            url = "/getData1Set?$filter=PCr eq '" + PCr + "'and PContLight eq'" + " " + "'";
+            var oDataModel = new sap.ui.model.odata.ODataModel(sServiceUrl,true);
+            this.oModel = new JSONModel();
+          var data;
+          oDataModel.read(url, null, null, false, function(oData){
+
+             data = oData.results;
+          });
+          var oModel = new sap.ui.model.json.JSONModel({ "getData" : data });
+          this.getView().setModel(oModel, "getData"); 
+            }
+            else{
+            	var PCr = 'R';
+
+//    			if(Light === "All")
+//    			{ 		
+//    				PContLight = "";
+//    			}else if (Light === "A") { 
+//    				PContLight = "승인";
+//    			}else if (Light === "B") { 
+//    				PContLight = "대기";
+//    			}
+//    			 else if (Light === "C") {
+//    				PContLight = "종료";
+//    			}
+            	url = "/getData1Set?$filter=PCr eq '" + PCr + "' and PContType eq '" + PContType + "' and PContNo eq '" + PContNo + "' and PContCat1 eq '" + PContCat1 + 
+            	      "' and PContCat2 eq '" + PContCat2 + "' and PContPname eq '" + PContPname + "' and PContVname eq '" + PContVname +
+            	      "' and PContVno eq '" + PContVno + "' and PContSdate eq '" + PContSdate + "' and PContEdate eq '" + "'and PContLight eq '" + PContLight + "'";
+            	 var oDataModel = new sap.ui.model.odata.ODataModel(sServiceUrl,true);
+                 this.oModel = new JSONModel();
+               var data;
+               oDataModel.read(url, null, null, false, function(oData){
+
+                  data = oData.results;
+               });
+               var oModel = new sap.ui.model.json.JSONModel({ "getData" : data });
+               this.getView().setModel(oModel, "getData"); 
+            }
+            
+      },
       
+      OngetCat1Set : function (){
+    	  var sServiceUrl = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000/"; 
+          sServiceUrl +=  "/sap/opu/odata/sap/Z_CLOUD_CONT_SRV_01"; 
+            var url;
+    
+            url = "/getCat1Set";
+         
+            var oDataModel = new sap.ui.model.odata.ODataModel(sServiceUrl,true);
+            this.oModel = new JSONModel();
+          var data;
+          oDataModel.read(url, null, null, false, function(oData){
+
+             data = oData.results;
+          });
+          var oModel = new sap.ui.model.json.JSONModel({ "Cat1" : data });
+          this.getView().setModel(oModel, "Cat1"); 
+      },
+      OngetCat2Set : function (){
+    	  var sServiceUrl = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000/"; 
+          sServiceUrl +=  "/sap/opu/odata/sap/Z_CLOUD_CONT_SRV_01"; 
+            var url;
+    
+            url = "/getCat2Set";
+         
+            var oDataModel = new sap.ui.model.odata.ODataModel(sServiceUrl,true);
+            this.oModel = new JSONModel();
+          var data;
+          oDataModel.read(url, null, null, false, function(oData){
+
+             data = oData.results;
+          });
+          var oModel = new sap.ui.model.json.JSONModel({ "Cat2" : data });
+          this.getView().setModel(oModel, "Cat2"); 
+      },
+      OngetCat3Set : function (){
+    	  var sServiceUrl = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000/"; 
+          sServiceUrl +=  "/sap/opu/odata/sap/Z_CLOUD_CONT_SRV_01"; 
+            var url;
+    
+            url = "/getCat3Set";
+         
+            var oDataModel = new sap.ui.model.odata.ODataModel(sServiceUrl,true);
+            this.oModel = new JSONModel();
+          var data;
+          oDataModel.read(url, null, null, false, function(oData){
+
+             data = oData.results;
+          });
+          var oModel = new sap.ui.model.json.JSONModel({ "Cat3" : data });
+          this.getView().setModel(oModel, "Cat3"); 
+      },
+      OngetType1Set : function (){
+    	  var sServiceUrl = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000/"; 
+          sServiceUrl +=  "/sap/opu/odata/sap/Z_CLOUD_CONT_SRV_01"; 
+            var url;
+    
+            url = "/getType1Set";
+         
+            var oDataModel = new sap.ui.model.odata.ODataModel(sServiceUrl,true);
+            this.oModel = new JSONModel();
+          var data;
+          oDataModel.read(url, null, null, false, function(oData){
+
+             data = oData.results;
+          });
+          var oModel = new sap.ui.model.json.JSONModel({ "Type1" : data });
+          this.getView().setModel(oModel, "Type1"); 
+      },
+      
+//	   handleRefresh : function(){
+//			setTimeout(function () {
+//				this.byId("idColumnListItem").hide();
+//			}.bind(this), 1000);
+//	   },
+	   handleIconTabBarSelect: function (oEvent) {
+           var Light = this.getView().byId("idIconTabBar").getSelectedKey;
+       	   var PContLight;
+			if(Light === "ALL")
+			{ 			
+			}else if (Light === "A") { 
+				PContLight = "승인";
+			}else if (Light === "B") { 
+				PContLight = "대기";
+			 }
+			 else if (Light === "C") {
+				PContLight = "종료";
+			 }
+		   this.onSearch();
+	   }, 
+      onSearch : function(){
+    	 var right = this.getView().byId()
+         var change = this.getView().byId("idIconTabBar").getSelectedKey();
+    	 if(change == 'All'){
+		 var PContType = this.getView().byId("A").getValue();// 계약서 장단 구분 조회 값
+	 	 var PContNo = this.getView().byId("B").getValue();// 계약번호 조회
+	 	 var PContCat1 = this.getView().byId("C").getValue(); // 계약 대분류 조회 ( 인덱스 값)
+	     var PContCat2 = this.getView().byId("D").getValue(); // 계약 중분류 조회 ( 인덱스 값)
+	     var PContPname = this.getView().byId("E").getValue(); // 계약 상품명 조회 ( 인덱스 값)
+	     var PContVname = this.getView().byId("F").getValue();// 계약 공급업체명 조회
+	     var PContVno = this.getView().byId("G").getValue();// 계약 사업자등록증 조회
+	     var PContSdate = this.getView().byId("H").getValue();// 계약 시작일 조회
+	     var PContEdate = this.getView().byId("I").getValue();// 계약 종료일 조회
+    	  }
+	     
+	     
+	     else if(change == 'A'){
+ 		 var PContType = this.getView().byId("A1").getValue();// 계약서 장단 구분 조회 값
+	 	 var PContNo = this.getView().byId("B1").getValue();// 계약번호 조회
+	 	 var PContCat1 = this.getView().byId("C1").getValue(); // 계약 대분류 조회 ( 인덱스 값)
+	     var PContCat2 = this.getView().byId("D1").getValue(); // 계약 중분류 조회 ( 인덱스 값)
+	     var PContPname = this.getView().byId("E1").getValue(); // 계약 상품명 조회 ( 인덱스 값)
+	     var PContVname = this.getView().byId("F1").getValue();// 계약 공급업체명 조회
+	     var PContVno = this.getView().byId("G1").getValue();// 계약 사업자등록증 조회
+	     var PContSdate = this.getView().byId("H1").getValue();// 계약 시작일 조회
+	     var PContEdate = this.getView().byId("I1").getValue();// 계약 종료일 조회
+	     }
+    	  
+	     else if(change == 'B'){
+	 	 var PContType = this.getView().byId("A2").getValue();// 계약서 장단 구분 조회 값
+		 var PContNo = this.getView().byId("B3").getValue();// 계약번호 조회
+		 var PContCat1 = this.getView().byId("C3").getValue(); // 계약 대분류 조회 ( 인덱스 값)
+		 var PContCat2 = this.getView().byId("D3").getValue(); // 계약 중분류 조회 ( 인덱스 값)
+		 var PContPname = this.getView().byId("E3").getValue(); // 계약 상품명 조회 ( 인덱스 값)
+		 var PContVname = this.getView().byId("F3").getValue();// 계약 공급업체명 조회
+		 var PContVno = this.getView().byId("G3").getValue();// 계약 사업자등록증 조회
+		 var PContSdate = this.getView().byId("H3").getValue();// 계약 시작일 조회
+		 var PContEdate = this.getView().byId("I3").getValue();// 계약 종료일 조회
+	     }
+    	  
+	     else if(change == 'C'){
+	 	 var PContType = this.getView().byId("A3").getValue();// 계약서 장단 구분 조회 값
+		 var PContNo = this.getView().byId("B3").getValue();// 계약번호 조회
+		 var PContCat1 = this.getView().byId("C3").getValue(); // 계약 대분류 조회 ( 인덱스 값)
+		 var PContCat2 = this.getView().byId("D3").getValue(); // 계약 중분류 조회 ( 인덱스 값)
+		 var PContPname = this.getView().byId("E3").getValue(); // 계약 상품명 조회 ( 인덱스 값)
+		 var PContVname = this.getView().byId("F3").getValue();// 계약 공급업체명 조회
+		 var PContVno = this.getView().byId("G3").getValue();// 계약 사업자등록증 조회
+		 var PContSdate = this.getView().byId("H3").getValue();// 계약 시작일 조회
+		 var PContEdate = this.getView().byId("I3").getValue();// 계약 종료일 조회
+	     }
+    	  this.OngetData(PContType,PContNo,PContCat1,PContCat2,PContPname,PContVname,PContVno,PContSdate,PContEdate);
+      },	
+	
+
       
    });
 });
