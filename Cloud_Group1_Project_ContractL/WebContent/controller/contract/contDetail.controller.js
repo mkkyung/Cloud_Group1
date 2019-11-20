@@ -31,9 +31,9 @@ sap.ui.define([
 		//임시 데이터 전달 필드
 		getData : function(){
 	        var sServiceUrl = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000"; // 로컬 서버 연결 하는 거 
-	        sServiceUrl += "/sap/opu/odata/sap/Z_FUNC_ESTIMATE_TEST_SRV";   // 여기를 /n/iwfnd/maint_service 에 들어가서 내가 만든 경로를 복사 해와야 함.
+	        sServiceUrl += "/sap/opu/odata/sap/Z_CLOUD_PUOR_SRV";   // 여기를 /n/iwfnd/maint_service 에 들어가서 내가 만든 경로를 복사 해와야 함.
 	        var url;
-	        url = "/getestSet";
+	        url = "/GETPOSet";
 	     
 	        var oDataModel = new sap.ui.model.odata.ODataModel(sServiceUrl, true);
 	        var data;
@@ -79,7 +79,6 @@ sap.ui.define([
 				oRouter.navTo("view4", {}, true);
 			}
 		},
-		
 
 		
 	});

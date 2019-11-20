@@ -25,18 +25,20 @@ sap.ui.define([
 				oRouter.navTo("view2", {}, true);
 			}
 		},
+		
 		MainData : function(searchData) {
 			var sServiceUrl = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000"
-					+ "/sap/opu/odata/sap/ZFIORI_STU03_DEV03_SRV";
-			
-			if (searchData != null){
-				var url = "/MainDataSet?$filter=PName eq '" + searchData[0] + "'"
-				+ " and PCode eq '" + searchData[1] + "'"
-				+ " and PGrade eq '" + searchData[2] + "'"
-				+ " and PCan eq '" + searchData[3] + "'";
-			} else {
-				var url = "/MainDataSet";
-			}
+					+ "/sap/opu/odata/sap/Z_CLOUD_PUOR_SRV";
+			var url;
+			url= "/GETPOSet";
+//			if (searchData != null){
+//				var url = "/MainDataSet?$filter=PName eq '" + searchData[0] + "'"
+//				+ " and PCode eq '" + searchData[1] + "'"
+//				+ " and PGrade eq '" + searchData[2] + "'"
+//				+ " and PCan eq '" + searchData[3] + "'";
+//			} else {
+//				var url = "/MainDataSet";
+//			}
 
 
 			var oDataModel = new sap.ui.model.odata.ODataModel(sServiceUrl, true);
@@ -56,10 +58,10 @@ sap.ui.define([
 
 		},
 		
-		inputId: '',
 		onInit : function () {
 			this.MainData();
 		},
+		
 		handleValueHelp : function (oEvent) {						  //Table Dialog
 			var sInputValue = oEvent.getSource().getValue();
 
@@ -82,6 +84,7 @@ sap.ui.define([
 			// open value help dialog filtered by the input value
 			this._valueHelpDialog.open(sInputValue);
 		},
+		
 		_handleValueHelpSearch : function (evt) {
 			var sValue = evt.getParameter("value");
 			var oFilter = new sap.ui.model.Filter(
@@ -112,6 +115,7 @@ sap.ui.define([
 
 			oText.setText(sKey);
 		}
+		
 
 	});
 });

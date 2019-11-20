@@ -14,7 +14,7 @@ sap.ui
 									{
 										GETPOSet : function() {
 											var sServiceUrl = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000"
-												sServiceUrl += "/sap/opu/odata/sap/Z_CLOUD_PO_SRV";
+												sServiceUrl += "/sap/opu/odata/sap/Z_CLOUD_PUOR_SRV";
 											var url = "/GETPOSet";
 //											var sServiceUrl = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000/sap/opu/odata/sap/Z_CLOUD_PO_SRV";
 ////													+ "/sap/opu/odata/sap/Z_CLOUD_PO_SRV";
