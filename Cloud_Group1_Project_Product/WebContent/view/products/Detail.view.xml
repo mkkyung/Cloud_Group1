@@ -38,9 +38,9 @@
 					<m:Button id="update" icon="sap-icon://edit"
 						type="Emphasized" press="edit" visible="{edit>/Edit}" />
 					<m:Button id="enter" icon="sap-icon://save"
-						type="Emphasized" visible="{enter>/Enter}" press="enter" />
+						type="Emphasized" visible="{enter>/Enter}" press="save" />
 					<m:Button icon="sap-icon://delete" type="Reject"
-						visible="{edit>/Edit}" />
+						visible="{edit>/Edit}" press="delete"/>
 					<m:Button icon="sap-icon://reset" type="Reject"
 						visible="{cancel>/Cancel}" press="cancel" />
 					<m:Button icon="sap-icon://action" type="Transparent" />
@@ -80,23 +80,23 @@
 								labelSpanM="12" emptySpanL="0" emptySpanM="0" columnsL="1"
 								columnsM="1">
 								<form:content>
-									<m:Label text="상품코드" />
-									<m:Text text="{Detail>/DetailData/Cat3No}" />
+									<m:Label text="상품코드"/>
+									<m:Text  text="{Detail>/DetailData/Cat3No}" />
 									<m:Label text="상품명" />
-									<m:Input valueState="{color>/Color}" value="{Detail>/DetailData/Cat3Name}"
+									<m:Input id="Cat3Name" valueState="{color>/Color}" value="{Detail>/DetailData/Cat3Name}"
 										editable="{enter>/Enter}" />
 									<m:Label text="표준금액(원)" />
-									<m:Input valueState="{color>/Color}"
+									<m:Input id="Cat3Price" valueState="{color>/Color}"
 										value="{
 												parts:[{path: 'Detail>/DetailData/Cat3Price'},{path:'Detail>/DetailData/Cat3Cuky'}],
 												type: 'sap.ui.model.type.Currency',
 												formatOptions: {showMeasure: false}
 												}" editable="{enter>/Enter}" />
 									<m:Label text="제조사" />
-									<m:Input valueState="{color>/Color}" value="{Detail>/DetailData/Cat3Made}"
+									<m:Input id="Cat3Made" valueState="{color>/Color}" value="{Detail>/DetailData/Cat3Made}"
 										editable="{enter>/Enter}" />
 									<m:Label text="출시일" />
-									<m:DatePicker valueState="{color>/Color}"
+									<m:DatePicker id="Cat3Date" valueState="{color>/Color}"
 										value="{Detail>/DetailData/Cat3Date}" editable="{enter>/Enter}" />
 								</form:content>
 							</form:SimpleForm>

@@ -13,6 +13,8 @@ sap.ui.define([
 			this.editable(false, true, "None");
 			
 			this.getView().setModel(sap.ui.getCore().getModel("Detail"), "Detail");			
+			
+			this.bus = sap.ui.getCore().getEventBus();
 		},
 		
 		editable : function(unvisi, visible, color) {
@@ -50,7 +52,66 @@ sap.ui.define([
 		color : function() {															  //input 태그 valuestate 변경
 			this.editable(true, false, "Success");
 		},
+		save : function() {
+			var Cat3No = this.getView().getModel("Detail").oData.DetailData.Cat3No;
+			
+			var Cat3Name = this.getView().byId("Cat3Name").getValue().toUpperCase();
 
+			var Cat3Price = this.getView().byId("Cat3Price").getValue().toUpperCase();
+
+			var Cat3Made = this.getView().byId("Cat3Made").getValue().toUpperCase();
+
+			var Cat3Date = this.getView().byId("Cat3Date").getValue().toUpperCase();
+			
+			var url = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000"
+				url += "/sap/opu/odata/sap/Z_CLOUD_PRODUCTS_SRV/ZTG1_CAT3Set";
+			    url += "('" + Cat3No + "')";
+			
+			var updateData = {
+					"Cat3No" : Cat3No,
+					"Cat3Name" : Cat3Name,
+					"Cat3Price" : Cat3Price.split(",").join(""),
+					"Cat3Made" : Cat3Made,
+					"Cat3Date" : Cat3Date.split(".").join("")
+			};
+			
+			$.ajax({
+		         type : "PUT",
+		         url  : url,
+		         data : JSON.stringify(updateData),
+		            contentType: "application/json" ,
+		              success: function(aa, bb, cc) {
+		                 console.log("13 " + cc);
+		              },
+		            error: function(aa, bb, cc) { 
+		               console.log("23 " + cc);
+		            }
+		      });
+			
+			this.enter();
+			
+		},
+		delete : function() {
+			var Cat3No = this.getView().getModel("Detail").oData.DetailData.Cat3No;
+			
+			var url = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000"
+				url += "/sap/opu/odata/sap/Z_CLOUD_PRODUCTS_SRV/ZTG1_CAT3Set";
+			    url += "('" + Cat3No + "')";
+			    
+			    $.ajax({
+			         type : "DELETE",
+			         url  : url,
+			         data : JSON.stringify(Cat3No),
+			            contentType: "application/json" ,
+			              success: function(aa, bb, cc) {
+			                 console.log("13 " + cc);
+			              },
+			            error: function(aa, bb, cc) { 
+			               console.log("23 " + cc);
+			            }
+			      });
+			 this.handleClose();
+		},			
 		handleClose : function() {                                                         // 닫기버튼
 			sap.ui.getCore().byId("__xmlview0--fcl").setLayout(sap.f.LayoutType.OneColumn);	
 		}

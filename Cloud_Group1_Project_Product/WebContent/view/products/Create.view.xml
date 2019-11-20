@@ -9,7 +9,8 @@
 		<headerTitle>
 			<ObjectPageDynamicHeaderTitle>
 				<navigationActions>
-					<m:Button id="enter" icon="sap-icon://save" press="enter" type="Transparent"/>
+					<m:Button id="enter" icon="sap-icon://save" press="save"
+						type="Transparent" />
 					<m:OverflowToolbarButton type="Transparent"
 						icon="sap-icon://decline" press="handleClose"
 						tooltip="Close column" />
@@ -26,36 +27,27 @@
 								editable="false" layout="ResponsiveGridLayout" labelSpanL="12"
 								labelSpanM="12" emptySpanL="0" emptySpanM="0" columnsL="1"
 								columnsM="1">
-								<form:content>
-									<l:VerticalLayout>
-										<u:FileUploader id="fileUploader"
-											name="myFileUpload" uploadUrl="upload/"
-											tooltip="Upload your file to the local server"
-											uploadComplete="handleUploadComplete"
-											typeMissmatch="handleTypeMissmatch" fileType="png,jpg" />
-										<m:Button text="Upload File"
-											press="handleUploadPress" />
-									</l:VerticalLayout>
+								<form:content>									
 									<m:Label text="대분류" labelFor="001" />
-									<m:ComboBox>
-										<m:items>
-											<core:Item key="001" text="EMEA" />
-										</m:items>
+									<m:ComboBox id="Cat1Name" showSecondaryValues="true"
+										items="{Cat1>/Cat1}">
+											<core:ListItem key="{Cat1>Cat1No}"
+												text="{Cat1>Cat1Name}" additionalText="{Cat1>Cat1No}" />
 									</m:ComboBox>
 									<m:Label text="중분류" labelFor="002" />
-									<m:ComboBox>
-										<m:items>
-											<core:Item key="002" text="EMEA" />
-										</m:items>
+									<m:ComboBox id="Cat2Name" showSecondaryValues="true"
+										items="{Cat2>/Cat2}">
+											<core:ListItem key="{Cat2>Cat2No}"
+												text="{Cat2>Cat2Name}" additionalText="{Cat2>Cat2No}" />
 									</m:ComboBox>
 									<m:Label text="상품명" />
-									<m:Input />
+									<m:Input id="Cat3Name"/>
 									<m:Label text="표준금액" />
-									<m:Input />
+									<m:Input id="Cat3Price" />
 									<m:Label text="제조사" />
-									<m:Input />
+									<m:Input id="Cat3Made"/>
 									<m:Label text="출시일" />
-									<m:DatePicker  />
+									<m:DatePicker id="Cat3Date" />
 								</form:content>
 							</form:SimpleForm>
 						</blocks>
