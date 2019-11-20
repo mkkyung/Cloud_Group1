@@ -9,9 +9,28 @@
 	xmlns:f="sap.f"
 	xmlns:fb="sap.ui.comp.filterbar"
 	xmlns:vm="sap.ui.comp.variants">
+<!--    <List -->
+<!--      id="idProductsTable2" -->
+<!--      class="sapUiResponsiveMargin" -->
+<!--      width="auto" -->
+<!--      items="{In>/data}" > -->
+<!-- 	<headerToolbar> -->
+<!--          <Toolbar> -->
+<!--             <ToolbarSpacer/> -->
+<!--             <SearchField width="50%" search=".onFilterInvoices"/> -->
+<!--          </Toolbar> -->
+<!--     </headerToolbar> -->
+<!-- 		<items> -->
+<!-- 			<ObjectListItem -->
+<!-- 					title="{invoice>Quantity} x {invoice>ProductName}"> -->
+
+<!-- 			</ObjectListItem> -->
+			
+<!-- 		</items> -->
+<!--    </List> -->
 	<App id="apps">
 		<f:DynamicPage id="dynamicPageId" headerExpanded="{/headerExpanded}">
-			<!-- DynamicPage Header -->
+<!-- 			DynamicPage Header -->
 			<f:header>
 				<f:DynamicPageHeader pinnable="false">
 					<f:content>
@@ -20,33 +39,33 @@
 								<fb:FilterItem name="A" label="공급업체명">
 									<fb:control>
 										<Select
-											id="slName"
+											id="vName"
 											forceSelection="true"
 											change="onSelectChange"
-											items="{view>/data}">
-										<core:Item  text="{view>Zcolu}"/> <!-- key="{view>Zcolu}" -->
+											items="{Ven>/data}">
+										<core:Item  text="{Ven>VName}"/>
 										</Select>
 									</fb:control>				
 								</fb:FilterItem>								
 								<fb:FilterItem name="B" label="제품명">
 									<fb:control>
 										<Select
-											id="slCategory"
+											id="pName"
 											change="onSelectChange"
 											forceSelection="true"
-											items="{view>/data}">
-										<core:Item  text="{view>Zwnam}"/>	<!-- key="{view>Zwfac}" -->		
+											items="{Pro>/data}">
+										<core:Item  text="{Pro>Cat3Name}"/>		
 										</Select>
 									</fb:control>				
 								</fb:FilterItem>				
 								<fb:FilterItem name="C" label="발주일자">
 									<fb:control>
 										<Select
-											id="slSupplierName"
+											id="poDate"
 											change="onSelectChange"
 											forceSelection="true"
-											items="{view>/data}">
-										<core:Item text="{view>/Zfalo}"/>
+											items="{Po>/data}">
+										<core:Item text="{Po>/Podate}"/>
 										</Select>
 									</fb:control>				
 								</fb:FilterItem>
@@ -56,11 +75,14 @@
 				</f:DynamicPageHeader>
 			</f:header>
 
-			<!-- DynamicPage Content -->
+      
+      
+      
+<!-- 			DynamicPage Content -->
 			<f:content>
 				<Table  id="idProductsTable"
 						inset="false"
-						items="{view>/data}"
+						items="{Po>/data}"
 						>
 					<columns>
 						<Column
@@ -91,31 +113,40 @@
 						<Column
 								minScreenWidth="Tablet"
 								demandPopin="true">
+							<Text text="발주/입고 일자"/>
+						</Column>
+						<Column
+								minScreenWidth="Tablet"
+								demandPopin="true">
 							<Text text="입고상태"/>
 						</Column>
 						<Column
 								minScreenWidth="Tablet"
 								demandPopin="true"
 								hAlign="Center">
-							<Text text="상세정보"/>
+							<Text text="입고등록"/>
 						</Column>
 					</columns>
 
 					<items >
 						<ColumnListItem 
 								type="Active"
-								vAlign="Middle"
-								press=".onPress" 
+								vAlign="End"
+								press=".onTablePress" 
 								id="idColumnListItem" >
 							<cells>
 								<ObjectIdentifier
-										title="{view>Mandt}"
-										text="{view>Zwnam}"/>
-								<Text text="{view>Zwfac}"/>
-								<Text text="{view>Zsect}"/>
-								<Text text="{view>Zsect}"/>
-								<Text text="{view>Zsect}"/>
-								<Text text="{view>Zfalo1}"/>
+										title="{Po>PoPname}"
+										text="{Po>PoCat3}"/>
+								<Text text="{Po>PoVname}"/>
+								<Text text="{Po>PoTotal}"/>
+								<Text text="{Po>InAmt}"/><!-- 입고수량 -->
+								<Text text="{Po>Inavail}" /><!-- 가용수량 -->
+								<ObjectIdentifier
+										title="{Po>PoPodate}"
+										text="{Po>PoEdate}"/>
+<!-- 								<Text text="{view>Zsect}"/> -->
+								<Text text="{Po>InIcon}"/><!-- 입고상태 -->
 								<Button icon="sap-icon://action" press="onApproveDialog" ariaLabelledBy="actionButtonLabel"/>
 
 							</cells>
