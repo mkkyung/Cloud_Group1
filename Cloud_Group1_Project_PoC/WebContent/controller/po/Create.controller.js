@@ -13,9 +13,9 @@ sap.ui.define([
 			
 		GETPOSet : function() {
 			var sServiceUrl = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000"
-							+ "/sap/opu/odata/sap/Z_CLOUD_PO_SRV";			
-			
-				var url = "/GETPOSet";
+				+ "/sap/opu/odata/sap/Z_CLOUD_PUOR_SRV";
+			var url;
+			url= "/GETPOSet";
 			
 
 			var oDataModel = new sap.ui.model.odata.ODataModel(sServiceUrl, true);
@@ -35,8 +35,25 @@ sap.ui.define([
 
 		},
 		
+		GETContset : function() {
+			var sServiceUrl = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000"
+				+ "/sap/opu/odata/sap/Z_CLOUD_CONT_SRV_01";
+			var url;
+			url= "/getAll1Set";
+
+			var oDataModel = new sap.ui.model.odata.ODataModel(sServiceUrl, true);
+			var data;
+			oDataModel.read(url, null, null, false, function(oData) {
+				data = oData.results;
+			});
+			var oModel = new sap.ui.model.json.JSONModel({"cont" : data});
+			this.getView().setModel(oModel, "cont");
+
+		},
+
 		onInit: function() {
 			this.GETPOSet();
+			this.GETContset();
 		
 //		var oModel = new JSONModel(jQuery.sap.getModulePath("sap.ui.demo.mock", "/products.json"));
 //		// the default limit of the model is set to 100. We want to show all the entries.
@@ -189,7 +206,40 @@ sap.ui.define([
 					}
 				}
 		);
-	}
+	},
+	
+	save: function () {
+//	      var category   = this.getView().byId("category").getSelectedKey();
+//	      var title      = this.getView().byId("title").getValue();
+//	      var content      = this.getView().byId("content").getValue();
+//	      var user      = this.getView().byId("user").getValue();
+	      var addr        = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000";
+	      addr          += "/sap/opu/odata/sap/Z_CLOUD_PUOR_SRV/GETCREATESet";
+//	      addr         += "(Po_no='PO0000009')";
+	      
+	      var paramData = 
+	      {
+	            "PoIndex" : "A",
+	            "PoLight" : "유효",
+//	            "PoDate" : "20191014"
+//	            "PoEprice" : 3600
+	      };
+	      
+	      $.ajax({
+	         type : "POST",
+	         url  : addr,
+	         data : JSON.stringify(paramData),
+	            contentType: "application/json" ,
+	              success: function(aa, bb, cc) {
+	                 console.log("13 " + cc);
+	              },
+	            error: function(aa, bb, cc) { 
+	               console.log("23 " + cc);
+	            }
+	      });
+	   }
+
+
 	
 });
 	

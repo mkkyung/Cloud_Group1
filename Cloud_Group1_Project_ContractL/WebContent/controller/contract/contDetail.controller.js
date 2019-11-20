@@ -24,6 +24,13 @@ sap.ui.define([
 		},
 		
 		//임시 데이터 전달 필드
+<<<<<<< HEAD
+		getData : function(){
+	        var sServiceUrl = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000"; // 로컬 서버 연결 하는 거 
+	        sServiceUrl += "/sap/opu/odata/sap/Z_CLOUD_PUOR_SRV";   // 여기를 /n/iwfnd/maint_service 에 들어가서 내가 만든 경로를 복사 해와야 함.
+	        var url;
+	        url = "/GETPOSet";
+=======
 		getData : function(PConkey){
 			
 	        var sServiceUrl = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000/"; // 로컬 서버 연결 하는 거 
@@ -31,6 +38,7 @@ sap.ui.define([
 	        var PCr = 'R';
 	        var url;
 	        url = "/getData1Set?$filter=PCr eq '" + PCr +"'and PContNo eq '" + PConkey + "'";
+>>>>>>> e327961b2b4884d62988163268be542e8fb4b9fb
 	     
 	        var oDataModel = new sap.ui.model.odata.ODataModel(sServiceUrl, true);
 	        var data;
@@ -76,7 +84,6 @@ sap.ui.define([
 				oRouter.navTo("view4", {}, true);
 			}
 		},
-		
 
 		
 	});

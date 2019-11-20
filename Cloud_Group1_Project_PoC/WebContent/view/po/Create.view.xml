@@ -10,6 +10,8 @@
 					press=".onPress" />
 				<Button id="cancel" icon="sap-icon://decline" type="Reject"
 					press="cancel" />
+				<Button id="save" icon="sap-icon://save" type="Accept"
+					press="save" />
 			</headerContent>
 			<l:Grid defaultSpan="L12">
 				<l:VerticalLayout />
@@ -69,7 +71,7 @@
 					<Input value="" />
 				</l:VerticalLayout>
 			</l:Grid>
-			<Table items="{estlist>/data}" id="esttable" inset="false">
+			<Table items="{GETPOSet>/GETPOSet}" id="esttable" inset="false">
 				<columns>
 					<Column minScreenWidth="Tablet" demandPopin="true"
 						mergeDuplicates="true">
