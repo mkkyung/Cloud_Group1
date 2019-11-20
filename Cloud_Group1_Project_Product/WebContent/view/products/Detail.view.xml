@@ -96,7 +96,7 @@
 									<m:Input id="Cat3Made" valueState="{color>/Color}" value="{Detail>/DetailData/Cat3Made}"
 										editable="{enter>/Enter}" />
 									<m:Label text="출시일" />
-									<m:DatePicker id="Cat3Date" valueState="{color>/Color}"
+									<m:DatePicker id="Cat3Date" valueState="{color>/Color}" valueFormat="yyyy-MM-dd"
 										value="{Detail>/DetailData/Cat3Date}" editable="{enter>/Enter}" />
 								</form:content>
 							</form:SimpleForm>
