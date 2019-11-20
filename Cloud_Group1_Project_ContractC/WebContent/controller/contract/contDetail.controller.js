@@ -15,30 +15,25 @@ sap.ui.define([
 		onInit: function () {
 			var oRouter = UIComponent.getRouterFor(this);
 			oRouter.getRoute("contDetail").attachPatternMatched(this._onObjectMatched, this);
+			this.getData();
+
 		},
 		
 		_onObjectMatched: function (oEvent) {
 			var oRouter = UIComponent.getRouterFor(this);
-			var PConkey = oEvent.getParameter("arguments").contDetail;
-			this.getData(PConkey);
+			this.getView().bindElement({
+				path: "/" + oEvent.getParameter("arguments").EstPath,
+				model: "contDetail"
+			});
+			
 		},
 		
 		//임시 데이터 전달 필드
-<<<<<<< HEAD
 		getData : function(){
 	        var sServiceUrl = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000"; // 로컬 서버 연결 하는 거 
-	        sServiceUrl += "/sap/opu/odata/sap/Z_CLOUD_PUOR_SRV";   // 여기를 /n/iwfnd/maint_service 에 들어가서 내가 만든 경로를 복사 해와야 함.
+	        sServiceUrl += "/sap/opu/odata/sap/Z_FUNC_ESTIMATE_TEST_SRV";   // 여기를 /n/iwfnd/maint_service 에 들어가서 내가 만든 경로를 복사 해와야 함.
 	        var url;
-	        url = "/GETPOSet";
-=======
-		getData : function(PConkey){
-			
-	        var sServiceUrl = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000/"; // 로컬 서버 연결 하는 거 
-	        sServiceUrl += "/sap/opu/odata/sap/Z_CLOUD_CONT_SRV_01";   // 여기를 /n/iwfnd/maint_service 에 들어가서 내가 만든 경로를 복사 해와야 함.
-	        var PCr = 'R';
-	        var url;
-	        url = "/getData1Set?$filter=PCr eq '" + PCr +"'and PContNo eq '" + PConkey + "'";
->>>>>>> e327961b2b4884d62988163268be542e8fb4b9fb
+	        url = "/getestSet";
 	     
 	        var oDataModel = new sap.ui.model.odata.ODataModel(sServiceUrl, true);
 	        var data;
@@ -46,7 +41,7 @@ sap.ui.define([
 	           data = oData.results;
 	        });
 	        var oModel = new sap.ui.model.json.JSONModel({ "data": data });
-	        this.getView().setModel(oModel , "ContNo");
+	        this.getView().setModel(oModel , "contDetail");
 
 		},
 	//임시 데이터 전달 필드
@@ -84,6 +79,7 @@ sap.ui.define([
 				oRouter.navTo("view4", {}, true);
 			}
 		},
+		
 
 		
 	});

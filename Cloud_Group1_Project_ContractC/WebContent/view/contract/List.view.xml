@@ -28,11 +28,11 @@
 							search="onSearch" useToolbar="false" showGoOnFB="true"> <!-- search="onSearch" -->
 							<fb:filterItems>
 
-								<fb:FilterItem name="A" label="계약구분" > 
-									<fb:control >
-										<ComboBox id="A" type="Text" items="{Type1>/Type1}">
+								<fb:FilterItem name="A" label="계약구분">
+									<fb:control>
+										<ComboBox id="A" items="{view>/data}">
 											<items>
-												<core:Item key="{Type1>ContType1}" text="{Type1>ContType1}" />
+												<core:Item text="{view>Zname}" />
 											</items>
 										</ComboBox>
 									</fb:control>
@@ -46,9 +46,9 @@
 
 								<fb:FilterItem name="C" label="대분류명">
 									<fb:control>
-										<ComboBox id="C" items="{Cat1>/Cat1}">
+										<ComboBox id="C" items="{view>/data}">
 											<items>
-												<core:Item key="{Cat1>Cat1No}" text="{Cat1>Cat1Name}" />
+												<core:Item text="{view>Zname}" />
 											</items>
 										</ComboBox>
 									</fb:control>
@@ -56,9 +56,9 @@
 
 								<fb:FilterItem name="D" label="중분류명">
 									<fb:control>
-										<ComboBox id="D" items="{Cat2>/Cat2}">
+										<ComboBox id="D" items="{view>/data}">
 											<items>
-												<core:Item key="{Cat2>Cat2No}" text="{Cat2>Cat2Name}" />
+												<core:Item text="{view>Zname}" />
 											</items>
 										</ComboBox>
 									</fb:control>
@@ -69,7 +69,6 @@
 										<Input id="E" maxLength="15" />
 									</fb:control>
 								</fb:FilterItem>
-								
 								<fb:FilterItem name="F" label="공급업체명">
 									<fb:control>
 										<Input id="F" maxLength="15" />
@@ -91,7 +90,7 @@
                                        strictParsing: true
                                        }
                                     }"
-                                 class="sapUiSmallMarginBottom" valueFormat="yyyyMMdd" change="handleChange" />
+                                 class="sapUiSmallMarginBottom" change="handleChange" />
                            </fb:control>
                         </fb:FilterItem>
                         <fb:FilterItem name="I" label="종료일자">
@@ -105,7 +104,7 @@
                                        strictParsing: true
                                        }
                                     }"
-                                 class="sapUiSmallMarginBottom" valueFormat="yyyyMMdd" change="handleChange2" />
+                                 class="sapUiSmallMarginBottom" change="handleChange2" />
                            </fb:control>
                         </fb:FilterItem>
 
@@ -125,9 +124,9 @@
 
                         <fb:FilterItem name="A" label="계약구분">
                            <fb:control>
-                              <ComboBox id="A1" items="{Type1>/Type1}">
+                              <ComboBox id="A1" items="{view>/data}">
                                  <items>
-                                    <core:Item key="{Type1>ContType1}" text="{Type1>ContType1}" />
+                                    <core:Item text="{view>Zname}" />
                                  </items>
                               </ComboBox>
                            </fb:control>
@@ -141,9 +140,9 @@
 
                         <fb:FilterItem name="C" label="대분류명">
                            <fb:control>
-                              <ComboBox id="C1" items="{Cat1>/Cat1}">
+                              <ComboBox id="C1" items="{view>/data}">
                                  <items>
-                                    <core:Item key="{Cat1>Cat1No}" text="{Cat1>Cat1Name}" />
+                                    <core:Item text="{view>Zname}" />
                                  </items>
                               </ComboBox>
                            </fb:control>
@@ -151,9 +150,9 @@
 
                         <fb:FilterItem name="D" label="중분류명">
                            <fb:control>
-                              <ComboBox id="D1" items="{Cat2>/Cat2}">
+                              <ComboBox id="D1" items="{view>/data}">
                                  <items>
-                                    <core:Item key="{Cat2>Cat2No}" text="{Cat2>Cat2Name}" />
+                                    <core:Item text="{view>Zname}" />
                                  </items>
                               </ComboBox>
                            </fb:control>
@@ -185,7 +184,7 @@
                                        strictParsing: true
                                        }
                                     }"
-                                 class="sapUiSmallMarginBottom" valueFormat="yyyyMMdd" change="handleChange" />
+                                 class="sapUiSmallMarginBottom" change="handleChange" />
                            </fb:control>
                         </fb:FilterItem>
                         <fb:FilterItem name="I" label="종료일자">
@@ -199,7 +198,7 @@
                                        strictParsing: true
                                        }
                                     }"
-                                 class="sapUiSmallMarginBottom" valueFormat="yyyyMMdd" change="handleChange2" />
+                                 class="sapUiSmallMarginBottom" change="handleChange2" />
                            </fb:control>
                         </fb:FilterItem>
 
@@ -215,9 +214,9 @@
                      <fb:filterItems>
                         <fb:FilterItem name="A" label="계약구분">
                            <fb:control>
-                              <ComboBox id="A2" items="{Type1>/Type1}">
+                              <ComboBox id="A2" items="{view>/data}">
                                  <items>
-                                    <core:Item key="{Type1>ContType1}" text="{Type1>ContType1}" />
+                                    <core:Item text="{view>Zname}" />
                                  </items>
                               </ComboBox>
                            </fb:control>
@@ -231,9 +230,9 @@
 
                         <fb:FilterItem name="C" label="대분류명">
                            <fb:control>
-                              <ComboBox id="C2" items="{Cat1>/Cat1}">
+                              <ComboBox id="C2" items="{view>/data}">
                                  <items>
-                                    <core:Item key="{Cat1>Cat1No}" text="{Cat1>Cat1Name}" />
+                                    <core:Item text="{view>Zname}" />
                                  </items>
                               </ComboBox>
                            </fb:control>
@@ -241,9 +240,9 @@
 
                         <fb:FilterItem name="D" label="중분류명">
                            <fb:control>
-                              <ComboBox id="D2" items="{Cat2>/Cat2}">
+                              <ComboBox id="D2" items="{view>/data}">
                                  <items>
-                                    <core:Item key="{Cat2>Cat2No}" text="{Cat2>Cat2Name}" />
+                                    <core:Item text="{view>Zname}" />
                                  </items>
                               </ComboBox>
                            </fb:control>
@@ -275,7 +274,7 @@
                                        strictParsing: true
                                        }
                                     }"
-                                 class="sapUiSmallMarginBottom" valueFormat="yyyyMMdd" change="handleChange" />
+                                 class="sapUiSmallMarginBottom" change="handleChange" />
                            </fb:control>
                         </fb:FilterItem>
                         <fb:FilterItem name="I" label="종료일자">
@@ -289,7 +288,7 @@
                                        strictParsing: true
                                        }
                                     }"
-                                 class="sapUiSmallMarginBottom" valueFormat="yyyyMMdd" change="handleChange2" />
+                                 class="sapUiSmallMarginBottom" change="handleChange2" />
                            </fb:control>
                         </fb:FilterItem>
 
@@ -306,9 +305,9 @@
 
                         <fb:FilterItem name="A" label="계약구분">
                            <fb:control>
-                              <ComboBox id="A3" items="{Type1>/Type1}">
+                              <ComboBox id="A3" items="{view>/data}">
                                  <items>
-                                    <core:Item key="{Type1>ContType1}" text="{Type1>ContType1}" />
+                                    <core:Item text="{view>Zname}" />
                                  </items>
                               </ComboBox>
                            </fb:control>
@@ -322,9 +321,9 @@
 
                         <fb:FilterItem name="C" label="대분류명">
                            <fb:control>
-                              <ComboBox id="C3" items="{Cat1>/Cat1}">
+                              <ComboBox id="C3" items="{view>/data}">
                                  <items>
-                                    <core:Item key="{Cat1>Cat1No}" text="{Cat1>Cat1Name}" />
+                                    <core:Item text="{view>Zname}" />
                                  </items>
                               </ComboBox>
                            </fb:control>
@@ -332,9 +331,9 @@
 
                         <fb:FilterItem name="D" label="중분류명">
                            <fb:control>
-                              <ComboBox id="D3" items="{Cat2>/Cat2}">
+                              <ComboBox id="D3" items="{view>/data}">
                                  <items>
-                                    <core:Item key="{Cat2>Cat2No}" text="{Cat2>Cat2Name}" />
+                                    <core:Item text="{view>Zname}" />
                                  </items>
                               </ComboBox>
                            </fb:control>
@@ -366,7 +365,7 @@
                                        strictParsing: true
                                        }
                                     }"
-                                 class="sapUiSmallMarginBottom" valueFormat="yyyyMMdd" change="handleChange" />
+                                 class="sapUiSmallMarginBottom" change="handleChange" />
                            </fb:control>
                         </fb:FilterItem>
                         <fb:FilterItem name="I" label="종료일자">
@@ -380,7 +379,7 @@
                                        strictParsing: true
                                        }
                                     }"
-                                 class="sapUiSmallMarginBottom" valueFormat="yyyyMMdd" change="handleChange2" />
+                                 class="sapUiSmallMarginBottom" change="handleChange2" />
                            </fb:control>
                         </fb:FilterItem>
 
@@ -397,7 +396,7 @@
          <!-- </f:DynamicPageHeader> -->
 
          <!-- DynamicPage Content -->
-         <Table items="{getData>/getData}" id="idTable"> <!-- items="{path: '/ProductCollection'}" -->
+         <Table items="{view>/data}" id="idTable"> <!-- items="{path: '/ProductCollection'}" -->
             <columns>
                <Column minScreenWidth="Tablet" demandPopin="true">
                   <Text text="계약상태" />
@@ -409,16 +408,16 @@
                   <Text text="계약번호" />
                </Column>
                <Column minScreenWidth="Tablet" demandPopin="true">
-                  <Text text="공급업체명" />
+                  <Text text="공급업체" />
                </Column>
                <Column minScreenWidth="Tablet" demandPopin="true">
-                  <Text text="대분류명" />
+                  <Text text="대분류" />
                </Column>
                <Column minScreenWidth="Tablet" demandPopin="true">
-                  <Text text="중분류명" />
+                  <Text text="중분류" />
                </Column>
                <Column minScreenWidth="Tablet" demandPopin="true">
-                  <Text text="상품명" />
+                  <Text text="물품명" />
                </Column>
                <Column minScreenWidth="Tablet" demandPopin="true">
                   <Text text="수량" />
@@ -442,28 +441,18 @@
                <ColumnListItem type="Navigation" vAlign="Middle"
                   press=".onPress" id="idColumnListItem">
                   <cells>
-				     <Text text="{getData>ContLight}" />                  
-                     <Text text="{getData>ContType}" />
-                     <Text text="{getData>ContNo}" />
-                     <Text text="{getData>ContVname}" />
-                     <Text text="{getData>ContCat1}" />	
-                     <Text text="{getData>ContCat2}" />
-                     <Text text="{getData>ContPname}" />
-                     <Text text="{getData>ContAmt}" />
-                     <ObjectNumber
-							number="{
-  									parts:[{path: 'getData>ContPrice'},{path:'view>/currency'}],
-  									type: 'sap.ui.model.type.Currency',  
-  									formatOptions: {showMeasure: false} 
- 									}"/> 
-					<ObjectNumber
-							number="{
-  									parts:[{path: 'getData>ContTprice'},{path:'view>/currency'}],
- 									type: 'sap.ui.model.type.Currency',
-  									formatOptions: {showMeasure: false}
-  									}"/>
-                     <Text text="{getData>ContSdate}" />
-                     <Text text="{getData>ContEdate}" />
+                     <ObjectIdentifier title="{data>/data}" /> <!-- text="{ProductId}" -->
+                     <Text text="{view>Zname}" />
+                     <Text text="{view>Zcategory}" />
+                     <Text text="{view>Zcategory}" />
+                     <Text text="{view>Zcategory}" />
+                     <Text text="{view>Zcategory}" />
+                     <Text text="{view>Zcategory}" />
+                     <Text text="{view>Zcategory}" />
+                     <Text text="{view>Zcategory}" />
+                     <Text text="{view>Zcategory}" />
+                     <Text text="{view>Zcategory}" />
+                     <Text text="{view>Zcategory}" />
                   </cells>
 
                </ColumnListItem>
