@@ -10,23 +10,17 @@
 		</headerContent>
 
 		<content>
-<!-- 		<VBox items="{ContNo>/data}"> -->
-			<l:Grid defaultSpan="L4 M6 S6" class="white" >
+			<l:Grid defaultSpan="L4 M6 S6" class="white">
 				<l:VerticalLayout class="sapUiTinyMarginEnd">
 					<f:SimpleForm title="계약번호"
 						layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="3"
 						labelSpanM="12" labelSpanS="12" adjustLabelSpan="false"
 						emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0"
 						columnsXL="2" columnsL="2" columnsM="1"
-						singleContainerFullSize="false" >
-						<Label text="계약상태" labelFor="name" design="Bold"
-                               class="sapUiSmallMarginTop" />
-                        <Text text="{ContNo>/data/0/ContCat1}" class="sapUiTinyMarginBottom" />
-						 <Text text="계약구분 : " class="sapUiTinyMarginBottom" />
-					     <Text text="{ContNo>/data/0/ContCat1}" class="sapUiTinyMarginBottom" />	
-						
+						singleContainerFullSize="false">
+						<Text text="계약상태" class="sapUiTinyMarginBottom" />
+						<Text text="계약구분" class="sapUiTinyMarginBottom" />
 						<Text text="계약일자" class="sapUiTinyMarginBottom" />
-						<Text text="{ContNo>ContCuky}" class="sapUiTinyMarginBottom" />
 					</f:SimpleForm>
 				</l:VerticalLayout>
 				<l:VerticalLayout class="sapUiTinyMarginEnd">
@@ -39,7 +33,7 @@
 						<!-- <Title level="H2" titleStyle="H2" text="공급업체" -->
 						<!-- class="sapUiMediumMarginBottom" /> -->
 						<f:content>
-							<Text text="공급업체명" class="sapUiTinyMarginBottom"  />	
+							<Text text="공급업체명" class="sapUiTinyMarginBottom" />
 							<Text text="공급업체코드" class="sapUiTinyMarginBottom" />
 							<Text text="사업자등록번호" class="sapUiTinyMarginBottom" />
 							<Text text="공급업체 주소" class="sapUiTinyMarginBottom" />
@@ -60,7 +54,6 @@
 					</f:SimpleForm>
 				</l:VerticalLayout>
 			</l:Grid>
-<!-- 			</VBox> -->
 			<VBox class="sapUiSmallMargin">
 				<f:SimpleForm title="제품 리스트"
 					layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="3"
@@ -69,13 +62,13 @@
 					columnsXL="2" columnsL="2" columnsM="1"
 					singleContainerFullSize="false">
 				</f:SimpleForm>
-				<Table items="{ContNo>/data}" id="ContNoT" inset="false">
+				<Table items="{estlist>/data}" id="esttable" inset="false">
 					<columns>
 						<Column minScreenWidth="Tablet" demandPopin="true">
-							<Text text="대분류 명" />
+							<Text text="대분류 코드" />
 						</Column>
 						<Column minScreenWidth="Tablet" demandPopin="true">
-							<Text text="중분류 명" />
+							<Text text="중분류 코드" />
 						</Column>
 						<Column minScreenWidth="Tablet" demandPopin="true">
 							<Text text="제품명" />
@@ -99,24 +92,18 @@
 					<items>
 						<ColumnListItem>
 							<cells>
-								<Text text="{ContNo>ContCat1}" />
-								<Text text="{ContNo>ContCat2}" />
-								<Text text="{ContNo>ContPname}" />
-								<Text text="{ContNo>ContPCat3}" />
-								<ObjectNumber
-							          number="{
-							             	   parts:[{path: 'ContNo>ContEprice'},{path:'view>/currency'}],
-								               type: 'sap.ui.model.type.Currency',
-							            	   formatOptions: {showMeasure: false}
-								    		   }"/>
-								<Text text="{ContNo>ContAmt}" />
-								<ObjectNumber
-							          number="{
- 							             	   parts:[{path: 'ContNo>ContEprice'},{path:'view>/currency'}],
- 								               type: 'sap.ui.model.type.Currency',
-							            	   formatOptions: {showMeasure: false}
-								    		   }"/>
-								<Text text="{ContNo>ContCuky}" />
+								<!-- <ObjectIdentifier title="{/data}" /> text="{ProductId}" -->
+								<Text text="{estlist>EstNo}" />
+								<Text text="{estlist>EstAva}" />
+								<Text text="{estlist>EstCat1}" />
+								<Text text="{estlist>EstCat2}" />
+								<Text text="{estlist>EstCat3}" />
+								<Text text="{estlist>EstVname}" />
+								<Text text="{estlist>EstVcode}" />
+								<Text text="{estlist>EstAmt}" />
+								<Text text="{estlist>EstPrice}" />
+								<Text text="{estlist>EstTotal}" />
+								<Text text="{estlist>EstCuky}" />
 							</cells>
 						</ColumnListItem>
 					</items>
