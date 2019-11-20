@@ -12,51 +12,54 @@ sap.ui
 							.extend(
 									"Cloud_Group1_ProjectCloud_Group1_Project.controller.po.List",
 									{
-										GETPOSet : function() {
+										GETPOSet : function(PONO) {
 											var sServiceUrl = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000"
-												sServiceUrl += "/sap/opu/odata/sap/Z_CLOUD_PO_SRV";
-											var url = "/GETPOSet";
+												sServiceUrl += "/sap/opu/odata/sap/Z_CLOUD_PUOR_SRV";
 //											var sServiceUrl = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000/sap/opu/odata/sap/Z_CLOUD_PO_SRV";
 ////													+ "/sap/opu/odata/sap/Z_CLOUD_PO_SRV";
-//											var LIGHT = this.getView().byId("idIconTabBar").getSelectedKey();
+											var LIGHT = this.getView().byId("idIconTabBar").getSelectedKey();
 //											var url = "/GETPOSet";
-//								        	var PoLight = "";
-//											if( LIGHT === "ALL")
-//											{ 			
-//											}else if (LIGHT === "A") { 
-//												PoLight = "대기";
-//											}else if (LIGHT === "B") { 
-//												PoLight = "완료";
-//											 }
-//											if (searchData != null) {
-//												var url = "/GETPOSet?$filter=PPoLight eq '"
-//														+ PoLight + "'";
-//											} else {
-//												var url = "/GETPOSet";
-//											}
-//
-//											var oDataModel = new sap.ui.model.odata.ODataModel(
-//													sServiceUrl, true);
-//
-//											var GETPOSet;
-//
-//											oDataModel
-//													.read(
-//															url,
-//															null,
-//															null,
-//															false,
-//															function(oData) {
-//																GETPOSet = oData.results;
-//															});
-//
-//											var oModel = new sap.ui.model.json.JSONModel(
-//													{
-//														"GETPOSet" : GETPOSet
-//													});
-//
-//											this.getView().setModel(oModel,
-//													"GETPOSet");
+								        	
+//											
+											var PoLight = "";
+								        	var url;
+								        	
+											if( LIGHT === "ALL")
+											{ 			
+											}else if (LIGHT === "A") { 
+												PoLight = "대기";
+											}else if (LIGHT === "B") { 
+												PoLight = "완료";
+											 }
+											if (PONO == undefined) {
+												 url = "/GETPOSet";
+											} else {
+												 url = "/GETPOSet?$filter=PPoLight eq '"
+														+ PoLight + "'";
+											}
+
+											var oDataModel = new sap.ui.model.odata.ODataModel(
+													sServiceUrl, true);
+
+											var GETPOSet;
+
+											oDataModel
+													.read(
+															url,
+															null,
+															null,
+															false,
+															function(oData) {
+																GETPOSet = oData.results;
+															});
+
+											var oModel = new sap.ui.model.json.JSONModel(
+													{
+														"GETPOSet" : GETPOSet
+													});
+
+											this.getView().setModel(oModel,
+													"GETPOSet");
 
 								   			var oDataModel= new sap.ui.model.odata.ODataModel(sServiceUrl,true);
 								   			var data;
@@ -196,38 +199,38 @@ sap.ui
 												var POEDDATE = "";
 												var change = this.getView().byId("idIconTabBar").getSelectedKey();
 //												
-//												if(change === "ALL"){
-//													PONO = this.getView().byId("PO_N").getValue();
-//													PODATE = this.getView().byId("PO_DF").getValue();
-//													PODDATE = this.getView().byId("PO_DT").getValue();
-//													POVNAME = this.getView().byId("VN").getValue();
-//													POVCODE = this.getView().byId("VC").getValue();
-//													POPNAME = this.getView().byId("PN").getValue();
-//													POPCODE = this.getView().byId("PC").getValue();
-//													POEDATE = this.getView().byId("IN_DF").getValue();
-//													POEDDATE = this.getView().byId("IN_DT").getValue();
-//												}else if (change === "A"){
-//													PONO = this.getView().byId("PO_N").getValue();
-//													PODATE = this.getView().byId("PO_DF").getValue();
-//													PODDATE = this.getView().byId("PO_DT").getValue();
-//													POVNAME = this.getView().byId("VN").getValue();
-//													POVCODE = this.getView().byId("VC").getValue();
-//													POPNAME = this.getView().byId("PN").getValue();
-//													POPCODE = this.getView().byId("PC").getValue();
-//													POEDATE = this.getView().byId("IN_DF").getValue();
-//													POEDDATE = this.getView().byId("IN_DT").getValue();
-//												}
-//												else if (change === "B"){
-//													PONO = this.getView().byId("PO_N").getValue();
-//													PODATE = this.getView().byId("PO_DF").getValue();
-//													PODDATE = this.getView().byId("PO_DT").getValue();
-//													POVNAME = this.getView().byId("VN").getValue();
-//													POVCODE = this.getView().byId("VC").getValue();
-//													POPNAME = this.getView().byId("PN").getValue();
-//													POPCODE = this.getView().byId("PC").getValue();
-//													POEDATE = this.getView().byId("IN_DF").getValue();
-//													POEDDATE = this.getView().byId("IN_DT").getValue();
-//												}
+												if(change === "All"){
+													PONO = this.getView().byId("PO_N1").getValue();
+													PODATE = this.getView().byId("PO_DF1").getValue();
+													PODDATE = this.getView().byId("PO_DT1").getValue();
+													POVNAME = this.getView().byId("VN1").getValue();
+													POVCODE = this.getView().byId("VC1").getValue();
+													POPNAME = this.getView().byId("PN1").getValue();
+													POPCODE = this.getView().byId("PC1").getValue();
+													POEDATE = this.getView().byId("IN_DF1").getValue();
+													POEDDATE = this.getView().byId("IN_DT1").getValue();
+												}else if (change === "A"){
+													PONO = this.getView().byId("PO_N2").getValue();
+													PODATE = this.getView().byId("PO_DF2").getValue();
+													PODDATE = this.getView().byId("PO_DT2").getValue();
+													POVNAME = this.getView().byId("VN2").getValue();
+													POVCODE = this.getView().byId("VC2").getValue();
+													POPNAME = this.getView().byId("PN2").getValue();
+													POPCODE = this.getView().byId("PC2").getValue();
+													POEDATE = this.getView().byId("IN_DF2").getValue();
+													POEDDATE = this.getView().byId("IN_DT2").getValue();
+												}
+												else if (change === "B"){
+//													PONO = this.getView().byId("PO_N3").getValue();
+//													PODATE = this.getView().byId("PO_DF3").getValue();
+//													PODDATE = this.getView().byId("PO_DT3").getValue();
+//													POVNAME = this.getView().byId("VN3").getValue();
+//													POVCODE = this.getView().byId("VC3").getValue();
+//													POPNAME = this.getView().byId("PN3").getValue();
+//													POPCODE = this.getView().byId("PC3").getValue();
+//													POEDATE = this.getView().byId("IN_DF3").getValue();
+//													POEDDATE = this.getView().byId("IN_DT3").getValue();
+												}
 //												
 											    this.GETPOSet(PONO,PODATE,PODDATE,POVNAME,POVCODE,POPNAME,POPCODE,POEDATE,POEDDATE);
 											},

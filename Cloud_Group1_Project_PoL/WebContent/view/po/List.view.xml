@@ -13,9 +13,9 @@
 				select="handleIconTabBarSelect"
 				class="sapUiResponsiveContentPadding">
 				<items>
-					<IconTabFilter showAll="true" text="polist" key="All">
-						<fb:FilterBar id="filterbar" reset="onReset"
-							search="onSearch" showRestoreButton="true" showClearButton="true"> <!-- search="onSearch" -->
+					<IconTabFilter showAll="true" text="전체조회" key="All">
+						<fb:FilterBar reset="onReset"
+							search="onSearch" showRestoreButton="true" showClearButton="true"> 
 							<fb:filterItems>
 								<fb:FilterItem name="PO_N" label="발주번호">
 									<fb:control>
@@ -71,7 +71,7 @@
 					</IconTabFilter>
 					<IconTabFilter icon="sap-icon://begin"
 						iconColor="Positive" text="대기" key="A">
-						<fb:FilterBar id="filterbar1" reset="onReset"
+						<fb:FilterBar reset="onReset"
 							search="onSearch" useToolbar="false"  showRestoreButton="true" showClearButton="true"> <!-- search="onSearch" -->
 							<fb:filterItems>
 								<fb:FilterItem name="PO_N1" label="발주번호">
@@ -135,24 +135,24 @@
 							</fb:filterItems>
 						</fb:FilterBar>
 					</IconTabFilter>
-					<!-- Icon tabfilter 3 -->
 					<IconTabFilter icon="sap-icon://compare"
 						iconColor="Critical" text="완료" key="B">
-						<fb:FilterBar id="filterbar2" reset="onReset"
-							search="onSearch" useToolbar="false" showRestoreButton="true" showClearButton="true">
+						<fb:FilterBar reset="onReset"
+							search="onSearch" showRestoreButton="true" showClearButton="true">
 							<fb:filterItems>
 								<fb:FilterItem name="PO_N2" label="발주번호">
 									<fb:control>
-										<Input id="PO_N2" maxLength="11"
-											textFormatMode="KeyValue" showSuggestion="true"
-											showValueHelp="true" valueHelpRequest="handleValueHelp"
-											suggestionItems="{/ProductCollection}"
-											suggestionItemSelected="suggestionItemSelected">
-											<suggestionItems>
-												<core:ListItem key="{ProductId}" text="{Name}"
-													additionalText="{ProductId}" />
-											</suggestionItems>
-										</Input>
+									<Input id="PO_N2" maxLength="11" />
+<!-- 										<Input id="PO_N2" maxLength="11" -->
+<!-- 											textFormatMode="KeyValue" showSuggestion="true" -->
+<!-- 											showValueHelp="true" valueHelpRequest="handleValueHelp" -->
+<!-- 											suggestionItems="{/ProductCollection}" -->
+<!-- 											suggestionItemSelected="suggestionItemSelected"> -->
+<!-- 											<suggestionItems> -->
+<!-- 												<core:ListItem key="{ProductId}" text="{Name}" -->
+<!-- 													additionalText="{ProductId}" /> -->
+<!-- 											</suggestionItems> -->
+<!-- 										</Input> -->
 									</fb:control>
 								</fb:FilterItem>
 								<fb:FilterItem name="PO_DF2" label="발주일자(From)">
@@ -202,17 +202,6 @@
 							</fb:filterItems>
 						</fb:FilterBar>
 					</IconTabFilter>
-
-					<!-- Icon tabfilter 4 -->
-					<!-- <IconTabFilter -->
-					<!-- icon="sap-icon://inventory" -->
-					<!-- iconColor="Negative" -->
-					<!-- text="Overweight" -->
-					<!-- key="C" > -->
-
-					<!-- </IconTabFilter> -->
-					<!-- count="{/ProductCollectionStats/Counts/Weight/Overweight}" -->
-
 				</items>
 			</IconTabBar>
 
@@ -274,7 +263,7 @@
 							<Text text="{GETPOSet>PoDate}" />
 							<Text text="{GETPOSet>PoLight}" />
 							<Text text="{GETPOSet>PoPname}" />
-							<Text text="{GETPOSet>PoCat3}" />
+							<Text text="{GETPOSet>PoCat3No}" />
 							<Text text="{GETPOSet>PoVname}" />
 							<Text text="{GETPOSet>PoAmt}" />
 							<Text text="{GETPOSet>PoEprice}" />
