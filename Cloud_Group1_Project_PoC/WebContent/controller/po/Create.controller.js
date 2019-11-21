@@ -39,7 +39,8 @@ sap.ui.define([
 			var sServiceUrl = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000"
 				+ "/sap/opu/odata/sap/Z_CLOUD_CONT_SRV_01";
 			var url;
-			url= "/getAll1Set";
+			var PCr = 'R';
+            url = "/getData1Set?$filter=PCr eq '" + PCr + "'";
 
 			var oDataModel = new sap.ui.model.odata.ODataModel(sServiceUrl, true);
 			var data;
@@ -96,91 +97,110 @@ sap.ui.define([
 			}
 		},
 		
-//	handleValueHelp : function (oEvent) {
-//		var sInputValue = oEvent.getSource().getValue();
-//
-//		this.inputId = oEvent.getSource().getId();
-//		// create value help dialog
-//		if (!this._valueHelpDialog) {
-//			this._valueHelpDialog = sap.ui.xmlfragment(
-//				"Cloud_Group1_ProjectCloud_Group1_Project.view.po.Dialog",
-//				this
-//			);
-//			this.getView().addDependent(this._valueHelpDialog);
-//		}
-//
-//		// create a filter for the binding
-//		this._valueHelpDialog.getBinding("items").filter([new sap.ui.model.Filter(
-//			"EstCat1",
-//			sap.ui.model.FilterOperator.Contains, sInputValue
-//		)]);
-//
-//		// open value help dialog filtered by the input value
-//		this._valueHelpDialog.open(sInputValue);
-//	},
-//
-//	_handleValueHelpSearch : function (evt) {
-//		var sValue = evt.getParameter("value");
-//		var oFilter = new sap.ui.model.Filter(
-//			"EstCat1",
-//			sap.ui.model.FilterOperator.Contains, sValue
-//		);
-//		evt.getSource().getBinding("items").filter([oFilter]);
-//	},
-//
-//	_handleValueHelpClose : function (evt) {
-//		var oSelectedItem = evt.getParameter("selectedItem");
-//		if (oSelectedItem) {
-//			var productInput = this.getView().byId(this.inputId),
-//				oText = this.getView().byId('selectedKey'),
-//				sDescription = oSelectedItem.getDescription();
-//
-//			productInput.setSelectedKey(sDescription);
-//			oText.setText(sDescription);
-//		}
-//		evt.getSource().getBinding("items").filter([]);
-//	},
-//
-//	suggestionItemSelected: function (evt) {
-//
-//		var oItem = evt.getParameter('selectedItem'),
-//			oText = this.getView().byId('selectedKey'),
-//			sKey = oItem ? oItem.getKey() : '';
-//
-//		oText.setText(sKey);
-//	},
+	handleValueHelp : function (oEvent) {
+		var sInputValue = this.byId("productInput").getValue(),
+		oModel = this.getView().getModel("cont"),
+		aProducts = oModel.getProperty("/cont");
+		
+		this.inputId = oEvent.getSource().getId();
+		// create value help dialog
+		if (!this._valueHelpDialog) {
+			this._valueHelpDialog = sap.ui.xmlfragment(
+				"Cloud_Group1_ProjectCloud_Group1_Project.view.po.Dialog",
+				this
+			);
+			this.getView().addDependent(this._valueHelpDialog);
+		}
+
+		
+		aProducts.forEach(function (oProduct) {
+			oProduct.selected = (oProduct.ContNo === sInputValue);
+		});
+		oModel.setProperty("/cont", aProducts);
+		
+		// create a filter for the binding
+		this._valueHelpDialog.getBinding("items").filter([new sap.ui.model.Filter(
+			"ContNo",
+			sap.ui.model.FilterOperator.Contains, sInputValue
+		)]);
+
+		// open value help dialog filtered by the input value
+		this._valueHelpDialog.open(sInputValue);
+	},
+
+	_handleValueHelpSearch : function (evt) {
+		var sValue = evt.getParameter("value");
+		var oFilter = new sap.ui.model.Filter(
+			"ContNo",
+			sap.ui.model.FilterOperator.Contains, sValue
+		);
+		evt.getSource().getBinding("items").filter([oFilter]);
+	},
+
+	_handleValueHelpClose : function (evt) {
+		var oSelectedItem = evt.getParameter("selectedItem");
+		if (oSelectedItem) {
+			var productInput = this.getView().byId(this.inputId),
+				oText = this.getView().byId('selectedKey'),
+				sDescription = oSelectedItem.getDescription();
+
+			productInput.setSelectedKey(sDescription);
+			oText.setText(sDescription);
+		}
+		evt.getSource().getBinding("items").filter([]);
+	},
+
+	suggestionItemSelected: function (evt) {
+
+		var oItem = evt.getParameter('selectedItem'),
+			oText = this.getView().byId('selectedKey'),
+			sKey = oItem ? oItem.getKey() : '';
+
+		oText.setText(sKey);
+	},
+	
+
+	handleSearch: function(oEvent) {
+		var sValue = oEvent.getParameter("value");
+		var oFilter = new Filter("Name", sap.ui.model.FilterOperator.Contains, sValue);
+		var oBinding = oEvent.getSource().getBinding("items");
+		
+		if(sValue != "")
+			oBinding.filter([oFilter]);
+		else
+			oBinding.filter([]);
+			
+	},
+
+	handleClose: function(oEvent) {
+
+		// reset the filter
+		var oBinding = oEvent.getSource().getBinding("items");
+		oBinding.filter([]);
+
+		var aContexts = oEvent.getParameter("selectedContexts");
+		if (aContexts && aContexts.length) {
+			this.byId("productInput").setValue(aContexts.map(function(oContext) { return oContext.getObject().ContNo; }).join(", "));
+		}
+		var sInputValue = this.byId("productInput").getValue();
+		var PCr = 'R';
+		var sServiceUrl = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000"
+			+ "/sap/opu/odata/sap/Z_CLOUD_CONT_SRV_01";
+		var url;
+		url = "/getData1Set?$filter=PCr eq 'R' and PContNo eq '" + sInputValue + "'";
+		var oDataModel= new sap.ui.model.odata.ODataModel(sServiceUrl,true);
+		var list;
+		oDataModel.read(url, null, null, false, function(oData) {
+			list = oData.results;
+		});
+		var oModel = new sap.ui.model.json.JSONModel({ "cont" : list });
+		this.getView().setModel(oModel , "cont");
+	},
+	
 	onExit : function () {
 		if (this._oDialog) {
 			this._oDialog.destroy();
 		}
-	},
-
-	handleTableSelectDialogPress: function(oEvent) {
-		if (!this._oDialog) {
-			this._oDialog = sap.ui.xmlfragment("Cloud_Group1_ProjectCloud_Group1_Project.view.po.Dialog", this);
-		}
-
-		// Multi-select if required
-		var bMultiSelect = !!oEvent.getSource().data("multi");
-		this._oDialog.setMultiSelect(bMultiSelect);
-		this.getView().addDependent(this._oDialog);
-		this._oDialog.open();
-
-	},
-
-	handleSearch: function(oEvent) {
-		var sValue = oEvent.getParameter("value");
-		var oFilter = new sap.ui.model.Filter("getAll1Set", sap.ui.model.FilterOperator.Contains, sValue);
-		var oBinding = oEvent.getSource().getBinding("items");
-		oBinding.filter([oFilter]);
-	},
-
-	handleClose: function(oEvent) {
-		var aContexts = oEvent.getParameter("selectedContexts");
-		if (aContexts && aContexts.length) {
-			MessageToast.show("You have chosen " + aContexts.map(function(oContext) { return oContext.getObject().Name; }).join(", "));
-		}
-		oEvent.getSource().getBinding("items").filter([]);
 	},
 	
 	
