@@ -2,9 +2,10 @@
 	xmlns:core="sap.ui.core">
 	<TableSelectDialog noDataText="No Products Found"
 		title="Select Product" search="handleSearch" confirm="handleClose"
-		cancel="handleClose" items="{MainData>/MainData}">
+		cancel="handleClose" items="{estlist>/estlist}">
 		<ColumnListItem>
 			<cells>
+<<<<<<< HEAD
 				<Text text="{MainData>AName}" id="BB" />
 				<Text text="장기" />
 				<Text text="2019.01.03" />
@@ -12,6 +13,14 @@
 				<ObjectIdentifier title="ERP상사"
 					text="손경세" />
 				<Text text="110-23-234434" />
+=======
+				<Text text="{estlist>EstNo}" />
+				<Text text="{estlist>EstType1}" />
+				<Text text="{estlist>EstData}" />
+				<Text text="{estlist>EstPname}" />
+				<ObjectIdentifier title="{estlist>EstTotla}" text="{estlist>EstCury}" />
+				<Text text="{estlist>EstVname}" />
+>>>>>>> 434fd57f3f64d93d5d13e03e421d2be4999027b1
 			</cells>
 		</ColumnListItem>
 		<columns>

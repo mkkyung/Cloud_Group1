@@ -11,7 +11,7 @@
 		<headerTitle>
 			<ObjectPageDynamicHeaderTitle>
 				<expandedHeading>
-					<m:Title text="ERP상사 (VE02)" wrapping="true"
+					<m:Title text="{Detail>/DetailData/VName}" wrapping="true"
 						class="sapUiSmallMarginEnd" />
 				</expandedHeading>
 
@@ -20,7 +20,7 @@
 						alignItems="Center">
 						<m:FlexBox wrap="NoWrap" fitContainer="true"
 							alignItems="Center" class="sapUiTinyMarginEnd">							
-							<m:Title text="ERP상사" wrapping="true"
+							<m:Title text="{Detail>/DetailData/VName}" wrapping="true"
 								class="sapUiTinyMarginEnd" />
 						</m:FlexBox>
 					</m:FlexBox>
@@ -37,8 +37,8 @@
 					<m:Button id="update" icon="sap-icon://edit"
 						type="Emphasized" press="edit" visible="{edit>/Edit}" />
 					<m:Button id="enter" icon="sap-icon://save"
-						type="Emphasized" visible="{enter>/Enter}" press="enter" />
-					<m:Button icon="sap-icon://delete" type="Reject"
+						type="Emphasized" visible="{enter>/Enter}" press="save" />
+					<m:Button icon="sap-icon://delete" type="Reject" press="delete"
 						visible="{edit>/Edit}" />
 					<m:Button icon="sap-icon://reset" type="Reject"
 						visible="{cancel>/Cancel}" press="cancel" />
@@ -53,15 +53,15 @@
 				alignItems="Stretch">				
 				<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
 					<m:Label text="대표자" />
-					<m:Text text="홍길동" />
+					<m:Text text="{Detail>/DetailData/VCeo}" />
 				</m:VBox>
 				<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
 					<m:Label text="사업자번호" />
-					<m:Text text="110-03-12312" />
+					<m:Text text="{Detail>/DetailData/VNo}" />
 				</m:VBox>
 				<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
 					<m:Label text="전화번호" />
-					<m:Text text="02-123-4244" />
+					<m:Text text="{Detail>/DetailData/VTel}" />
 				</m:VBox>
 			</m:FlexBox>
 		</headerContent>
@@ -76,29 +76,35 @@
 								columnsM="1">
 								<form:content>
 									<m:Label text="공급업체명" />
-									<m:Input valueState="{color>/Color}" value="ERP상사"
+									<m:Input id="VName" valueState="{color>/Color}" value="{Detail>/DetailData/VName}"
 										editable="{enter>/Enter}" />
+									<m:Label text="대표자" />
+									<m:Input id="VCeo" valueState="{color>/Color}"
+										value="{Detail>/DetailData/VCeo}" editable="{enter>/Enter}" />
 									<m:Label text="구분" />
-									<m:Input valueState="{color>/Color}"
-										value="법인" editable="{enter>/Enter}" />
+									<m:Input id="VCat" valueState="{color>/Color}"
+										value="{Detail>/DetailData/VCat}" editable="{enter>/Enter}" />
 									<m:Label text="사업자번호" />
-									<m:Input valueState="{color>/Color}" value="110-03-12312"
+									<m:Input id="VNo" valueState="{color>/Color}" value="{Detail>/DetailData/VNo}"
 										editable="{enter>/Enter}" />								
 									<m:Label text="주소" />
-									<m:Input valueState="{color>/Color}"
-										value="서울 서대문구 홍은동 가나다길 12-42" editable="{enter>/Enter}" />
+									<m:Input id="VAddr" valueState="{color>/Color}"
+										value="{Detail>/DetailData/VAddr}" editable="{enter>/Enter}" />
 									<m:Label text="업태/종목" />
-									<m:Input valueState="{color>/Color}"
-										value="AA/CC" editable="{enter>/Enter}" />
+									<m:Input id="BsBc" valueState="{color>/Color}"
+										value="{Detail>/DetailData/VBs} / {Detail>/DetailData/VBc}" editable="{enter>/Enter}" />
+									<m:Label text="전화번호" />
+									<m:Input id="VTel" valueState="{color>/Color}"
+										value="{Detail>/DetailData/VTel}" editable="{enter>/Enter}" />
 									<m:Label text="팩스" />
-									<m:Input valueState="{color>/Color}"
-										value="02-123-4523" editable="{enter>/Enter}" />
+									<m:Input id="VFax" valueState="{color>/Color}"
+										value="{Detail>/DetailData/VFax}" editable="{enter>/Enter}" />
 									<m:Label text="이메일" />
-									<m:Input valueState="{color>/Color}"
-										value="cdjsdk123@naver.com" editable="{enter>/Enter}" />
-									<m:Label text="은행 / 계좌번호" />
-									<m:Input valueState="{color>/Color}"
-										value="신한 / 110-223-123456" editable="{enter>/Enter}" />
+									<m:Input id="VEmail" valueState="{color>/Color}"
+										value="{Detail>/DetailData/VEmail}" editable="{enter>/Enter}" />
+									<m:Label text="은행 / 계좌번호 " />
+									<m:Input id="Bank" valueState="{color>/Color}"
+										value="{Detail>/DetailData/VBankn} / {Detail>/DetailData/VBanka}" editable="{enter>/Enter}" />
 								</form:content>
 							</form:SimpleForm>
 						</blocks>

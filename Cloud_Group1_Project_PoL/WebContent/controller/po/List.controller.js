@@ -15,10 +15,7 @@ sap.ui
 										GETPOSet : function(PONO) {
 											var sServiceUrl = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000"
 												sServiceUrl += "/sap/opu/odata/sap/Z_CLOUD_PUOR_SRV";
-<<<<<<< HEAD
-=======
-											var url = "/GETPOSet";
->>>>>>> 504c5aeaac577bdd7e4785ed2892cfc5c37481c8
+
 //											var sServiceUrl = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000/sap/opu/odata/sap/Z_CLOUD_PO_SRV";
 ////													+ "/sap/opu/odata/sap/Z_CLOUD_PO_SRV";
 											var LIGHT = this.getView().byId("idIconTabBar").getSelectedKey();

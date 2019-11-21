@@ -5,11 +5,13 @@ sap.ui.define([
 	"sap/ui/model/json/JSONModel",
 	'sap/ui/core/Fragment',
 	'sap/ui/model/Filter',
-], function(Controller, History, UIComponent, JSONModel, Fragment, Filter) {
+	'sap/m/MessageToast'
+], function(Controller, History, UIComponent, JSONModel, Fragment, Filter, MessageToast) {
 	"use strict";
 
 	return Controller.extend("Cloud_Group1_ProjectCloud_Group1_Project.controller.contract.Create", {
 		onShow : function(){
+			
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.navTo("view4");
 		},
@@ -25,48 +27,40 @@ sap.ui.define([
 				oRouter.navTo("view2", {}, true);
 			}
 		},
-		MainData : function(searchData) {
+		
+		getest : function() {
 			var sServiceUrl = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000"
-					+ "/sap/opu/odata/sap/ZFIORI_STU03_DEV03_SRV";
-			
-			if (searchData != null){
-				var url = "/MainDataSet?$filter=PName eq '" + searchData[0] + "'"
-				+ " and PCode eq '" + searchData[1] + "'"
-				+ " and PGrade eq '" + searchData[2] + "'"
-				+ " and PCan eq '" + searchData[3] + "'";
-			} else {
-				var url = "/MainDataSet";
-			}
-
-
-			var oDataModel = new sap.ui.model.odata.ODataModel(sServiceUrl, true);
-
-			var MainData;
-
-			oDataModel.read(url, null, null, false, function(oData) {
-				MainData = oData.results;
-			});
-
-			var oModel = new sap.ui.model.json.JSONModel({
-				"MainData" : MainData
-			});
-
-			
-			this.getView().setModel(oModel, "MainData");
+					+ "/sap/opu/odata/sap/Z_CLOUD_ESTIMATE_SRV";
+			var url = "/getestiSet";
+   			var oDataModel= new sap.ui.model.odata.ODataModel(sServiceUrl,true);
+   			var estlist;
+   			oDataModel.read(url, null, null, false, function(oData) {
+   				estlist = oData.results;
+   			});
+   			var oModel = new sap.ui.model.json.JSONModel({ "estlist" : estlist });
+   			this.getView().setModel(oModel , "estlist");
 
 		},
 		
-		inputId: '',
 		onInit : function () {
-			this.MainData();
+			this.getest();
 		},
+		
 		handleValueHelp : function (oEvent) {						  //Table Dialog
+<<<<<<< HEAD
 //			var sInputValue = this.byId("AA").getValue(),
 //			oModel = this.getView().getModel();
 //			aProducts = oModel.getProperty("/ProductCollection");
 //			
 			var sInputValue = oEvent.getSource().getValue();
+=======
+//			var sInputValue = oEvent.getSource().getValue();
+>>>>>>> 434fd57f3f64d93d5d13e03e421d2be4999027b1
 
+			var sInputValue = this.byId("productInput").getValue(),
+			oModel = this.getView().getModel("estlist"),
+			aProducts = oModel.getProperty("/estlist");
+			
 			this.inputId = oEvent.getSource().getId();
 			// create value help dialog
 			if (!this._valueHelpDialog) {
@@ -76,9 +70,19 @@ sap.ui.define([
 				);
 				this.getView().addDependent(this._valueHelpDialog);
 			}
+<<<<<<< HEAD
+=======
+
+			
+			aProducts.forEach(function (oProduct) {
+				oProduct.selected = (oProduct.EstNo === sInputValue);
+			});
+			oModel.setProperty("/estlist", aProducts);
+			
+>>>>>>> 434fd57f3f64d93d5d13e03e421d2be4999027b1
 			// create a filter for the binding
 			this._valueHelpDialog.getBinding("items").filter([new sap.ui.model.Filter(
-				"BName",
+				"EstNo",
 				sap.ui.model.FilterOperator.Contains, sInputValue
 			)]);
 
@@ -116,7 +120,7 @@ sap.ui.define([
 		_handleValueHelpSearch : function (evt) {
 			var sValue = evt.getParameter("value");
 			var oFilter = new sap.ui.model.Filter(
-				"BName",
+				"EstNo",
 				sap.ui.model.FilterOperator.Contains, sValue
 			);
 			evt.getSource().getBinding("items").filter([oFilter]);
@@ -143,10 +147,15 @@ sap.ui.define([
 
 			oText.setText(sKey);
 		},
+<<<<<<< HEAD
+=======
+		
+>>>>>>> 434fd57f3f64d93d5d13e03e421d2be4999027b1
 		handleSearch: function(oEvent) {
 			var sValue = oEvent.getParameter("value");
 			var oFilter = new Filter("Name", sap.ui.model.FilterOperator.Contains, sValue);
 			var oBinding = oEvent.getSource().getBinding("items");
+<<<<<<< HEAD
 			oBinding.filter([oFilter]);
 		},
 		
@@ -188,6 +197,55 @@ sap.ui.define([
 	         });
 	      }
 		
+=======
+			
+			if(sValue != "")
+				oBinding.filter([oFilter]);
+			else
+				oBinding.filter([]);
+				
+		},
+		
+		handleClose: function(oEvent) {
 
+			// reset the filter
+			var oBinding = oEvent.getSource().getBinding("items");
+			oBinding.filter([]);
+
+			var aContexts = oEvent.getParameter("selectedContexts");
+			if (aContexts && aContexts.length) {
+				this.byId("productInput").setValue(aContexts.map(function(oContext) { return oContext.getObject().EstNo; }).join(", "));
+			}
+			var sInputValue = this.byId("productInput").getValue();
+			
+			var sServiceUrl = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000"
+				+ "/sap/opu/odata/sap/Z_CLOUD_ESTIMATE_SRV";
+			var url = "/getestiSet?$filter=PEstno eq '" + sInputValue + "'";
+			var oDataModel= new sap.ui.model.odata.ODataModel(sServiceUrl,true);
+			var list;
+			oDataModel.read(url, null, null, false, function(oData) {
+				list = oData.results;
+			});
+			var oModel = new sap.ui.model.json.JSONModel({ "list" : list });
+			this.getView().setModel(oModel , "list");
+		},
+>>>>>>> 434fd57f3f64d93d5d13e03e421d2be4999027b1
+
+//		handleValueHelpClose : function() {
+//			var oModel = this.getView().getModel("estlist"),
+//				aProducts = oModel.getProperty("/estlist"),
+//				oInput = this.byId("productInput");
+//
+//			var bHasSelected = aProducts.some(function(oProduct) {
+//				if (oProduct.selected) {
+//					oInput.setValue(oProduct.Name);
+//					return true;
+//				}
+//			});
+//
+//			if (!bHasSelected) {
+//				oInput.setValue(null);
+//			}
+//		}
 	});
 });
