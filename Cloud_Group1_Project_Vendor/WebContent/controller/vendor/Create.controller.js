@@ -1,80 +1,78 @@
-sap.ui
-		.define(
-				[ "sap/ui/core/mvc/Controller", "sap/m/MessageToast",
-						"sap/ui/core/UIComponent", "sap/m/routing/Router" ],
-				function(Controller, MessageToast, UIComponent, Router) {
-					"use strict";
+sap.ui.define(
+			[ "sap/ui/core/mvc/Controller", "sap/m/MessageToast",
+					"sap/ui/core/UIComponent", "sap/m/routing/Router" ],
+			function(Controller, MessageToast, UIComponent, Router) {
+				"use strict";
 
-					return Controller
-							.extend(
-									"Cloud_Group1_ProjectCloud_Group1_Project.controller.vendor.Create",
-									{
-										onInit : function() {
-											var data = {
+				return Controller
+						.extend(
+								"Cloud_Group1_ProjectCloud_Group1_Project.controller.vendor.Create",
+								{
+									onInit : function() {
 
-												myDate : new Date()
+									},
+									save : function() {
+										
+										var VName = this.getView().byId("VName").getValue().toUpperCase();
+										
+										var VCat = this.getView().byId("VCat").getValue().toUpperCase();
+										
+										var VNo = this.getView().byId("VNo").getValue().toUpperCase();
+										
+										var VCeo = this.getView().byId("VCeo").getValue().toUpperCase();
 
-											};
+										var VAddr = this.getView().byId("VAddr").getValue().toUpperCase();
 
-											var oModel = new sap.ui.model.json.JSONModel();
+										var VBs = this.getView().byId("VBs").getValue().toUpperCase();
 
-											oModel.setData(data);
+										var VBc = this.getView().byId("VBc").getValue().toUpperCase();
 
-											sap.ui.getCore().setModel(oModel);
-										},
-										handleClose : function() { // 닫기버튼
-											sap.ui
-													.getCore()
-													.byId("__xmlview0--fcl")
-													.setLayout(
-															sap.f.LayoutType.OneColumn);
-										},
-										handleUploadComplete : function(oEvent) {
-											var sResponse = oEvent
-													.getParameter("response");
-											if (sResponse) {
-												var sMsg = "";
-												var m = /^\[(\d\d\d)\]:(.*)$/
-														.exec(sResponse);
-												if (m[1] == "200") {
-													sMsg = "Return Code: "
-															+ m[1]
-															+ "\n"
-															+ m[2]
-															+ "(Upload Success)";
-													oEvent.getSource()
-															.setValue("");
-												} else {
-													sMsg = "Return Code: "
-															+ m[1] + "\n"
-															+ m[2]
-															+ "(Upload Error)";
-												}
+										var VTel = this.getView().byId("VTel").getValue().toUpperCase();
+										
+										var VFax = this.getView().byId("VFax").getValue().toUpperCase();
+										
+										var VEmail = this.getView().byId("VEmail").getValue().toUpperCase();
+										
+										var VBankn = this.getView().byId("VBankn").getValue().toUpperCase();
+										
+										var VBanka = this.getView().byId("VBanka").getValue().toUpperCase();
+										
+										var url = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000"
+											url += "/sap/opu/odata/sap/Z_CLOUD_VENDOR_SRV/ZTG1_VENSet";
+										
+										var createData = {
+												"VName" : VName,
+												"VCat" : VCat,
+												"VNo" : VNo,
+												"VCeo" : VCeo,
+												"VAddr" : VAddr,
+												"VBs" : VBs,
+												"VBc" : VBc,
+												"VTel" : VTel,
+												"VFax" : VFax,
+												"VEmail" : VEmail,
+												"VBankn" : VBankn,
+												"VBanka" : VBanka
+										};
+										
+										$.ajax({
+									         type : "POST",
+									         url  : url,
+									         data : JSON.stringify(createData),
+									            contentType: "application/json" ,
+									              success: function(aa, bb, cc) {
+									                 console.log("13 " + cc);
+									              },
+									            error: function(aa, bb, cc) { 
+									               console.log("23 " + cc);
+									            }
+									      });
+										
+										this.handleClose();
+									},
+									handleClose : function() { // 닫기버튼
+										sap.ui.getCore().byId("__xmlview0--fcl").setLayout(sap.f.LayoutType.OneColumn);
+									},
 
-												MessageToast.show(sMsg);
-											}
-										},
-
-										handleUploadPress : function(oEvent) {
-											var oFileUploader = this.getView()
-													.byId("fileUploader");
-											oFileUploader.upload();
-										},
-										handleTypeMissmatch : function(oEvent) {
-											var aFileTypes = oEvent.getSource()
-													.getFileType();
-											jQuery.each(aFileTypes, function(
-													key, value) {
-												aFileTypes[key] = "*." + value;
-											});
-											var sSupportedFileTypes = aFileTypes
-													.join(", ");
-											MessageToast
-													.show("The file type *."
-															+ oEvent
-																	.getParameter("fileType")
-															+ " is not supported. Choose one of the following types: "
-															+ sSupportedFileTypes);
-										},
-									});
-				}, true);
+								});
+			}, true);

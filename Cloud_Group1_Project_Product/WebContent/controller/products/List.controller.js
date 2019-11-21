@@ -1,8 +1,12 @@
 sap.ui.define([
+	'jquery.sap.global',
 	"sap/ui/model/json/JSONModel",
 	"sap/ui/core/mvc/Controller",
-	"sap/m/MessageToast"
-], function (JSONModel, Controller, MessageToast) {
+	"sap/m/MessageToast",
+	'sap/ui/core/util/Export',
+	'sap/m/MessageBox',
+	'sap/ui/core/util/ExportTypeCSV'
+], function (jquery, JSONModel, Controller, MessageToast, Export, ExportTypeCSV, MessageBox) {
 	"use strict";
 
 	return Controller.extend("Cloud_Group1_ProjectCloud_Group1_Project.controller.products.List", {
@@ -15,7 +19,7 @@ sap.ui.define([
 		MainData : function(inputData) {
 			
 			var sServiceUrl = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000"
-					+ "/sap/opu/odata/sap/Z_CLOUD_PRODUCTS_SRV";
+							+ "/sap/opu/odata/sap/Z_CLOUD_PRODUCTS_SRV";
 			
 			if (inputData != null) {
 				var url = inputData[0] != "" ? "/ZTG1_CAT3Set?$filter=Cat1Name eq '" + inputData[0] + "'" : ""
@@ -137,6 +141,79 @@ sap.ui.define([
 		},
 		handleCreatePress: function () {
 			this.bus.publish("flexible", "setCreatePage")
+		},
+		onDataExport : function(oEvent) {
+
+			var oExport = new Export({
+
+//				 Type that will be used to generate the content. Own ExportType's can be created to support other formats
+				exportType : new sap.ui.core.util.ExportTypeCSV({
+					separatorChar : ","
+				}),
+			
+
+
+				// Pass in the model created above
+				models : this.getView().getModel("MainData"),
+
+				// binding information for the rows aggregation
+				rows : {
+					path : "/MainData"
+				},
+
+				// column definitions with column name and binding info for the content
+
+				columns : [{
+					name : "대분류",
+					template : {
+						content : "{Cat1Name}"
+					}
+				}, {
+					name : "중분류",
+					template : {
+						content : "{Cat2Name}"
+					}
+				}, {
+					name : "상품코드",
+					template : {
+						content : "{Cat3No}"
+					}
+				}, {
+					name : "상품명",
+					template : {
+						content : "{Cat3Name}"
+					}
+				}, {
+					name : "표준금액",
+					template : {
+						content : "{Cat3Price}"
+					}
+				}, {
+					name : "통화단위",
+					template : {
+						content : "{Cat3Name}"
+					}
+				}, {
+					name : "제조사",
+					template : {
+						content : "{Cat3Made}"
+					}
+				}, {
+					name : "출시일",
+					template : {
+						content : "{Cat3Date}"
+					}
+				}]
+			});
+			
+			
+
+			// download exported file
+			oExport.saveFile().catch(function(oError) {
+				console.log(oError);
+			}).then(function() {
+				oExport.destroy();
+			});
 		}
 	});
 }, true);

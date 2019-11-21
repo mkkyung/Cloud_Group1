@@ -98,7 +98,6 @@ sap.ui.define([
 			}
 			
 			this.oFlexibleColumnLayout.setLayout(sap.f.LayoutType.OneColumn);
-			
 		}
 	});
 }, true);

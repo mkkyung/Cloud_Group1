@@ -47,7 +47,7 @@
 									<m:Label text="제조사" />
 									<m:Input id="Cat3Made"/>
 									<m:Label text="출시일" />
-									<m:DatePicker id="Cat3Date" />
+									<m:DatePicker id="Cat3Date" valueFormat="yyyy-MM-dd"/>
 								</form:content>
 							</form:SimpleForm>
 						</blocks>
