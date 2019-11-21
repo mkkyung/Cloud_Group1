@@ -1,20 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mvc:View
 	controllerName="Cloud_Group1_ProjectCloud_Group1_Project.controller.contract.Create"
-	xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"
-	xmlns:l="sap.ui.layout" displayBlock="true">
+	xmlns="sap.m" 
+	xmlns:mvc="sap.ui.core.mvc" 
+	xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout" 
+	displayBlock="true">
 	<App id="apps">
 		<Page title="계약등록" showNavButton="true"
 			navButtonPress="goBack">
 			<headerContent text="view3">
 				<Button text="next" id="button" type="Reject" press=".onShow" />
+				<Button id="save" icon="sap-icon://save" type="Accept"
+               press="save" />
 			</headerContent>
 			<l:Grid defaultSpan="L12" class="white">
 				<l:VerticalLayout />
 			</l:Grid>
 			<l:Grid defaultSpan="L2 M6 S6" class="white">
 				<l:VerticalLayout>
-					<Label text="견적서 조회" design="Bold" />
+					<Label text="견적서 조회 : " design="Bold" />
 					<Input id="productInput" type="Text"
 						textFormatMode="KeyValue" placeholder="견적번호 입력"
 						showSuggestion="true" showValueHelp="true"
@@ -28,46 +33,70 @@
 					</Input>
 				</l:VerticalLayout>
 				<l:VerticalLayout>
-					<Label text="계약구분" design="Bold" />
-					<Input />
+					<Label text="계약구분 : " design="Bold" labelFor="InputNoEdit" />				
+			        <Input
+			        		value="{MainData>/MainData/0/AName}"
+			            	id="B"
+			 	            class="sapUiSmallMarginBottom"
+							enabled="false"
+			                />
+			        <Text id="AA" />
 				</l:VerticalLayout>
 				<l:VerticalLayout>
-					<Label text="계약일자" design="Bold" />
-					<DatePicker />
+					<Label text="계약일자 : " design="Bold" />
+                        <DatePicker id="H"
+									value="{
+                                    path:'/dateValue', 
+                                    type:'sap.ui.model.type.Date', 
+                                    formatOptions: { 
+                                       style: 'medium', 
+                                       strictParsing: true
+                                       }
+                                    }"
+                                 class="sapUiSmallMarginBottom" valueFormat="yyyyMMdd" change="handleChange"/>
 				</l:VerticalLayout>
 				<l:VerticalLayout>
-					<Label text="종료일자" design="Bold" />
-					<DatePicker />
+					<Label text="종료일자 : " design="Bold" />
+					<DatePicker id="I"
+								value="{
+                                       path:'/dateValue', 
+                                       type:'sap.ui.model.type.Date', 
+                                       formatOptions: { 
+                                       style: 'medium', 
+                                       strictParsing: true
+                                       }
+                                    }"
+                                 class="sapUiSmallMarginBottom" valueFormat="yyyyMMdd" change="handleChange2"/>
 				</l:VerticalLayout>
 				<l:VerticalLayout>
-					<Label text="공급업체명" design="Bold" />
-					<Input />
+					<Label text="공급업체명 : " design="Bold"/>
+					<Input maxLength="15" enabled="false"/>
 				</l:VerticalLayout>
 				<l:VerticalLayout>
-					<Label text="대표자명" design="Bold" />
-					<Input value="asdfsdf" />
+					<Label text="대표자명 : " design="Bold"/>
+					<Input value="asdfsdf" maxLength="10" enabled="false"/>
 				</l:VerticalLayout>
 			</l:Grid>
 			<l:Grid defaultSpan="L2" class="white">
 				<l:VerticalLayout>
-					<Label text="사업자등록번호" design="Bold" />
-					<Input />
+					<Label text="사업자등록번호 : " design="Bold" />
+					<Input maxLength="10" enabled="false"/>
 				</l:VerticalLayout>
 				<l:VerticalLayout width="100%">
-					<Label text="주소" design="Bold" />
-					<Input value="서울 동대문구 제기로 131, 청량리 한신아파트 108동 202호" />
+					<Label text="주소 : " design="Bold" />
+					<Input maxLength="30" enabled="false"/>
 				</l:VerticalLayout>
 				<l:VerticalLayout>
-					<Label text="전화번호" design="Bold" />
-					<Input />
+					<Label text="전화번호 : " design="Bold" />
+					<Input enabled="false"/>
 				</l:VerticalLayout>
 				<l:VerticalLayout>
-					<Label text="팩스" design="Bold" />
-					<Input />
+					<Label text="팩스 : " design="Bold" />
+					<Input enabled="false"/>
 				</l:VerticalLayout>
 				<l:VerticalLayout>
-					<Label text="이메일" design="Bold" />
-					<Input />
+					<Label text="이메일 : " design="Bold" />
+					<Input enabled="false"/>
 				</l:VerticalLayout>
 
 			</l:Grid>

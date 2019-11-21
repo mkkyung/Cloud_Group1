@@ -61,6 +61,10 @@ sap.ui.define([
 			this.MainData();
 		},
 		handleValueHelp : function (oEvent) {						  //Table Dialog
+//			var sInputValue = this.byId("AA").getValue(),
+//			oModel = this.getView().getModel();
+//			aProducts = oModel.getProperty("/ProductCollection");
+//			
 			var sInputValue = oEvent.getSource().getValue();
 
 			this.inputId = oEvent.getSource().getId();
@@ -72,7 +76,6 @@ sap.ui.define([
 				);
 				this.getView().addDependent(this._valueHelpDialog);
 			}
-
 			// create a filter for the binding
 			this._valueHelpDialog.getBinding("items").filter([new sap.ui.model.Filter(
 				"BName",
@@ -82,6 +85,34 @@ sap.ui.define([
 			// open value help dialog filtered by the input value
 			this._valueHelpDialog.open(sInputValue);
 		},
+	      handleChange: function (oEvent) {
+	          var oText = this.byId("H");
+	          var oDP = oEvent.oSource;
+	          var sValue = oEvent.getParameter("value");
+	          var bValid = oEvent.getParameter("valid");
+	          this._iEvent++;
+//	          oText.setText("Change - Event " + this._iEvent + ": DatePicker " + oDP.getId() + ":" + sValue);
+
+	          if (bValid) {
+	             oDP.setValueState(sap.ui.core.ValueState.None);
+	          } else {
+	             oDP.setValueState(sap.ui.core.ValueState.Error);
+	          }
+	       },
+	       handleChange2: function (oEvent) {
+	          var oText = this.byId("I");
+	          var oDP = oEvent.oSource;
+	          var sValue = oEvent.getParameter("value");
+	          var bValid = oEvent.getParameter("valid");
+	          this._iEvent++;
+//	          oText.setText("Change - Event " + this._iEvent + ": DatePicker " + oDP.getId() + ":" + sValue);
+
+	          if (bValid) {
+	             oDP.setValueState(sap.ui.core.ValueState.None);
+	          } else {
+	             oDP.setValueState(sap.ui.core.ValueState.Error);
+	          }
+	       },
 		_handleValueHelpSearch : function (evt) {
 			var sValue = evt.getParameter("value");
 			var oFilter = new sap.ui.model.Filter(
@@ -104,14 +135,59 @@ sap.ui.define([
 			evt.getSource().getBinding("items").filter([]);
 		},
 
-		suggestionItemSelected: function (evt) {
+		suggestionItemSelected: function (oEvent) {
 
-			var oItem = evt.getParameter('selectedItem'),
+			var oItem = oEvent.getParameter('selectedItem'),
 				oText = this.getView().byId('selectedKey'),
 				sKey = oItem ? oItem.getKey() : '';
 
 			oText.setText(sKey);
-		}
+		},
+		handleSearch: function(oEvent) {
+			var sValue = oEvent.getParameter("value");
+			var oFilter = new Filter("Name", sap.ui.model.FilterOperator.Contains, sValue);
+			var oBinding = oEvent.getSource().getBinding("items");
+			oBinding.filter([oFilter]);
+		},
+		
+		handleClose: function(oEvent) {
+			var oBinding = oEvent.getSource().getBinding("items");
+	         oBinding.filter([]);
+			var aContexts = oEvent.getParameter("selectedContexts");
+						if (aContexts && aContexts.length) {
+				this.byId("productInput").setValue(aContexts.map(function(oContext) { return oContext.getObject().AName; }).join(", "));
+			}   
+	         var sInputValue = this.byId("productInput").getValue();
+		},
+		
+		save: function () {
+//	         var category   = this.getView().byId("category").getSelectedKey();
+//	         var title      = this.getView().byId("title").getValue();
+//	         var content      = this.getView().byId("content").getValue();
+//	         var user      = this.getView().byId("user").getValue();
+	         var addr        = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000/";
+	         addr          += "sap/opu/odata/sap/Z_CLOUD_CONT_SRV_01/getCreate1Set";
+	         
+	         var paramData = 
+	         {
+	               "ContPname" : "1234",
+	               "ContVname" : " ",
+	         };
+	         
+	         $.ajax({
+	            type : "POST",
+	            url  : addr,
+	            data : JSON.stringify(paramData),
+	               contentType: "application/json" ,
+	                 success: function(aa, bb, cc) {
+	                    console.log("13 " + cc);
+	                 },
+	               error: function(aa, bb, cc) { 
+	                  console.log("23 " + cc);
+	               }
+	         });
+	      }
+		
 
 	});
 });

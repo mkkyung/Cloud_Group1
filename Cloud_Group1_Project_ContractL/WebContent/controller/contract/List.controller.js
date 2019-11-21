@@ -129,31 +129,6 @@ sap.ui.define([
          }
       },
 
-//      onPress : function (oEvent) {   //계약서 눌렀을 때 
-//         var oItem = oEvent.getSource();
-//         var oRouter = UIComponent.getRouterFor(this);
-//         var routerData = oItem.mAggregations.cells[1].mProperties.text;
-//         
-//
-//         var bCompact = !!this.getView().$().closest(".sapUiSizeCompact").length;
-//         MessageBox.warning(
-//               "계약서를 등록하시겠습니까?\n"  + "한번 계약서 등록 시 변경이 불가능합니다.",
-//               {
-//                  icon: MessageBox.Icon.WARNING,
-//                  title: "계약서 등록",
-//                  actions: [sap.m.MessageBox.Action.OK, sap.m.MessageBox.Action.CANCEL],
-//                  styleClass: bCompact ? "sapUiSizeCompact" : "",
-//                  initialFocus: MessageBox.Action.CANCEL,
-//                  onClose: function(oAction){
-//                     if(oAction == 'OK'){
-//                        oRouter.navTo("view5", {
-//                           ContractPath: routerData
-//                        });
-//                     }
-//                  }
-//               }
-//         );
-//      }
       onPress : function (oEvent) {   //계약서 눌렀을 때 
          var oItem = oEvent.getSource();
          var oRouter = UIComponent.getRouterFor(this);
@@ -168,7 +143,7 @@ sap.ui.define([
       OngetData : function (PContType,PContNo,PContCat1,PContCat2,PContPname,PContVname,PContVno,PContSdate,PContEdate){
     	  var sServiceUrl = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000/"; 
           sServiceUrl +=  "sap/opu/odata/sap/Z_CLOUD_CONT_SRV_01"; 
-          	var url;
+          var url;
           	var PCr = 'R';
           	var Light = this.getView().byId("idIconTabBar").getSelectedKey();
         	var PContLight;
@@ -183,38 +158,31 @@ sap.ui.define([
 			 else if (Light === "C") {
 				PContLight = "종료";
 			}
-
-            if (PContType == undefined && PContNo== undefined && PContCat1 == undefined &&
-          	      PContCat2 == undefined && PContPname == undefined && PContVname == undefined && PContVno == undefined &&
-          	      PContSdate == undefined && PContEdate == undefined){
-            url = "/getData1Set?$filter=PCr eq '" + PCr + "'and PContLight eq'" + " " + "'";
-            var oDataModel = new sap.ui.model.odata.ODataModel(sServiceUrl,true);
-            this.oModel = new JSONModel();
-          var data;
-          oDataModel.read(url, null, null, false, function(oData){
-
-             data = oData.results;
-          });
-          var oModel = new sap.ui.model.json.JSONModel({ "getData" : data });
-          this.getView().setModel(oModel, "getData"); 
-            }
-            else{
+			
+            if (PContType == undefined){
+		            url = "/getData1Set?$filter=PCr eq '" + PCr + "'and PContLight eq'" + ' ' + "'";
+		            var oDataModel = new sap.ui.model.odata.ODataModel(sServiceUrl,true);
+		            this.oModel = new JSONModel();
+		          var data;
+		          oDataModel.read(url, null, null, false, function(oData){
+		
+		             data = oData.results;
+		          });
+		          var oModel = new sap.ui.model.json.JSONModel({ "getData" : data });
+		          this.getView().setModel(oModel, "getData"); 
+            } else{
             	var PCr = 'R';
-
-//    			if(Light === "All")
-//    			{ 		
-//    				PContLight = "";
-//    			}else if (Light === "A") { 
-//    				PContLight = "승인";
-//    			}else if (Light === "B") { 
-//    				PContLight = "대기";
-//    			}
-//    			 else if (Light === "C") {
-//    				PContLight = "종료";
-//    			}
-            	url = "/getData1Set?$filter=PCr eq '" + PCr + "' and PContType eq '" + PContType + "' and PContNo eq '" + PContNo + "' and PContCat1 eq '" + PContCat1 + 
-            	      "' and PContCat2 eq '" + PContCat2 + "' and PContPname eq '" + PContPname + "' and PContVname eq '" + PContVname +
-            	      "' and PContVno eq '" + PContVno + "' and PContSdate eq '" + PContSdate + "' and PContEdate eq '" + "'and PContLight eq '" + PContLight + "'";
+            	    url = "/getData1Set?$filter=PCr eq '" + PCr + "'";
+            	    url += " and PContType eq '" + PContType + "'";
+            	    url += " and PContNo eq '" + PContNo + "'"; 
+            	    url += " and PContCat1 eq '" + PContCat1 + "'";
+            	    url += " and PContCat2 eq '" + PContCat2 + "'";
+            	    url += " and PContPname eq '" + PContPname + "'";
+            	    url += " and PContVname eq '" + PContVname + "'";
+            	    url += " and PContVno eq '" + PContVno + "'";
+            	    url += " and PContSdate eq '" + PContSdate + "'";
+            	    url += " and PContEdate eq '" + PContEdate + "'";
+            	    url += " and PContLight eq '" + PContLight + "'";
             	 var oDataModel = new sap.ui.model.odata.ODataModel(sServiceUrl,true);
                  this.oModel = new JSONModel();
                var data;
@@ -225,11 +193,10 @@ sap.ui.define([
                var oModel = new sap.ui.model.json.JSONModel({ "getData" : data });
                this.getView().setModel(oModel, "getData"); 
             }
-            
       },
       
       OngetCat1Set : function (){
-    	  var sServiceUrl = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000/"; 
+    	  var sServiceUrl = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000"; 
           sServiceUrl +=  "/sap/opu/odata/sap/Z_CLOUD_CONT_SRV_01"; 
             var url;
     
@@ -297,11 +264,6 @@ sap.ui.define([
           this.getView().setModel(oModel, "Type1"); 
       },
       
-//	   handleRefresh : function(){
-//			setTimeout(function () {
-//				this.byId("idColumnListItem").hide();
-//			}.bind(this), 1000);
-//	   },
 	   handleIconTabBarSelect: function (oEvent) {
            var Light = this.getView().byId("idIconTabBar").getSelectedKey;
        	   var PContLight;
@@ -375,3 +337,4 @@ sap.ui.define([
       
    });
 });
+
