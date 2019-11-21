@@ -1,14 +1,10 @@
 <core:FragmentDefinition xmlns="sap.m"
 	xmlns:core="sap.ui.core">
-	<TableSelectDialog noDataText="No Data Found" id="a"
+	<TableSelectDialog noDataText="No Data Found" 
 		title="Contract" class="sapUiPopupWithPadding" items="{cont>/cont}"
 		search="handleSearch" confirm="handleClose" cancel="handleClose">
 		<ColumnListItem>
-			<!-- title="{estlist>EstCat1}" -->
-			<!-- description="{estlist>EstVname}" /> -->
-
 			<cells>
-<!-- 				<ObjectIdentifier title="{cont>cont}" text="{cont>cont}" /> -->
 					<Text text="{cont>ContNo}" />
 					<Text text="{cont>ContLight}" />
 					<Text text="{cont>ContVname}" />

@@ -19,11 +19,11 @@
 						textFormatMode="KeyValue" placeholder="견적번호 입력"
 						showSuggestion="true" showValueHelp="true"
 						valueHelpRequest="handleValueHelp"
-						suggestionItems="{MainData>/MainData}"
+						suggestionItems="{estlist>/estlist}"
 						suggestionItemSelected="suggestionItemSelected">
 						<suggestionItems>
-				<core:ListItem key="{MainData>BNum11ber}"
-								text="{MainData>BName}" additionalText="{MainData>BName}" />
+								<core:ListItem key="{estlist>/EstNo}"
+								text="{estlist>/EstNo}" additionalText="{estlist>/EstNo}" />
 						</suggestionItems>
 					</Input>
 				</l:VerticalLayout>
@@ -72,7 +72,7 @@
 
 			</l:Grid>
 
-			<Table items="{view>/data}" id="idTable"> <!-- items="{path: '/ProductCollection'}" -->
+			<Table items="{list>/list}" id="idTable"> <!-- items="{path: '/ProductCollection'}" -->
 				<columns>
 					<Column minScreenWidth="Tablet" demandPopin="true">
 						<Text text="계약상태" />
@@ -114,9 +114,18 @@
 					<ColumnListItem type="Navigation" vAlign="Middle"
 						press=".onPress" id="idColumnListItem">
 						<cells>
-							<ObjectIdentifier title="{data>/data}" /> <!-- text="{ProductId}" -->
-							<Text text="{view>Zname}" />
-							<Text text="{view>Zcategory}" />
+<!-- 							<ObjectIdentifier title="{data>/data}" /> text="{ProductId}" -->
+							<Text text="{list>EstType1}" />
+							<Text text="{list>EstAva}" />
+							<Text text="{list>EstVname}" />
+							<Text text="{list>EstCat1}" />
+							<Text text="{list>EstCat2}" />
+							<Text text="{list>EstPname}" />
+							<Text text="{list>EstAmt}" />
+							<Text text="{list>EstPrice}" />
+							<Text text="{list>EstTotal}" />
+							<Text text="" />
+							<Text text="" />
 						</cells>
 
 					</ColumnListItem>
