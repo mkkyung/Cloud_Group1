@@ -52,59 +52,7 @@ sap.ui.define([
 		},
 		handleCreatePress: function () {
 			this.bus.publish("flexible", "setCreatePage")             //등록페이지 이동
-		},
+		}		
 		
-		handleValueHelp : function (oEvent) {						  //Table Dialog
-			var sInputValue = oEvent.getSource().getValue();
-
-			this.inputId = oEvent.getSource().getId();
-			// create value help dialog
-			if (!this._valueHelpDialog) {
-				this._valueHelpDialog = sap.ui.xmlfragment(
-					"Cloud_Group1_ProjectCloud_Group1_Project.view.vendor.Dialog",
-					this
-				);
-				this.getView().addDependent(this._valueHelpDialog);
-			}
-
-			// create a filter for the binding
-			this._valueHelpDialog.getBinding("items").filter([new sap.ui.model.Filter(
-				"BName",
-				sap.ui.model.FilterOperator.Contains, sInputValue
-			)]);
-
-			// open value help dialog filtered by the input value
-			this._valueHelpDialog.open(sInputValue);
-		},
-		_handleValueHelpSearch : function (evt) {
-			var sValue = evt.getParameter("value");
-			var oFilter = new sap.ui.model.Filter(
-				"BName",
-				sap.ui.model.FilterOperator.Contains, sValue
-			);
-			evt.getSource().getBinding("items").filter([oFilter]);
-		},
-
-		_handleValueHelpClose : function (evt) {
-			var oSelectedItem = evt.getParameter("selectedItem");
-			if (oSelectedItem) {
-				var productInput = this.getView().byId(this.inputId),
-					oText = this.getView().byId('selectedKey'),
-					sDescription = oSelectedItem.getDescription();
-
-				productInput.setSelectedKey(sDescription);
-				oText.setText(sDescription);
-			}
-			evt.getSource().getBinding("items").filter([]);
-		},
-
-		suggestionItemSelected: function (evt) {
-
-			var oItem = evt.getParameter('selectedItem'),
-				oText = this.getView().byId('selectedKey'),
-				sKey = oItem ? oItem.getKey() : '';
-
-			oText.setText(sKey);
-		}
 	});
 }, true);

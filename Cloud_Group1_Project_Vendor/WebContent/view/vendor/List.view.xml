@@ -27,17 +27,7 @@
 					</fb:FilterItem>
 					<fb:FilterItem name="Vno" label="사업자번호">
 						<fb:control>
-							<Input id="productInput" type="Text"
-								textFormatMode="KeyValue" placeholder="Enter Product ..."
-								showSuggestion="true" showValueHelp="true"
-								valueHelpRequest="handleValueHelp"
-								suggestionItems="{MainData>/MainData}"
-								suggestionItemSelected="suggestionItemSelected">
-								<suggestionItems>
-									<core:ListItem key="{MainData>BNumber}" text="{MainData>BName}"
-										additionalText="{MainData>BName}" />
-								</suggestionItems>
-							</Input>
+							<Input />
 						</fb:control>
 					</fb:FilterItem>
 					<fb:FilterItem name="Vceo" label="대표자">
