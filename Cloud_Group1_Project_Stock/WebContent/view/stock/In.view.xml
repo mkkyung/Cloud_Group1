@@ -39,10 +39,10 @@
 									<fb:control>
 										<Select
 											id="vName"
-											forceSelection="true"
+											forceSelection="false"
 											change="onSearch"
 											items="{Ven>/data}">
-										<core:Item  text="{Ven>VName}"/>
+										<core:Item key="{Ven>VName}" text="{Ven>VName}"/>
 										</Select>
 									</fb:control>				
 								</fb:FilterItem>								
@@ -51,9 +51,9 @@
 										<Select
 											id="pName"
 											change="onSearch"
-											forceSelection="true"
+											forceSelection="false"
 											items="{Pro>/data}">
-										<core:Item  text="{Pro>Cat3Name}"/>		
+										<core:Item key="{Pro>Cat3Name}" text="{Pro>Cat3Name}"/>		
 										</Select>
 									</fb:control>				
 								</fb:FilterItem>
@@ -99,6 +99,14 @@
 						</Column>
 						<Column
 								minScreenWidth="Tablet"
+								demandPopin="true"
+								mergeDuplicates="true">
+							<header>
+								<Text text="제품코드"/>
+							</header>
+						</Column>
+						<Column
+								minScreenWidth="Tablet"
 								demandPopin="true">
 							<Text text="공급업체"/>
 						</Column>
@@ -117,16 +125,12 @@
 								demandPopin="true">
 							<Text text="가용수량"/>
 						</Column>
+
 						<Column
 								minScreenWidth="Tablet"
 								demandPopin="true">
-							<Text text="발주/입고 일자"/>
+							<Text text="발주상태"/>
 						</Column>
-<!-- 						<Column -->
-<!-- 								minScreenWidth="Tablet" -->
-<!-- 								demandPopin="true"> -->
-<!-- 							<Text text="입고상태"/> -->
-<!-- 						</Column> -->
 						<Column
 								minScreenWidth="Tablet"
 								demandPopin="true"
@@ -145,16 +149,17 @@
 <!-- 								<ObjectIdentifier -->
 <!-- 										text="{Po>PoPname}" -->
 <!-- 										/> -->
-								<Text text="{Po>PoPname}"/>
+								<Text text="{Po>PoPname}"/><!-- 제품명 -->
+								<Text text="{Po>PoCat3No}"/><!-- 제품코드 -->
 								<Text text="{Po>PoVname}"/>
-								<Text text="{Po>PoTotal}"/>
+								<Text text="{Po>PoTotal}"/><!-- 발주수량 -->
 								<Text text="{Po>InAmt}"/><!-- 입고수량 -->
 								<Text text="{Po>Inavail}" /><!-- 가용수량 -->
-								<ObjectIdentifier
-										title="{Po>PoPodate}"
-										text="{Po>PoEdate}"/>
+<!-- 								<ObjectIdentifier -->
+<!-- 										title="{Po>PoPodate}" -->
+<!-- 										text="{Po>PoEdate}"/> -->
 <!-- 								<Text text="{view>Zsect}"/> -->
-<!-- 								<Text text="{Po>InIcon}"/>입고상태 -->
+								<Text text="{Po>PoLight}"/><!--입고상태  -->
 								<Button icon="sap-icon://action" press="onApproveDialog" ariaLabelledBy="actionButtonLabel"/>
 
 							</cells>

@@ -189,8 +189,9 @@ sap.ui.define([
 								new Text({ text: '\n공급업체명 : ' }),
 								new Text({ text: '공급업체코드 : ' }),
 								new Text({ text: '\n발주수량 : ' }),
+								new Text({ text: '발주상태 : ' }),
 								new Text({ text: '입고수량 : ' }),
-								new Text({ text: '입고상태 : ' }),
+//								new Text({ text: '발주상태 : ' }),
 								new Text({ text: '가용수량 : ' }),
 //								new Text({ text: '\n입고위치 :' }),
 								new Text({ text: '비고 : ' })
@@ -198,28 +199,23 @@ sap.ui.define([
 						}),
 						new sap.ui.layout.VerticalLayout({//oItem.getBindingContext("view").oModel.oData.data[0]
 							content: [
-								new Text({ text: oItem.mAggregations.cells[0].mProperties.title}),//제품명
-								new Text({ text: oItem.getBindingContext("Po").oModel.oData.data[index[index.length-1]].PoCat3No}),//제품코드
-								new Text({ text: '\n'+oItem.mAggregations.cells[1].mProperties.text }),//공급업체명
-								new Text({ text: oItem.getBindingContext("Po").oModel.oData.data[index[index.length-1]].PoCat3No }),//공급업체코드
-								new Text({ text: '\n\n'+oItem.getBindingContext("Po").oModel.oData.data[index[index.length-1]].PoAmt }),//발주수량
-								new Text({ text: oItem.mAggregations.cells[3].mProperties.text }),//입고수량
-								new Text({ text: oItem.getBindingContext("Po").oModel.oData.data[index[index.length-1]].InIcon}),//입고상태
-								new Text({ text: oItem.getBindingContext("Po").oModel.oData.data[index[index.length-1]].Inavail }), //가용수량
-								new Text({ text: '\n'+oItem.getBindingContext("Po").oModel.oData.data[index[index.length-1]].InStock }),//입고위치
+								new Text({ text: oItem.mAggregations.cells[0].mProperties.text}),//제품명
+								new Text({ text: oItem.mAggregations.cells[1].mProperties.text}),//제품코드
+								new Text({ text: '\n'+oItem.mAggregations.cells[2].mProperties.text }),//공급업체명
+								new Text({ text: oItem.getBindingContext("Po").oModel.oData.data[index[index.length-1]].PoVcode }),//공급업체코드
+								new Text({ text: '\n'+oItem.mAggregations.cells[3].mProperties.text  }),//발주수량
+								new Text({ text: oItem.mAggregations.cells[6].mProperties.text }),//발주상태**
+								new Text({ text: oItem.mAggregations.cells[4].mProperties.text  }),//입고수량
+//								new Text({ text: oItem.mAggregations.cells[4].mProperties.text}),//발주상태
+								new Text({ text: oItem.mAggregations.cells[5].mProperties.text }), //가용수량
+//								new Text({ text: '\n'+oItem.getBindingContext("Po").oModel.oData.data[index[index.length-1]].InStock }),//입고위치
 								new Text({ text: oItem.getBindingContext("Po").oModel.oData.data[index[index.length-1]].PoEtc })//비고
 							]
 						})
 					]
 				}),
 
-				beginButton: new sap.m.Button({
-					text: 'Submit',
-					press: function () {
-						MessageToast.show('Submit pressed!');
-						dialog.close();
-					}
-				}),
+				
 				endButton: new sap.m.Button({
 					text: 'Cancel',
 					press: function () {
@@ -376,10 +372,14 @@ sap.ui.define([
 		        		
 		        	 }
 		        	 
-		        	
 		        	 
 	        	 }//입고for
 	         }//발주for
+	         
+	         
+	         dataPro.unshift({ "Cat3Name" : ""});
+	         dataVen.unshift({ "VName" : ""});
+	         
 	         var oModelIn = new sap.ui.model.json.JSONModel({ "data" : dataIn });
 	         var oModelOut = new sap.ui.model.json.JSONModel({ "data" : dataOut });
 	         var oModelPo = new sap.ui.model.json.JSONModel({ "data" : dataPo });
@@ -393,43 +393,6 @@ sap.ui.define([
 	         this.getView().setModel(oModelVen, "Ven"); 
 		},
 		
-		onFilterInvoices : function (oEvent) {
-			// build filter array
-			var aFilter = [];
-			var sQuery = oEvent.getParameter("query");
-			if (sQuery) {
-				aFilter.push(new Filter("InVname", FilterOperator.Contains, sQuery));
-//				aFilter.push(new Filter("제품명", FilterOperator.Contains, sQuery));
-//				aFilter.push(new Filter("발주일자", FilterOperator.Contains, sQuery));
-			}
-
-			// filter binding
-			var oList = this.byId("idProductsTable");
-			var oBinding = oList.getBinding("items");
-			oBinding.filter(aFilter);
-		},
-		
-//		filter : function(type){
-//			var url;
-//			if(type == 'filter'){//필터 검색
-//				var title = this.byId("slName");//.getValue();//.toUpperCase();
-////				var text = this.byId("text").getSelectedKey();
-//				var text = this.byId("slCategory");//.getValue();//.toUpperCase();
-//				
-//				if(title || text){
-//					url = "/getdata1Set?$filter=LvTitle eq '" + title + 
-//			  	   	  "' and LvText eq '" + text +"'";
-//				}else{
-//					url = "/getdata1Set";
-//				}
-//				
-//			}else if(type == 'display'){//조회
-//				url = "/getdata1Set";
-//			}
-//				
-//			return url;
-//		},
-
 		goBack : function(oEvent) {
 			var oHistory = History.getInstance();
 			var sPreviousHash = oHistory.getPreviousHash();
@@ -446,18 +409,22 @@ sap.ui.define([
 		onSearch : function(oEvent) {
 			// build filter array
 //			var aFilterVen = [];
-			var aFilterPro = [];
-			var sQuery = oEvent.mParameters.selectedItem.mProperties.text;
-			if (sQuery) {
-//				aFilterVen.push(new Filter("PoVname", FilterOperator.Contains, sQuery));
-				aFilterPro.push(new Filter("PoPname", FilterOperator.Contains, sQuery));
-			}
+			var aFilter;
+			var Pname = this.getView().byId("pName").getSelectedKey();
+			var Vname = this.getView().byId("vName").getSelectedKey();
+			
+			aFilter = new Filter([
+				new Filter("PoPname", FilterOperator.Contains, Pname),
+				new Filter("PoVname", FilterOperator.Contains, Vname)
+				], true);
+
 
 			// filter binding
 			var oList = this.byId("idProductsTable");
 			var oBinding = oList.getBinding("items");
 //			oBinding.filter(aFilterVen);			
-			oBinding.filter(aFilterPro);			
+			oBinding.filter([]);			
+			oBinding.filter(aFilter);			
 			
 		},
 		
