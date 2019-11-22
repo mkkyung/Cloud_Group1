@@ -38,7 +38,7 @@
 				</l:VerticalLayout>
 				<l:VerticalLayout>
 					<Label text="계약구분" design="Bold" />
-					<Input />
+					<Input id="ContType" value="{cont2>/cont2/0/ContType}"/>
 				</l:VerticalLayout>
 				<l:VerticalLayout>
 					<Label text="계약일자" design="Bold" />
@@ -79,7 +79,7 @@
 					<Input value="" />
 				</l:VerticalLayout>
 			</l:Grid>
-			<Table items="{cont>/cont}" id="esttable" inset="false">
+			<Table items="{cont2>/cont2}" id="esttable" inset="false">
 				<columns>
 					<Column minScreenWidth="Tablet" demandPopin="true"
 						mergeDuplicates="true">
@@ -123,18 +123,18 @@
 					<ColumnListItem vAlign="Middle" press=".onPress">
 						<cells>
 							<!-- <ObjectIdentifier title="{/data}" /> text="{ProductId}" -->
-							<Text text="{cont>ContNo}" />
-							<Text text="{cont>ContType}" />
-							<Text text="{cont>ContVname}" />
-							<Text text="{cont>ContCat1}" />
-							<Text text="{cont>ContCat2}" />
-							<Text text="{cont>ContPname}" />
-							<Text text="{cont>ContCat3}" />
-							<Text text="{cont>ContAmt}" />
-							<Text text="{cont>ContEprice}" />
-							<Text text="{cont>ContPrice}" />
-							<Text text="{cont>ContCuky}" />
-							<Text text="{cont>ContEdate}" />
+							<Text text="{cont2>ContNo}" />
+							<Text text="{cont2>ContType}" />
+							<Text text="{cont2>ContVname}" />
+							<Text text="{cont2>ContCat1}" />
+							<Text text="{cont2>ContCat2}" />
+							<Text text="{cont2>ContPname}" />
+							<Text text="{cont2>ContCat3}" />
+							<Text text="{cont2>ContAmt}" />
+							<Text text="{cont2>ContEprice}" />
+							<Text text="{cont2>ContPrice}" />
+							<Text text="{cont2>ContCuky}" />
+							<Text text="{cont2>ContEdate}" />
 						</cells>
 					</ColumnListItem>
 				</items>

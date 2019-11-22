@@ -183,7 +183,6 @@ sap.ui.define([
 			this.byId("productInput").setValue(aContexts.map(function(oContext) { return oContext.getObject().ContNo; }).join(", "));
 		}
 		var sInputValue = this.byId("productInput").getValue();
-		var PCr = 'R';
 		var sServiceUrl = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000"
 			+ "/sap/opu/odata/sap/Z_CLOUD_CONT_SRV_01";
 		var url;
@@ -193,8 +192,8 @@ sap.ui.define([
 		oDataModel.read(url, null, null, false, function(oData) {
 			list = oData.results;
 		});
-		var oModel = new sap.ui.model.json.JSONModel({ "cont" : list });
-		this.getView().setModel(oModel , "cont");
+		var oModel = new sap.ui.model.json.JSONModel({ "cont2" : list });
+		this.getView().setModel(oModel , "cont2");
 	},
 	
 	onExit : function () {

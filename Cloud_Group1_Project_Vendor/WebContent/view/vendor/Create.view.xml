@@ -20,7 +20,7 @@
 
 		<sections>
 			<ObjectPageSection title="공급업체 등록">
-				<subSections>
+				<subSections>s
 					<ObjectPageSubSection>
 						<blocks>
 							<form:SimpleForm maxContainerCols="2"
