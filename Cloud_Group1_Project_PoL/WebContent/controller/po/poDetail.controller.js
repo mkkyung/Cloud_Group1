@@ -18,6 +18,12 @@ sap.ui.define([
 			
 			this.editable(false, true, "None");
 			
+//			통화 설정
+			var oViewModel = new JSONModel({
+				currency: "KRW"
+			});
+			this.getView().setModel(oViewModel, "view");
+			
 			
 		},
 	

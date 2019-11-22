@@ -55,6 +55,11 @@ sap.ui.define([
 		onInit: function() {
 			this.GETPOSet();
 			this.GETContset();
+			
+			var oViewModel = new JSONModel({
+				currency: "KRW"
+			});
+			this.getView().setModel(oViewModel, "view");
 		
 //		var oModel = new JSONModel(jQuery.sap.getModulePath("sap.ui.demo.mock", "/products.json"));
 //		// the default limit of the model is set to 100. We want to show all the entries.
@@ -204,33 +209,25 @@ sap.ui.define([
 			this._oDialog.destroy();
 		}
 	},
-	
-	
-	onPress : function (oEvent) {	//발주서 눌렀을 때 
-//		var oItem = oEvent.getSource();
-		var oRouter = UIComponent.getRouterFor(this);
-//		var routerData = oItem.mAggregations.cells[1].mProperties.text;
-
-		var bCompact = !!this.getView().$().closest(".sapUiSizeCompact").length;
-		MessageBox.warning(
-				"발주서를 등록하시겠습니까?\n"  + "한번 발주서 등록 시 변경이 불가능합니다.",
-				{
-					icon: MessageBox.Icon.WARNING,
-					title: "발주서 등록",
-					actions: [sap.m.MessageBox.Action.OK, sap.m.MessageBox.Action.CANCEL],
-					styleClass: bCompact ? "sapUiSizeCompact" : "",
-					initialFocus: MessageBox.Action.CANCEL,
-					onClose: function(oAction){
-						if(oAction == 'OK'){
-							//abap 데이터 저장 로직 추가
-							oRouter.navTo("view7");
-						}
-					}
-				}
-		);
-	},
-	
 	save: function () {
+		var last = "";
+		var abc  = "";
+		var leg  = "";
+		var abcd = "";
+		var len  = "";
+		
+		var i;
+		var end = this.getView().getModel("GETPOSet").oData;
+		var leg = this.getView().getModel("GETPOSet").oData["GETPOSet"].length - 1;
+		last = end.GETPOSet[leg].PoNo;
+		abc = last.substr(2); // PO000001 자르기
+		
+		abcd = parseInt(abc) + 1; // int로 변환
+		len = abc.length - abcd.toString().length; for(i=0;i<len;i++)
+		{
+			abcd = "0" + abcd ;
+		};
+		abcd = "PO" + abcd ;
 		
 		var cont2model = this.getView().getModel("cont2").oData;
 		var length = this.getView().getModel("cont2").oData["cont2"].length;
@@ -275,6 +272,7 @@ sap.ui.define([
 	      
 	      var paramData =
 	      {
+	    		"PoNo" : abcd,
 	            "PoIndex" : poindex,
 	            "ContNo" : pocontno,
 	            "PoDate" : podate,
@@ -306,7 +304,34 @@ sap.ui.define([
 	      	});
 	      }
 		
-	}
+	},
+	
+	
+	onPress : function (oEvent) {	//발주서 눌렀을 때 
+//		var oItem = oEvent.getSource();
+		var oRouter = UIComponent.getRouterFor(this);
+//		var routerData = oItem.mAggregations.cells[1].mProperties.text;
+		var test = this.save();
+
+		var bCompact = !!this.getView().$().closest(".sapUiSizeCompact").length;
+		MessageBox.warning(
+				"발주서를 등록하시겠습니까?\n"  + "한번 발주서 등록 시 변경이 불가능합니다.",
+				{
+					icon: MessageBox.Icon.WARNING,
+					title: "발주서 등록",
+					actions: [sap.m.MessageBox.Action.OK, sap.m.MessageBox.Action.CANCEL],
+					styleClass: bCompact ? "sapUiSizeCompact" : "",
+					initialFocus: MessageBox.Action.CANCEL,
+					onClose: function(oAction){
+						if(oAction == 'OK'){
+							this.test;
+						}
+					}
+				}
+		);
+	},
+	
+	
 	
 });
 	

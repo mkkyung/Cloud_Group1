@@ -7,7 +7,7 @@
 	xmlns:fA="sap.ui.layout.form">
 
 	<App id="apps">
-		<Page title="view7 : 발주조회" showNavButton="true"
+		<Page title="발주 조회 화면" showNavButton="true"
 			navButtonPress="goBack">
 			<IconTabBar id="idIconTabBar"
 				select="handleIconTabBarSelect"
@@ -266,10 +266,20 @@
 							<Text text="{GETPOSet>PoCat3No}" />
 							<Text text="{GETPOSet>PoVname}" />
 							<Text text="{GETPOSet>PoAmt}" />
-							<Text text="{GETPOSet>PoEprice}" />
-							<Text text="{GETPOSet>PoTprice}" />
+							<ObjectNumber
+										number="{
+												parts:[{path: 'GETPOSet>PoEprice'},{path:'view>/currency'}],
+												type: 'sap.ui.model.type.Currency',
+												formatOptions: {showMeasure: false}
+												}"/>
+												
+							<ObjectNumber
+										number="{
+												parts:[{path: 'GETPOSet>PoTprice'},{path:'view>/currency'}],
+												type: 'sap.ui.model.type.Currency',
+												formatOptions: {showMeasure: false}
+												}"/>
 							<Text text="{GETPOSet>PoDdate}" />
-
 						</cells>
 					</ColumnListItem>
 				</items>

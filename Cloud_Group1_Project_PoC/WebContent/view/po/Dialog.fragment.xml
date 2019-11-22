@@ -11,7 +11,12 @@
 					<Text text="{cont>ContPname}" />
 					<Text text="{cont>ContCat3}" />
 					<Text text="{cont>ContAmt}" />
-					<Text text="{cont>ContPrice}" />
+					<ObjectNumber
+										number="{
+												parts:[{path: 'cont>ContPrice'},{path:'view>/currency'}],
+												type: 'sap.ui.model.type.Currency',
+												formatOptions: {showMeasure: false}
+												}"/>
 					<Text text="{cont>ContSdate}" />
 			</cells>
 		</ColumnListItem>

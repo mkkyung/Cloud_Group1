@@ -2,9 +2,10 @@ sap.ui
 		.define(
 				[ "sap/ui/core/mvc/Controller", "sap/ui/model/Filter",
 						"sap/ui/core/routing/History",
+						'sap/ui/model/json/JSONModel',
 						"sap/ui/core/UIComponent", "sap/ui/core/Fragment",
 						"sap/m/routing/Router" ],
-				function(Controller, Filter, History, UIComponent, Fragment,
+				function(Controller, Filter, History, JSONModel, UIComponent, Fragment, 
 						Router) {
 					"use strict";
 
@@ -74,10 +75,11 @@ sap.ui
 										onInit : function() {
 											this.GETPOSet();
 											
-											
-											
-											
-											
+//											통화 설정
+											var oViewModel = new JSONModel({
+												currency: "KRW"
+											});
+											this.getView().setModel(oViewModel, "view");
 										},
 
 										handleValueHelp : function(oEvent) {
