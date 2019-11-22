@@ -13,17 +13,16 @@
 <!--      id="idProductsTable2" -->
 <!--      class="sapUiResponsiveMargin" -->
 <!--      width="auto" -->
-<!--      items="{In>/data}" > -->
+<!--       > -->
 <!-- 	<headerToolbar> -->
 <!--          <Toolbar> -->
 <!--             <ToolbarSpacer/> -->
-<!--             <SearchField width="50%" search=".onFilterInvoices"/> -->
+<!--             <SearchField width="10%" search="onSearch"/> -->
 <!--          </Toolbar> -->
 <!--     </headerToolbar> -->
 <!-- 		<items> -->
 <!-- 			<ObjectListItem -->
 <!-- 					title="{invoice>Quantity} x {invoice>ProductName}"> -->
-
 <!-- 			</ObjectListItem> -->
 			
 <!-- 		</items> -->
@@ -34,16 +33,16 @@
 			<f:header>
 				<f:DynamicPageHeader pinnable="false">
 					<f:content>
-						<fb:FilterBar search="onSearch" useToolbar="false" showGoOnFB="false">
+						<fb:FilterBar search="onSearch" useToolbar="true" showGoOnFB="false" >
 							<fb:filterItems>
 								<fb:FilterItem name="A" label="공급업체명">
 									<fb:control>
 										<Select
 											id="vName"
-											forceSelection="true"
-											change="onSelectChange"
+											forceSelection="false"
+											change="onSearch"
 											items="{Ven>/data}">
-										<core:Item  text="{Ven>VName}"/>
+										<core:Item key="{Ven>VName}" text="{Ven>VName}"/>
 										</Select>
 									</fb:control>				
 								</fb:FilterItem>								
@@ -51,24 +50,29 @@
 									<fb:control>
 										<Select
 											id="pName"
-											change="onSelectChange"
-											forceSelection="true"
+											change="onSearch"
+											forceSelection="false"
 											items="{Pro>/data}">
-										<core:Item  text="{Pro>Cat3Name}"/>		
-										</Select>
-									</fb:control>				
-								</fb:FilterItem>				
-								<fb:FilterItem name="C" label="발주일자">
-									<fb:control>
-										<Select
-											id="poDate"
-											change="onSelectChange"
-											forceSelection="true"
-											items="{Po>/data}">
-										<core:Item text="{Po>/Podate}"/>
+										<core:Item key="{Pro>Cat3Name}" text="{Pro>Cat3Name}"/>		
 										</Select>
 									</fb:control>				
 								</fb:FilterItem>
+								<fb:FilterItem name="C">
+									<fb:control>
+										<Button text="전체검색" press="getData" width="20%"/>
+									</fb:control>
+								</fb:FilterItem>	
+<!-- 								<fb:FilterItem name="C" label="발주일자"> -->
+<!-- 									<fb:control> -->
+<!-- 										<Select -->
+<!-- 											id="poDate" -->
+<!-- 											change="onSelectChange" -->
+<!-- 											forceSelection="true" -->
+<!-- 											items="{Po>/data}"> -->
+<!-- 										<core:Item text="{Po>/Podate}"/> -->
+<!-- 										</Select> -->
+<!-- 									</fb:control>				 -->
+<!-- 								</fb:FilterItem> -->
 							</fb:filterItems>
 						</fb:FilterBar>
 					</f:content>
@@ -87,8 +91,19 @@
 					<columns>
 						<Column
 								minScreenWidth="Tablet"
-								demandPopin="true">
-							<Text text="제품명"/>
+								demandPopin="true"
+								mergeDuplicates="true">
+							<header>
+								<Text text="제품명"/>
+							</header>
+						</Column>
+						<Column
+								minScreenWidth="Tablet"
+								demandPopin="true"
+								mergeDuplicates="true">
+							<header>
+								<Text text="제품코드"/>
+							</header>
 						</Column>
 						<Column
 								minScreenWidth="Tablet"
@@ -98,7 +113,7 @@
 						<Column
 								minScreenWidth="Tablet"
 								demandPopin="true">
-							<Text text="발주수량"/>
+							<Text text="발주수량  "/>
 						</Column>
 						<Column
 								minScreenWidth="Tablet"
@@ -110,15 +125,11 @@
 								demandPopin="true">
 							<Text text="가용수량"/>
 						</Column>
+
 						<Column
 								minScreenWidth="Tablet"
 								demandPopin="true">
-							<Text text="발주/입고 일자"/>
-						</Column>
-						<Column
-								minScreenWidth="Tablet"
-								demandPopin="true">
-							<Text text="입고상태"/>
+							<Text text="발주상태"/>
 						</Column>
 						<Column
 								minScreenWidth="Tablet"
@@ -135,18 +146,20 @@
 								press=".onTablePress" 
 								id="idColumnListItem" >
 							<cells>
-								<ObjectIdentifier
-										title="{Po>PoPname}"
-										text="{Po>PoCat3}"/>
+<!-- 								<ObjectIdentifier -->
+<!-- 										text="{Po>PoPname}" -->
+<!-- 										/> -->
+								<Text text="{Po>PoPname}"/><!-- 제품명 -->
+								<Text text="{Po>PoCat3No}"/><!-- 제품코드 -->
 								<Text text="{Po>PoVname}"/>
-								<Text text="{Po>PoTotal}"/>
+								<Text text="{Po>PoTotal}"/><!-- 발주수량 -->
 								<Text text="{Po>InAmt}"/><!-- 입고수량 -->
 								<Text text="{Po>Inavail}" /><!-- 가용수량 -->
-								<ObjectIdentifier
-										title="{Po>PoPodate}"
-										text="{Po>PoEdate}"/>
+<!-- 								<ObjectIdentifier -->
+<!-- 										title="{Po>PoPodate}" -->
+<!-- 										text="{Po>PoEdate}"/> -->
 <!-- 								<Text text="{view>Zsect}"/> -->
-								<Text text="{Po>InIcon}"/><!-- 입고상태 -->
+								<Text text="{Po>PoLight}"/><!--입고상태  -->
 								<Button icon="sap-icon://action" press="onApproveDialog" ariaLabelledBy="actionButtonLabel"/>
 
 							</cells>

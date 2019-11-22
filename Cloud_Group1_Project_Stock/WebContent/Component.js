@@ -25,7 +25,7 @@ sap.ui.define([ "sap/ui/core/UIComponent", "sap/m/routing/Router" ], function(
 			init : function() {
 					UIComponent.prototype.init.apply(this, arguments);
 
-					this.getRouter().initialize(); // 라우팅
+//					this.getRouter().initialize(); // 라우팅
 					// 초기화
 
 				}

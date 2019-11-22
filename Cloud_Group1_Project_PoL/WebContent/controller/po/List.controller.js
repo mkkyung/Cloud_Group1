@@ -15,11 +15,7 @@ sap.ui
 										GETPOSet : function(PONO) {
 											var sServiceUrl = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000"
 												sServiceUrl += "/sap/opu/odata/sap/Z_CLOUD_PUOR_SRV";
-<<<<<<< HEAD
 											var url = "/GETPOSet";
-=======
-
->>>>>>> 118d01fe1ef2ac31eafbcd3fe8cd53924d28e0d3
 //											var sServiceUrl = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000/sap/opu/odata/sap/Z_CLOUD_PO_SRV";
 ////													+ "/sap/opu/odata/sap/Z_CLOUD_PO_SRV";
 											var LIGHT = this.getView().byId("idIconTabBar").getSelectedKey();
@@ -188,7 +184,10 @@ sap.ui
 											var oItem = oEvent.getSource();
 											var oRouter = UIComponent.getRouterFor(this);
 											var routerData = oItem.mAggregations.cells[0].mProperties.text;
-											this.onClose(oRouter, routerData);
+											var path = oItem.oBindingContexts.GETPOSet.sPath;
+											var rowIdx = path.split('/GETPOSet/')[1];
+											var rowData = this.getView().getModel("GETPOSet").oData.GETPOSet[rowIdx];
+											this.onClose(oRouter, routerData, rowData);
 											
 										},	
 											
@@ -248,8 +247,9 @@ sap.ui
 										
 											
 									
-										onClose: function(oRouter, routerData) {
+										onClose: function(oRouter, routerData, rowData) {
 											oRouter.navTo("poDetail", {
+												//poHeader : rowData,
 												poDetail : routerData
 											});
 										},
