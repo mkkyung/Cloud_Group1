@@ -89,6 +89,7 @@ sap.ui.define([
 		      });
 			
 			this.enter();
+			this.bus.publish("flexible", "setListPage");
 			
 		},
 		delete : function() {

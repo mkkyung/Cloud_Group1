@@ -9,7 +9,7 @@
 			showNavButton="true">
 			<headerContent>
 				<Button icon="sap-icon://add" press="handleCreatePress" />
-				<Button icon="sap-icon://excel-attachment" />
+				<Button icon="sap-icon://excel-attachment" press="onDataExport"/>
 			</headerContent>
 			<fb:FilterBar reset="onReset" search="search"
 				showRestoreButton="true" showClearButton="true" useToolbar="false">

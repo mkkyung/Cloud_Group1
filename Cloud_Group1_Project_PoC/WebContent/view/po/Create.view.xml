@@ -21,11 +21,19 @@
 					<Label text="계약서 조회" design="Bold" />
 					<Input id="productInput" type="Text"
 						textFormatMode="KeyValue" placeholder="계약번호 입력"
-						showValueHelp="true"
-						valueHelpRequest="handleTableSelectDialogPress">
-						<customData>
-							<core:CustomData key="multi" value="true" />
-						</customData>
+						showSuggestion="true" showValueHelp="true"
+						valueHelpRequest="handleValueHelp"
+						suggestionItems="{cont>/cont}"
+						suggestionItemSelected="suggestionItemSelected">
+<!-- 						showValueHelp="true" -->
+<!-- 						valueHelpRequest="handleTableSelectDialogPress"> -->
+<!-- 						<customData> -->
+<!-- 							<core:CustomData key="multi" value="true" /> -->
+<!-- 						</customData> -->
+						<suggestionItems>
+							<core:ListItem key="{cont>/ContNo}"
+								text="{cont>/ContNo}" additionalText="{cont>/ContNo}" />
+						</suggestionItems>
 					</Input>
 				</l:VerticalLayout>
 				<l:VerticalLayout>
@@ -71,7 +79,7 @@
 					<Input value="" />
 				</l:VerticalLayout>
 			</l:Grid>
-			<Table items="{GETPOSet>/GETPOSet}" id="esttable" inset="false">
+			<Table items="{cont>/cont}" id="esttable" inset="false">
 				<columns>
 					<Column minScreenWidth="Tablet" demandPopin="true"
 						mergeDuplicates="true">
@@ -115,18 +123,18 @@
 					<ColumnListItem vAlign="Middle" press=".onPress">
 						<cells>
 							<!-- <ObjectIdentifier title="{/data}" /> text="{ProductId}" -->
-							<Text text="{estlist>EstNo}" />
-							<Text text="{estlist>EstAva}" />
-							<Text text="{estlist>EstCat1}" />
-							<Text text="{estlist>EstCat2}" />
-							<Text text="{estlist>EstCat3}" />
-							<Text text="{estlist>EstVname}" />
-							<Text text="{estlist>EstVcode}" />
-							<Text text="{estlist>EstAmt}" />
-							<Text text="{estlist>EstPrice}" />
-							<Text text="{estlist>EstTotal}" />
-							<Text text="{estlist>EstCuky}" />
-							<Text text="{estlist>EstDate}" />
+							<Text text="{cont>ContNo}" />
+							<Text text="{cont>ContType}" />
+							<Text text="{cont>ContVname}" />
+							<Text text="{cont>ContCat1}" />
+							<Text text="{cont>ContCat2}" />
+							<Text text="{cont>ContPname}" />
+							<Text text="{cont>ContCat3}" />
+							<Text text="{cont>ContAmt}" />
+							<Text text="{cont>ContEprice}" />
+							<Text text="{cont>ContPrice}" />
+							<Text text="{cont>ContCuky}" />
+							<Text text="{cont>ContEdate}" />
 						</cells>
 					</ColumnListItem>
 				</items>

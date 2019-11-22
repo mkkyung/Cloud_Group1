@@ -9,7 +9,7 @@
 			showNavButton="true">
 			<headerContent>
 				<Button icon="sap-icon://add" press="handleCreatePress" />
-				<Button icon="sap-icon://excel-attachment" />
+				<Button icon="sap-icon://excel-attachment" press="onDataExport"/>
 			</headerContent>
 			<fb:FilterBar reset="onReset" search="onSearch"
 				showRestoreButton="true" showClearButton="true" useToolbar="false">
@@ -49,7 +49,7 @@
 			</fb:FilterBar>
 			<content>
 				<Table id="vendorTable" inset="false"
-					class="sapFDynamicPageAlignContent" width="auto">
+					class="sapFDynamicPageAlignContent" width="auto" items="{MainData>/MainData}">
 					<columns>
 						<Column>
 							<Text text="공급업체코드" />
@@ -80,157 +80,14 @@
 						<ColumnListItem type="Navigation"
 							press="handleMasterPress">
 							<cells>
-								<Text text="VE01" />
-								<Text text="SAP상사" />
-								<Text text="법인" />
-								<Text text="111-00-002001" />
-								<Text text="홍길동" />
-								<Text text="02-123-4566" />
-								<Text text="02-123-4577" />
-								<Text text="abc123d@naver.com" />
-							</cells>
-						</ColumnListItem>
-						<ColumnListItem type="Navigation"
-							press="handleMasterPress">
-							<cells>
-								<Text text="VE02" />
-								<Text text="ERP상사" />
-								<Text text="개인" />
-								<Text text="331-00-002001" />
-								<Text text="손경세" />
-								<Text text="02-654-4566" />
-								<Text text="02-987-4577" />
-								<Text text="oserps1@naver.com" />
-							</cells>
-						</ColumnListItem>
-						<ColumnListItem type="Navigation"
-							press="handleMasterPress">
-							<cells>
-								<Text text="VE03" />
-								<Text text="가나무역" />
-								<Text text="개인" />
-								<Text text="331-00-002001" />
-								<Text text="도현준" />
-								<Text text="02-654-4566" />
-								<Text text="02-987-4577" />
-								<Text text="oserps1@naver.com" />
-							</cells>
-						</ColumnListItem>
-						<ColumnListItem type="Navigation"
-							press="handleMasterPress">
-							<cells>
-								<Text text="VE04" />
-								<Text text="GEN상사" />
-								<Text text="개인" />
-								<Text text="331-00-002001" />
-								<Text text="박재현" />
-								<Text text="02-654-4566" />
-								<Text text="02-987-4577" />
-								<Text text="oserps1@naver.com" />
-							</cells>
-						</ColumnListItem>
-						<ColumnListItem type="Navigation"
-							press="handleMasterPress">
-							<cells>
-								<Text text="VE05" />
-								<Text text="온리랩탑" />
-								<Text text="개인" />
-								<Text text="331-00-002001" />
-								<Text text="김소정" />
-								<Text text="02-654-4566" />
-								<Text text="02-987-4577" />
-								<Text text="oserps1@naver.com" />
-							</cells>
-						</ColumnListItem>
-						<ColumnListItem type="Navigation"
-							press="handleMasterPress">
-							<cells>
-								<Text text="VE06" />
-								<Text text="신영물산" />
-								<Text text="개인" />
-								<Text text="331-00-002001" />
-								<Text text="신은지" />
-								<Text text="02-654-4566" />
-								<Text text="02-987-4577" />
-								<Text text="oserps1@naver.com" />
-							</cells>
-						</ColumnListItem>
-						<ColumnListItem type="Navigation"
-							press="handleMasterPress">
-							<cells>
-								<Text text="VE07" />
-								<Text text="세방물산" />
-								<Text text="개인" />
-								<Text text="331-00-002001" />
-								<Text text="이원중" />
-								<Text text="02-654-4566" />
-								<Text text="02-987-4577" />
-								<Text text="oserps1@naver.com" />
-							</cells>
-						</ColumnListItem>
-						<ColumnListItem type="Navigation"
-							press="handleMasterPress">
-							<cells>
-								<Text text="VE08" />
-								<Text text="삼성물산" />
-								<Text text="개인" />
-								<Text text="331-00-002001" />
-								<Text text="홍길동" />
-								<Text text="02-654-4566" />
-								<Text text="02-987-4577" />
-								<Text text="oserps1@naver.com" />
-							</cells>
-						</ColumnListItem>
-						<ColumnListItem type="Navigation"
-							press="handleMasterPress">
-							<cells>
-								<Text text="VE09" />
-								<Text text="영한상사" />
-								<Text text="개인" />
-								<Text text="331-00-002001" />
-								<Text text="김무경" />
-								<Text text="02-654-4566" />
-								<Text text="02-987-4577" />
-								<Text text="oserps1@naver.com" />
-							</cells>
-						</ColumnListItem>
-						<ColumnListItem type="Navigation"
-							press="handleMasterPress">
-							<cells>
-								<Text text="VE10" />
-								<Text text="SS상사" />
-								<Text text="개인" />
-								<Text text="331-00-002001" />
-								<Text text="기수옥" />
-								<Text text="02-654-4566" />
-								<Text text="02-987-4577" />
-								<Text text="oserps1@naver.com" />
-							</cells>
-						</ColumnListItem>
-						<ColumnListItem type="Navigation"
-							press="handleMasterPress">
-							<cells>
-								<Text text="VE11" />
-								<Text text="GW무역" />
-								<Text text="개인" />
-								<Text text="331-00-002001" />
-								<Text text="노기서" />
-								<Text text="02-654-4566" />
-								<Text text="02-987-4577" />
-								<Text text="oserps1@naver.com" />
-							</cells>
-						</ColumnListItem>
-						<ColumnListItem type="Navigation"
-							press="handleMasterPress">
-							<cells>
-								<Text text="VE12" />
-								<Text text="KI상사" />
-								<Text text="개인" />
-								<Text text="331-00-002001" />
-								<Text text="최진석" />
-								<Text text="02-654-4566" />
-								<Text text="02-987-4577" />
-								<Text text="oserps1@naver.com" />
+								<Text text="{MainData>VCode}" />
+								<Text text="{MainData>VName}" />
+								<Text text="{MainData>VCat}" />
+								<Text text="{MainData>VNo}" />
+								<Text text="{MainData>VCeo}" />
+								<Text text="{MainData>VTel}" />
+								<Text text="{MainData>VFax}" />
+								<Text text="{MainData>VEmail}" />
 							</cells>
 						</ColumnListItem>
 					</items>
