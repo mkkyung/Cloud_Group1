@@ -112,6 +112,8 @@ sap.ui.define([
 		            }
 		      });
 			
+			this.handleClose();
+			
 		},
 		handleClose : function() {                                                         // 닫기버튼
 			sap.ui.getCore().byId("__xmlview0--fcl").setLayout(sap.f.LayoutType.OneColumn);	

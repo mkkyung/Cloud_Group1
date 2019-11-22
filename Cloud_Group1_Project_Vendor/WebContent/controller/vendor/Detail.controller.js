@@ -50,6 +50,8 @@ sap.ui.define([
 			var VCode= this.getView().getModel("Detail").oData.DetailData.VCode;
 			
 			var VName = this.getView().byId("VName").getValue().toUpperCase();
+			
+			var VCeo = this.getView().byId("VCeo").getValue().toUpperCase();
 
 			var VCat = this.getView().byId("VCat").getValue().toUpperCase();
 
@@ -75,6 +77,7 @@ sap.ui.define([
 					"VName" : VName,
 					"VCat" : VCat,
 					"VNo" : VNo,
+					"VCeo" : VCeo,
 					"VAddr" : VAddr,
 					"VBs" : BsBc.split(" / ")[0],
 					"VBc" : BsBc.split(" / ")[1],

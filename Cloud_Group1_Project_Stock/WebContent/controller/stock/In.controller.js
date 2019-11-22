@@ -10,25 +10,81 @@ sap.ui.define([
 
 	return Controller.extend("Cloud_Group1_ProjectCloud_Group1_Project.controller.stock.In", {	//입고화면
 		onInit: function() {
-			this.getData('display');
-			this.getData('filter');
+			this.getData();
+//			this.getData();
 			
 		},
 		
+		 save: function (obj, arrPo) {
+			 
+		      var addr        = "proxy/https/zenedus4ap1.zenconsulting.co.kr:44300";
+		          addr        += "/sap/opu/odata/sap/Z_CLOUD_STOCK_SRV_01/ztg1_inSet";
+//		      addr         += "('"++"')";
+		      var a = parseInt(arrPo.InNoMax);
+		      var i;
+		      a++; 
+		      var len = arrPo.InNoMax.length - a.toString().length;
+		     
+//		      stringify(a);
+		      for(i=0;i<len;i++){
+		    	  a = "0" + a ;
+		      }
+		      var InEtc = "" ;
+		      for(i=32;i<obj.length-4;i++){
+		    	  InEtc = InEtc + obj[i] + " ";
+		      }
+		      var paramData = {
+		    		"InNo" : 'IN'+a,
+		            "InDate" : arrPo.PoDdate,
+		            "InEdate" :obj[25].substr(1),
+		            "InTotal" : parseInt(obj[31]),
+		            "InPic" : obj[27].substr(2),
+		            "InIcon" : obj[28],//*
+		            "InStock" : obj[30],
+		            "InPono" : arrPo.PoNo,
+		            "InPodate" : obj[26],
+		            "InPoamt" : parseInt(obj[29]),
+		            "InCat3" : obj[22],//*
+		            "InPname" : obj[21],
+		            "InVname" : obj[23],
+		            "InVcode" : obj[24],
+		            "InEtc" : InEtc
+		            
+		      };
+		      $.ajax({
+		         type : "POST",
+		         url  : addr,
+		         data : JSON.stringify(paramData),
+		            contentType: "application/json" ,
+		              success: function(aa, bb, cc) {
+		                 console.log("13 " + cc);
+		              },
+		            error: function(aa, bb, cc) { 
+		               console.log("23 " + cc);
+		            }
+		      });
+		   },
+	
 		onApproveDialog : function(oEvent){
+			var saveEvent = this.save;
+			
 			var oItem = oEvent.getSource();
 			
 			var oContext = oItem.getBindingContext("Po");
 			var sPath = oContext.getPath();
-//			var oIdProductsTable= this.byId("idProductsTable");
-//			oProductDetailPanel.bindElement({ path: sPath, model: "view" });
-			
-//	         var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-//	         var routerData = oItem.mAggregations.cells[0].mProperties.text;
-//	         routerData = oItem.getBindingContext("estlist").getPath().substr(1);
-//	         this.onClose(oRouter, 0);
+
 			var a = sPath.substr(6,7);
-		
+			var Inname=['김무경','노기서','기수옥','도현준','최진석'];
+			var InPic = ['A01','A02',"B01","B02","C01"];
+			var Indate= new Date();
+			var InIcon = ['입고완료', '입고대기']; var InIconNum;
+			if(oContext.oModel.oData.data[a].PoAmt <= oContext.oModel.oData.data[a].InAmt){
+				InIconNum = 0;
+			}else{
+				InIconNum = 1;
+			};
+//			var gd = this.getData();
+//			oEvent=this.getData();
 			var dialog = new sap.m.Dialog({
 				title: '입고등록',
 				type: 'Message',
@@ -41,42 +97,57 @@ sap.ui.define([
 								new Text({ text: '제품코드 :' }),
 								new Text({ text: '공급업체명 :' }),
 								new Text({ text: '공급업체코드 :' }),
-								new Text({ text: '입고완료일  : ' }),//5
-								new Text({ text: '발주수량 :' }),
-								new Text({ text: '입고수량 :  ' }),
-								new Text({ text: '입고담당:' }),
-								new Text({ text: '입고상태 :' }),
-								new Text({ text: '발주일자 :' })
+								new Text({ text: '\n입고완료일  : ' }),//5
+								new Text({ text: '발주일자 : ' }),
+								new Text({ text: '\n입고담당 : ' }),
+								new Text({ text: '입고상태 : ' }),
+								new Text({ text: '발주수량 : ' }),
+								new Text({ text: '입고위치 : ' }),
+								new Text({ text: '\n입고수량 : ' }),
+								new Text({ text: '비고 : ' })
+								
 							]
 						}),
 						new sap.ui.layout.VerticalLayout({
 							content: [
-								new Text({ text: oContext.oModel.oData.data[a].PoPname }),
-								new Text({ text: oContext.oModel.oData.data[a].PoCat3No }),
-								new Text({ text: oContext.oModel.oData.data[a].PoVname }),
-								new Text({ text: oContext.oModel.oData.data[a].PoVcode }),
-								new sap.m.TextArea({ value: oContext.oModel.oData.data[a].PoTotal,
-																height: '50px', width: '80%'}), //오늘 날짜**********
-								new Text({ text: oContext.oModel.oData.data[a].PoTotal }),
-								new Text({ text: oContext.oModel.oData.data[a].InAmt }),
-								new Text({ text: oContext.oModel.oData.data[a].PoVcode }),//입고담당
-								new Text({ text: oContext.oModel.oData.data[a].InIcon }),
-								new Text({ text: oContext.oModel.oData.data[a].PoDate}),
+								new Text({ text: oContext.oModel.oData.data[a].PoPname+" " }),
+								new Text({ text: oContext.oModel.oData.data[a].PoCat3No+" " }),
+								new Text({ text: oContext.oModel.oData.data[a].PoVname+" " }),
+								new Text({ text: oContext.oModel.oData.data[a].PoVcode+" " }),
+								new Text({ text:  '\n'+Indate.getUTCFullYear()+"-"
+													  +(Indate.getUTCMonth()+1)+"-"
+													  +Indate.getDate()+" "}), //오늘 날짜**********
+								new Text({ text: oContext.oModel.oData.data[a].PoDate+" "}),
+								new Text({ text: '\n\n'+Inname[a%5]+" " }),//입고담당*******
+								new Text({ text: InIcon[InIconNum]+" " }),
+								new Text({ text: oContext.oModel.oData.data[a].PoTotal+" " }),
+								new Text({ text: InPic[a%5]+" "}),
+								new sap.m.TextArea({ value: '\n'+oContext.oModel.oData.data[a].InAmt+" ", 
+																height: '30px', width: '80%'}),
 								
+								new sap.m.TextArea({ value: oContext.oModel.oData.data[a].PoEtc+" ", 
+																height: '30px', width: '80%'}),
+								new Text({text: "한번 등록하면 수정이 불가합니다."})
 								]
 						})
 					]
 				}),
-
+				
 				beginButton: new sap.m.Button({
-					text: 'Submit',
-					press: function () {
-						MessageToast.show('Submit pressed!');
+					text: '입고등록',
+					press: function (sAction) {
+						sap.m.MessageToast.show('Submit pressed!');
+//						dialog._$content.context.textContent.split(" ")
+						if(sAction.oSource.mProperties.text="입고등록"){
+							saveEvent(dialog._$content.context.textContent.split(" "),oContext.oModel.oData.data[a]);
+						}
 						dialog.close();
+//						gd();
+//						this.onTablePress();
 					}
 				}),
 				endButton: new sap.m.Button({
-					text: 'Cancel',
+					text: '취소',
 					press: function () {
 						dialog.close();
 					}
@@ -115,40 +186,36 @@ sap.ui.define([
 							content: [
 								new Text({ text: '제품명  : ' }),
 								new Text({ text: '제품코드 : ' }),
-								new Text({ text: '\n공급업체명 :' }),
-								new Text({ text: '공급업체코드 :' }),
-								new Text({ text: '\n발주수량 :' }),
-								new Text({ text: '입고수량 :' }),
-								new Text({ text: '입고상태:' }),
-								new Text({ text: '가용수량 :' }),
+								new Text({ text: '\n공급업체명 : ' }),
+								new Text({ text: '공급업체코드 : ' }),
+								new Text({ text: '\n발주수량 : ' }),
+								new Text({ text: '발주상태 : ' }),
+								new Text({ text: '입고수량 : ' }),
+//								new Text({ text: '발주상태 : ' }),
+								new Text({ text: '가용수량 : ' }),
 //								new Text({ text: '\n입고위치 :' }),
-								new Text({ text: '비고:' })
+								new Text({ text: '비고 : ' })
 							]
 						}),
 						new sap.ui.layout.VerticalLayout({//oItem.getBindingContext("view").oModel.oData.data[0]
 							content: [
-								new Text({ text: oItem.mAggregations.cells[0].mProperties.title}),//제품명
-								new Text({ text: oItem.getBindingContext("Po").oModel.oData.data[index[index.length-1]].PoCat3No}),//제품코드
-								new Text({ text: '\n'+oItem.mAggregations.cells[1].mProperties.text }),//공급업체명
-								new Text({ text: oItem.getBindingContext("Po").oModel.oData.data[index[index.length-1]].PoCat3No }),//공급업체코드
-								new Text({ text: '\n\n'+oItem.getBindingContext("Po").oModel.oData.data[index[index.length-1]].PoAmt }),//발주수량
-								new Text({ text: oItem.mAggregations.cells[3].mProperties.text }),//입고수량
-								new Text({ text: oItem.getBindingContext("Po").oModel.oData.data[index[index.length-1]].InIcon}),//입고상태
-								new Text({ text: oItem.getBindingContext("Po").oModel.oData.data[index[index.length-1]].Inavail }), //가용수량
-								new Text({ text: '\n'+oItem.getBindingContext("In").oModel.oData.data[index[index.length-1]].InStock }),//입고위치
+								new Text({ text: oItem.mAggregations.cells[0].mProperties.text}),//제품명
+								new Text({ text: oItem.mAggregations.cells[1].mProperties.text}),//제품코드
+								new Text({ text: '\n'+oItem.mAggregations.cells[2].mProperties.text }),//공급업체명
+								new Text({ text: oItem.getBindingContext("Po").oModel.oData.data[index[index.length-1]].PoVcode }),//공급업체코드
+								new Text({ text: '\n'+oItem.mAggregations.cells[3].mProperties.text  }),//발주수량
+								new Text({ text: oItem.mAggregations.cells[6].mProperties.text }),//발주상태**
+								new Text({ text: oItem.mAggregations.cells[4].mProperties.text  }),//입고수량
+//								new Text({ text: oItem.mAggregations.cells[4].mProperties.text}),//발주상태
+								new Text({ text: oItem.mAggregations.cells[5].mProperties.text }), //가용수량
+//								new Text({ text: '\n'+oItem.getBindingContext("Po").oModel.oData.data[index[index.length-1]].InStock }),//입고위치
 								new Text({ text: oItem.getBindingContext("Po").oModel.oData.data[index[index.length-1]].PoEtc })//비고
 							]
 						})
 					]
 				}),
 
-				beginButton: new sap.m.Button({
-					text: 'Submit',
-					press: function () {
-						MessageToast.show('Submit pressed!');
-						dialog.close();
-					}
-				}),
+				
 				endButton: new sap.m.Button({
 					text: 'Cancel',
 					press: function () {
@@ -255,14 +322,26 @@ sap.ui.define([
 	             dataPo = oData.results;
 	          });
 	        
-	         var i,j,x;
+	         var i,j,x,max=0;
 //	         dataIn.availAmt =0;
 //	         dataIn.SumAmt=0;
-	         
+	         var check = false;
 	         for(i=0;i<dataPo.length;i++)
 	         {//발주
+	        	 check = false;
 	        	 for(j=0;j<dataIn.length;j++)
 	        	 {//입고
+	        		 if(!check){
+	        			 if(max < dataIn[j].InNo.substr(2) ){
+	        				 max = dataIn[j].InNo.substr(2);
+	        			 }
+	        			 
+	        			 if(j == dataIn.length-1) {
+	        				 check = true;
+	        				 dataPo[i].InNoMax = max;
+	        			 }
+	        		 }
+	        		
 //		        	 입고.발주번호&제품코드 = 발주서.발주번호&제품코드
 	        		//dataPo[i].PoNo == dataIn[j].InPono &&
 		        	 if( dataPo[i].PoCat3No == dataIn[j].InCat3){	//동일한 제품이 들어오면
@@ -271,7 +350,17 @@ sap.ui.define([
 		        			 dataPo[i].Inavail = 0;
 		        		 }
 		        		 
-		        		 dataPo[i].Inavail += dataPo[i].InTotal;
+		        		 dataPo[i].Inavail += dataPo[i].PoTotal;
+		        		 
+		        		 
+//		        		 if(dataIn[j].InTatal == dataIn[j].InPoamt ){//입고 총 합 = 발주수량
+//		        			 dataIn[j].InIcon = '입고완료';
+//		        			 dataPo[i].InIcon = '입고완료';
+//		        		 }else{
+//		        			 dataIn[j].InIcon = '입고대기';
+//		        			 dataPo[i].InIcon = '입고대기';
+//		        		 }
+//		        		 dataPo[i].InIcon = dadtaIn[j].InIcon;
 		        		 
 		        		 for(x=0;x<dataOut.length;x++)
 			        	 {//분출
@@ -280,22 +369,17 @@ sap.ui.define([
 			        		 }
 			        	 }//분출for
 		        		 
-//		        		 dataPo[i].PoAmt - dataIn[j].InTotal;
-		        		 
-		        		 
 		        		
 		        	 }
 		        	 
-		        	 if(dataIn[j].Inavail == dataIn[j].InPoamt){//입고 총 합 = 발주수량
-	        			 dataIn[j].InIcon = '입고완료';
-	        			 dataPo[i].InIcon = '입고완료';
-	        		 }else{
-	        			 dataIn[j].InIcon = '입고대기';
-	        			 dataPo[i].InIcon = '입고대기';
-	        		 }
 		        	 
 	        	 }//입고for
 	         }//발주for
+	         
+	         
+	         dataPro.unshift({ "Cat3Name" : ""});
+	         dataVen.unshift({ "VName" : ""});
+	         
 	         var oModelIn = new sap.ui.model.json.JSONModel({ "data" : dataIn });
 	         var oModelOut = new sap.ui.model.json.JSONModel({ "data" : dataOut });
 	         var oModelPo = new sap.ui.model.json.JSONModel({ "data" : dataPo });
@@ -309,43 +393,6 @@ sap.ui.define([
 	         this.getView().setModel(oModelVen, "Ven"); 
 		},
 		
-		onFilterInvoices : function (oEvent) {
-			// build filter array
-			var aFilter = [];
-			var sQuery = oEvent.getParameter("query");
-			if (sQuery) {
-				aFilter.push(new Filter("InVname", FilterOperator.Contains, sQuery));
-//				aFilter.push(new Filter("제품명", FilterOperator.Contains, sQuery));
-//				aFilter.push(new Filter("발주일자", FilterOperator.Contains, sQuery));
-			}
-
-			// filter binding
-			var oList = this.byId("idProductsTable");
-			var oBinding = oList.getBinding("items");
-			oBinding.filter(aFilter);
-		},
-		
-//		filter : function(type){
-//			var url;
-//			if(type == 'filter'){//필터 검색
-//				var title = this.byId("slName");//.getValue();//.toUpperCase();
-////				var text = this.byId("text").getSelectedKey();
-//				var text = this.byId("slCategory");//.getValue();//.toUpperCase();
-//				
-//				if(title || text){
-//					url = "/getdata1Set?$filter=LvTitle eq '" + title + 
-//			  	   	  "' and LvText eq '" + text +"'";
-//				}else{
-//					url = "/getdata1Set";
-//				}
-//				
-//			}else if(type == 'display'){//조회
-//				url = "/getdata1Set";
-//			}
-//				
-//			return url;
-//		},
-
 		goBack : function(oEvent) {
 			var oHistory = History.getInstance();
 			var sPreviousHash = oHistory.getPreviousHash();
@@ -358,6 +405,36 @@ sap.ui.define([
 				alert("전 화면이 없습니다.");
 			}
 		},
+		
+		onSearch : function(oEvent) {
+			// build filter array
+//			var aFilterVen = [];
+			var aFilter;
+			var Pname = this.getView().byId("pName").getSelectedKey();
+			var Vname = this.getView().byId("vName").getSelectedKey();
+			
+			aFilter = new Filter([
+				new Filter("PoPname", FilterOperator.Contains, Pname),
+				new Filter("PoVname", FilterOperator.Contains, Vname)
+				], true);
+
+
+			// filter binding
+			var oList = this.byId("idProductsTable");
+			var oBinding = oList.getBinding("items");
+//			oBinding.filter(aFilterVen);			
+			oBinding.filter([]);			
+			oBinding.filter(aFilter);			
+			
+		},
+		
+		onAllSearch : function(oEvent){
+			 this.getView().setModel(oModelIn, "In"); 
+	         this.getView().setModel(oModelOut, "Out"); 
+	         this.getView().setModel(oModelPo, "Po"); 
+	         this.getView().setModel(oModelPro, "Pro"); 
+	         this.getView().setModel(oModelVen, "Ven"); 
+		}
 		
 	});
 });

@@ -191,7 +191,7 @@ sap.ui.define([
 				}, {
 					name : "통화단위",
 					template : {
-						content : "{Cat3Name}"
+						content : "{Cat3Cuky}"
 					}
 				}, {
 					name : "제조사",

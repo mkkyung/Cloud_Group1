@@ -66,9 +66,25 @@ sap.ui.define([
 		var PoIndex = this.getView().getModel("GETPOSet").oData.GETPOSet[0].PoIndex;     
 		var PoAmt = this.getView().getModel("GETPOSet").oData.GETPOSet[0].PoAmt;
 		
-//		var PoAmt = this.getView().byId("PoAmt");
-		
+		var poData = this.getView().getModel("GETPOSet").oData.GETPOSet; //리스트에 있는 데이터의 모든 row
 
+		for(var i = 0; i < poData.length; i++ ) {
+			var iPoNo = poData[i].PoNo;	
+			var iPoIndex = poData[i].PoIndex;	
+			var iPoAmt = poData[i].PoAmt;
+			
+			var addr        = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000/sap/opu/odata/sap/Z_CLOUD_PUOR_SRV/getcreateSet";
+		      	addr       += "(PoNo='"+iPoNo+"',PoIndex='"+iPoIndex+"')";
+		    var updateData = {
+		    		"PoNo" : iPoAmt,
+		    		"PoIndex" : iPoIndex,
+		    		"PoAmt" : Number(iPoAmt)
+		    };
+		      
+		    this.callAjax("PUT", addr, updateData); // 리스트 갯수만큼 돌릴려면 for문 안에 있어야해요 ^^
+		}
+
+<<<<<<< HEAD
 		var addr        = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000/sap/opu/odata/sap/Z_CLOUD_PUOR_SRV/GETCREATESet";
 			addr          += "('" + PoNo + "')";
 	       var updateData = {
@@ -79,6 +95,16 @@ sap.ui.define([
 	         type : "PUT",
 	         url  : addr,
 	         data : JSON.stringify(updateData),
+=======
+//	      this.enter();
+	
+	},
+	callAjax : function(type, url, data) {
+		$.ajax({
+	         type : type,
+	         url  : url,
+	         data : JSON.stringify(data),
+>>>>>>> 0b2be57e5868641324bf6823d92958abca7e8aeb
 	            contentType: "application/json" ,
 	              success: function(aa, bb, cc) {
 	                 console.log("13 " + cc);
@@ -87,11 +113,10 @@ sap.ui.define([
 	               console.log("23 " + cc);
 	            }
 	      });
-	      this.enter();
-	
+		this.enter();
 	},
 	
-		
+	
 		
 		
 		
@@ -102,9 +127,8 @@ sap.ui.define([
 		
 		handleClose : function() {                                                         // 닫기버튼
 			sap.ui.getCore().byId("__xmlview0--fcl").setLayout(sap.f.LayoutType.OneColumn);	
+			this.enter();
 		},
-		
-		
 		
 		
 		
@@ -121,7 +145,7 @@ sap.ui.define([
 		//임시 데이터 전달 필드
 		getData : function(filter){
 	        var sServiceUrl = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000"; // 로컬 서버 연결 하는 거 
-	        sServiceUrl += "/sap/opu/odata/sap/Z_CLOUD_PO_SRV";   // 여기를 /n/iwfnd/maint_service 에 들어가서 내가 만든 경로를 복사 해와야 함.
+	        sServiceUrl += "/sap/opu/odata/sap/Z_CLOUD_PUOR_SRV";   // 여기를 /n/iwfnd/maint_service 에 들어가서 내가 만든 경로를 복사 해와야 함.
 	        var url;
 	        url = "/GETPOSet?$filter=PPoNo eq '" + filter + "' and PPoCrud eq 'A'";
 //	        url = "/GETPOSet"
@@ -148,6 +172,7 @@ sap.ui.define([
 				var oRouter = UIComponent.getRouterFor(this);	//before screen in process flow
 				oRouter.navTo("view7", {}, true);
 			}
+			this.enter();
 		},
 		
 		goBack : function(oEvent) {

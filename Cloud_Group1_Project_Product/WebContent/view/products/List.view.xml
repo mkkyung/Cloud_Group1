@@ -5,7 +5,7 @@
 	xmlns:core="sap.ui.core" xmlns:fb="sap.ui.comp.filterbar"
 	xmlns:l="sap.ui.layout">
 	<App id="apps">
-		<Page title="Manage Products" class="sapUiContentPadding"
+		<Page title="상품 관리" class="sapUiContentPadding"
 			showNavButton="true">
 			<headerContent>
 				<Button icon="sap-icon://add" press="handleCreatePress" />
