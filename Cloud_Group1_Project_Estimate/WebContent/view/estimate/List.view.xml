@@ -5,12 +5,10 @@
 	xmlns:fb="sap.ui.comp.filterbar" xmlns:f="sap.f"
 	xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout">
 	<App id="apps">
-		<Page title="view2 : 견적상세" showNavButton="true"
+		<Page title="견적  조회" showNavButton="true"
 			navButtonPress="goBack">
 <!-- 			<Button text="button" press="getData" /> -->
-			<headerContent text="view2">
-				<Button text="검색" id="button" type="Accept" press=".onShow" />
-			</headerContent>
+			
 
 			<IconTabBar id="idIconTabBar"
 				select="IconTabFilter"
