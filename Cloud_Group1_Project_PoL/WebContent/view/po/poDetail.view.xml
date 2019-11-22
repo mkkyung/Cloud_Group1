@@ -17,15 +17,15 @@
 		<m:content>
 			<l:Grid defaultSpan="L4 M6 S6" class="white">
 				<l:VerticalLayout class="sapUiTinyMarginEnd">
-					<f:SimpleForm title="발주번호: PO0000001"
+					<f:SimpleForm title="발주번호: {GETPOSet>/GETPOSet/0/PoNo}"
 						layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="3"
 						labelSpanM="12" labelSpanS="12" adjustLabelSpan="false"
 						emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0"
 						columnsXL="2" columnsL="2" columnsM="1"
 						singleContainerFullSize="false" editable="false">
-						<m:Text text="발주상태: 승인" class="sapUiTinyMarginBottom" />
-						<m:Text text="발주일자: 2019-11-08" class="sapUiTinyMarginBottom" />
-						<m:Text text="입고예정일: 2019-11-22" class="sapUiTinyMarginBottom" />
+						<m:Text text="발주상태: {GETPOSet>/GETPOSet/0/PoLight}" class="sapUiTinyMarginBottom" />
+						<m:Text text="발주일자: {GETPOSet>/GETPOSet/0/PoDate}" class="sapUiTinyMarginBottom" />
+						<m:Text text="입고예정일: {GETPOSet>/GETPOSet/0/PoDdate}" class="sapUiTinyMarginBottom" />
 					</f:SimpleForm>
 				</l:VerticalLayout>
 				<l:VerticalLayout class="sapUiTinyMarginEnd">
@@ -38,11 +38,11 @@
 						<!-- <Title level="H2" titleStyle="H2" text="공급업체" -->
 						<!-- class="sapUiMediumMarginBottom" /> -->
 						<f:content>
-							<m:Text text="공급업체명 : 황금전자" class="sapUiTinyMarginBottom" />
-							<m:Text text="공급업체코드: VE01" class="sapUiTinyMarginBottom" />
-							<m:Text text="사업자등록번호: 4567107-22-684989123" class="sapUiTinyMarginBottom" />
-							<m:Text text="공급업체 주소: 서울특별시 성동구 청계천로10길 7 미림빌딩 2층" class="sapUiTinyMarginBottom" />
-							<m:Text text="대표자: 이다인" class="sapUiTinyMarginBottom" />
+							<m:Text text="공급업체명 : {GETPOSet>/GETPOSet/0/PoVname}" class="sapUiTinyMarginBottom" />
+							<m:Text text="공급업체코드: {GETPOSet>/GETPOSet/0/PoVcode}" class="sapUiTinyMarginBottom" />
+							<m:Text text="사업자등록번호: {GETPOSet>/GETPOSet/0/PoVno}" class="sapUiTinyMarginBottom" />
+							<m:Text text="공급업체  주소: {GETPOSet>/GETPOSet/0/PoVaddr}" class="sapUiTinyMarginBottom" />
+							<m:Text text="대표자: {GETPOSet>/GETPOSet/0/PoVco}" class="sapUiTinyMarginBottom" />
 						</f:content>
 					</f:SimpleForm>
 				</l:VerticalLayout>
@@ -53,9 +53,9 @@
 						emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2"
 						columnsM="1" singleContainerFullSize="false">
 						<m:Title class="sapUiMediumMarginBottom" />
-						<m:Text text="업태: 도소매" class="sapUiTinyMarginBottom" />
-						<m:Text text="종목: 사무기기 판매, 유통" class="sapUiTinyMarginBottom" />
-						<m:Text text="이메일: GOLDPRINT@NAVER.COM" class="sapUiTinyMarginBottom" />
+						<m:Text text="업태: {GETPOSet>/GETPOSet/0/PoVbs}" class="sapUiTinyMarginBottom" />
+						<m:Text text="종목: {GETPOSet>/GETPOSet/0/PoVbc}" class="sapUiTinyMarginBottom" />
+						<m:Text text="이메일: {GETPOSet>/GETPOSet/0/PoEmail}" class="sapUiTinyMarginBottom" />
 					</f:SimpleForm>
 				</l:VerticalLayout>
 			</l:Grid>
