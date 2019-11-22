@@ -58,7 +58,48 @@ sap.ui.define([
 		color : function() {															  //input 태그 valuestate 변경
 			this.editable(true, false, "Success");
 		},
+		
+		
+		
+		save : function() {
+		var PoNo = this.getView().getModel("GETPOSet").oData.GETPOSet[0].PoNo;	
+		var PoIndex = this.getView().getModel("GETPOSet").oData.GETPOSet[0].PoIndex;     
+		var PoAmt = this.getView().getModel("GETPOSet").oData.GETPOSet[0].PoAmt;
+		
+//		var PoAmt = this.getView().byId("PoAmt");
+		
 
+		var addr        = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000/sap/opu/odata/sap/Z_CLOUD_PUOR_SRV/GETCREATESet";
+	      addr          += "('" + PoNo + "')";
+	       var updateData = {
+					"PoAmt" : PoAmt
+	      };
+	      
+	      $.ajax({
+	         type : "PUT",
+	         url  : addr,
+	         data : JSON.stringify(updateData),
+	            contentType: "application/json" ,
+	              success: function(aa, bb, cc) {
+	                 console.log("13 " + cc);
+	              },
+	            error: function(aa, bb, cc) { 
+	               console.log("23 " + cc);
+	            }
+	      });
+	      this.enter();
+	
+	},
+	
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		handleClose : function() {                                                         // 닫기버튼
 			sap.ui.getCore().byId("__xmlview0--fcl").setLayout(sap.f.LayoutType.OneColumn);	
 		},
@@ -96,13 +137,7 @@ sap.ui.define([
 		},
 	
 		
-		
 	
-		onShow : function(oEvent){
-
-		
-		},
-		
 		cancel : function(oEvent) {
 			var oHistory = History.getInstance();
 			var sPreviousHash = oHistory.getPreviousHash();
