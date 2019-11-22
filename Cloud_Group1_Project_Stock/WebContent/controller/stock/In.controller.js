@@ -367,7 +367,7 @@ sap.ui.define([
 		        		 
 		        		 if( dataIn[j].InIcon == '입고완료'){//안되는 상황 있을거 같음...
 		        			 dataPo[i].PoNowAmt = '';
-//		        			 dataPo[i].PoVisible = false;
+		        			 dataPo[i].PoVisible = false;
 
 		        		 }
 //		        		 if(dataIn[j].InTatal == dataIn[j].InPoamt ){//입고 총 합 = 발주수량
