@@ -10,7 +10,7 @@
 				visible="{edit>/Edit}" press="edit" />
 			<!-- press=".onShow" /> -->
 			<m:Button id="enter" icon="sap-icon://save" type="Emphasized"
-				visible="{enter>/Enter}" press="enter" />
+				visible="{enter>/Enter}" press="save" />
 			<m:Button type="Accept" id="cancel" text="취소" press="cancel" />
 		</m:headerContent>
 

@@ -226,7 +226,7 @@ sap.ui.define([
 	      };
 	      
 	      $.ajax({
-	         type : "POST",
+	         type : "GET",
 	         url  : addr,
 	         data : JSON.stringify(paramData),
 	            contentType: "application/json" ,
