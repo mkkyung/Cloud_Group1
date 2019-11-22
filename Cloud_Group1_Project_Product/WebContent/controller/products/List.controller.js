@@ -25,9 +25,9 @@ sap.ui.define([
 				var url = inputData[0] != "" ? "/ZTG1_CAT3Set?$filter=Cat1Name eq '" + inputData[0] + "'" : ""
 					url	+= inputData[1] != "" ? " and Cat2Name eq '" + inputData[1] + "'" : ""
 					url	+= inputData[2] != "" ? " and Cat3Name eq '" + inputData[2] + "'" : ""
-					url	+= inputData[3] != "" ? " and Cat3Made eq '" + inputData[3] + "'" : "";
-//					url	+= " and Cat3Date eq '" + inputData[4] + "'"
-//					url	+= " and Cat3Date eq '" + inputData[5] + "'";
+					url	+= inputData[3] != "" ? " and Cat3Made eq '" + inputData[3] + "'" : ""
+					url	+= inputData[4] != "" ? " and Cat3Date eq '" + inputData[4] + "'" : ""
+					url	+= inputData[5] != "" ? " and Cat3Date eq '" + inputData[5] + "'" : ""
 			} else {
 				var url = "/ZTG1_CAT3Set";
 			}

@@ -70,7 +70,7 @@ sap.ui.define([
 		
 
 		var addr        = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000/sap/opu/odata/sap/Z_CLOUD_PUOR_SRV/GETCREATESet";
-	      addr          += "('" + PoNo + "')";
+			addr          += "('" + PoNo + "')";
 	       var updateData = {
 					"PoAmt" : PoAmt
 	      };
