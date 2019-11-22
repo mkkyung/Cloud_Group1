@@ -86,7 +86,7 @@
 						<Column>
 							<m:Label text="상품코드" />
 							<template>
-								<m:Text text="{GETPOSet>PoCat3}" />
+								<m:Text text="{GETPOSet>PoCat3No}" />
 							</template>
 						</Column>
 						<Column>
@@ -105,14 +105,24 @@
 						<Column>
 							<m:Label text="단가" />
 							<template>
-								<m:Text text="{GETPOSet>PoEprice}" />
+							<m:ObjectNumber
+										number="{
+												parts:[{path: 'GETPOSet>PoEprice'},{path:'view>/currency'}],
+												type: 'sap.ui.model.type.Currency',
+												formatOptions: {showMeasure: false}
+												}"/>
 							</template>
 						</Column>
 
 						<Column>
 							<m:Label text="합계" />
 							<template>
-								<m:Text text="{GETPOSet>PoTprice}" />
+							<m:ObjectNumber
+										number="{
+												parts:[{path: 'GETPOSet>PoTprice'},{path:'view>/currency'}],
+												type: 'sap.ui.model.type.Currency',
+												formatOptions: {showMeasure: false}
+												}"/>
 							</template>
 						</Column>
 					</columns>

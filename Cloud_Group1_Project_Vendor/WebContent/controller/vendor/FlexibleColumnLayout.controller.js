@@ -75,7 +75,7 @@ sap.ui.define([
 			
 			if (!this.createView) {
 				this.createView = sap.ui.view({
-					id: "midView2",
+					id: "midView7",
 					viewName: "Cloud_Group1_ProjectCloud_Group1_Project.view.vendor.Create",
 					type: "XML"
 				});

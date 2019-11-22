@@ -160,7 +160,9 @@
 <!-- 										text="{Po>PoEdate}"/> -->
 <!-- 								<Text text="{view>Zsect}"/> -->
 								<Text text="{Po>PoLight}"/><!--입고상태  -->
+
 								<Button icon="sap-icon://add-coursebook" visible="{Po>PoVisible}" press="onApproveDialog" ariaLabelledBy="actionButtonLabel"/>
+
 
 							</cells>
 						</ColumnListItem>

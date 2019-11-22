@@ -55,6 +55,11 @@ sap.ui.define([
 		onInit: function() {
 			this.GETPOSet();
 			this.GETContset();
+			
+			var oViewModel = new JSONModel({
+				currency: "KRW"
+			});
+			this.getView().setModel(oViewModel, "view");
 		
 //		var oModel = new JSONModel(jQuery.sap.getModulePath("sap.ui.demo.mock", "/products.json"));
 //		// the default limit of the model is set to 100. We want to show all the entries.
@@ -194,6 +199,9 @@ sap.ui.define([
 		});
 		var oModel = new sap.ui.model.json.JSONModel({ "cont2" : list });
 		this.getView().setModel(oModel , "cont2");
+		
+
+//		this.save(length,cont2model);
 	},
 	
 	onExit : function () {
@@ -201,12 +209,109 @@ sap.ui.define([
 			this._oDialog.destroy();
 		}
 	},
+	save: function () {
+		var last = "";
+		var abc  = "";
+		var leg  = "";
+		var abcd = "";
+		var len  = "";
+		
+		var i;
+		var end = this.getView().getModel("GETPOSet").oData;
+		var leg = this.getView().getModel("GETPOSet").oData["GETPOSet"].length - 1;
+		last = end.GETPOSet[leg].PoNo;
+		abc = last.substr(2); // PO000001 자르기
+		
+		abcd = parseInt(abc) + 1; // int로 변환
+		len = abc.length - abcd.toString().length; for(i=0;i<len;i++)
+		{
+			abcd = "0" + abcd ;
+		};
+		abcd = "PO" + abcd ;
+		
+		var cont2model = this.getView().getModel("cont2").oData;
+		var length = this.getView().getModel("cont2").oData["cont2"].length;
+	      var podate = "",
+	      potype = "",
+	      poddate = "",
+	      pocontno = "",
+	      poindex = "",
+	      pocat3no = "",
+	      popname = "",
+	      povname = "",
+	      povcode = "",
+	      povno = "",
+	      pototal = "",
+//	      poamt = "",
+	      poemail = "",
+	      poeprice = "",
+	      potprice = "",
+	      pocuky = "";
+	      var iii = "0";
+	      
+	      for (iii = 0 ; iii < length ; iii++){
+	      podate = this.getView().byId("ContSdate").getValue(),
+	      potype = this.getView().byId("ContType").getValue(),
+	      poddate = this.getView().byId("ConDdate").getValue(),
+	      pocontno = cont2model.cont2[iii].ContNo,
+	      poindex = cont2model.cont2[iii].ContIndex,
+	      pocat3no = cont2model.cont2[iii].ContCat3,
+	      popname = cont2model.cont2[iii].ContPname,
+	      povname = cont2model.cont2[iii].ContVname,
+	      povcode = cont2model.cont2[iii].ContVcode,
+	      povno = cont2model.cont2[iii].ContVno,
+	      pototal = cont2model.cont2[iii].ContAmt,
+//	      poamt = cont2model.cont2[0].ContCat3,
+	      poemail = cont2model.cont2[iii].ContEmail,
+	      poeprice = cont2model.cont2[iii].ContEprice,
+	      potprice = cont2model.cont2[iii].ContPrice,
+	      pocuky = cont2model.cont2[iii].ContCuky;
+	      
+	      var addr        = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000";
+	      addr          += "/sap/opu/odata/sap/Z_CLOUD_PUOR_SRV/getcreateSet";
+	      
+	      var paramData =
+	      {
+	    		"PoNo" : abcd,
+	            "PoIndex" : poindex,
+	            "ContNo" : pocontno,
+	            "PoDate" : podate,
+	            "PoType" : potype,
+	            "PoDdate" : poddate,
+	            "PoCat3No" : pocat3no,
+	            "PoPname" : popname,
+	            "PoVname" : povname,
+	            "PoVcode" : povcode,
+	            "PoVno" : povno,
+	            "PoTotal" : pototal,
+	            "PoEmail" : poemail,
+	            "PoEprice" : poeprice,
+	            "PoTprice" : potprice,
+	            "PoCuky" : pocuky,
+	      };
+	      
+	      $.ajax({
+	         type : "POST",
+	         url  : addr,
+	         data : JSON.stringify(paramData),
+	            contentType: "application/json" ,
+	              success: function(aa, bb, cc) {
+	                 console.log("13 " + cc);
+	              },
+	            error: function(aa, bb, cc) { 
+	               console.log("23 " + cc);
+	            }
+	      	});
+	      }
+		
+	},
 	
 	
 	onPress : function (oEvent) {	//발주서 눌렀을 때 
 //		var oItem = oEvent.getSource();
 		var oRouter = UIComponent.getRouterFor(this);
 //		var routerData = oItem.mAggregations.cells[1].mProperties.text;
+		var test = this.save();
 
 		var bCompact = !!this.getView().$().closest(".sapUiSizeCompact").length;
 		MessageBox.warning(
@@ -219,46 +324,14 @@ sap.ui.define([
 					initialFocus: MessageBox.Action.CANCEL,
 					onClose: function(oAction){
 						if(oAction == 'OK'){
-							//abap 데이터 저장 로직 추가
-							oRouter.navTo("view7");
+							this.test;
 						}
 					}
 				}
 		);
 	},
 	
-	save: function () {
-//	      var category   = this.getView().byId("category").getSelectedKey();
-//	      var title      = this.getView().byId("title").getValue();
-//	      var content      = this.getView().byId("content").getValue();
-//	      var user      = this.getView().byId("user").getValue();
-	      var addr        = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000";
-	      addr          += "/sap/opu/odata/sap/Z_CLOUD_PUOR_SRV/GETCREATESet";
-//	      addr         += "(Po_no='PO0000009')";
-	      
-	      var paramData = 
-	      {
-	            "PoIndex" : "A",
-	            "PoLight" : "유효",
-//	            "PoDate" : "20191014"
-//	            "PoEprice" : 3600
-	      };
-	      
-	      $.ajax({
-	         type : "GET",
-	         url  : addr,
-	         data : JSON.stringify(paramData),
-	            contentType: "application/json" ,
-	              success: function(aa, bb, cc) {
-	                 console.log("13 " + cc);
-	              },
-	            error: function(aa, bb, cc) { 
-	               console.log("23 " + cc);
-	            }
-	      });
-	   }
-
-
+	
 	
 });
 	

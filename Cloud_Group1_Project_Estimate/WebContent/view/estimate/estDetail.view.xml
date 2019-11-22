@@ -2,17 +2,17 @@
 	controllerName="Cloud_Group1_ProjectCloud_Group1_Project.controller.estimate.estDetail"
 	xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
 	xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
-	<Page title="견적서 상세 화면" showNavButton="true"
+	<Page title="견적 상세" showNavButton="true"
 		navButtonPress="goBack">
 		<headerContent>
-			<Button type="Accept" text="계약서 등록" id="button"
-				press=".onShow" />
+<!-- 			<Button type="Accept" text="계약서 등록" id="button" -->
+<!-- 				press=".onShow" /> -->
 		</headerContent>
 
 		<content>
 			<l:Grid defaultSpan="L4 M4 S4" class="white">
 				<l:VerticalLayout class="sapUiTinyMarginEnd" width="100%">
-					<f:SimpleForm title="견적번호"
+					<f:SimpleForm title="{estlist>/estlist/0/EstNo}"
 						layout="ResponsiveGridLayout" labelSpanXL="12" labelSpanL="12"
 						labelSpanM="12" labelSpanS="12" adjustLabelSpan="false"
 						emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0"
@@ -21,26 +21,29 @@
 						<Label text="유효여부 " />
 						<Text text="{estlist>/estlist/0/EstCat1}" class="sapUiTinyMarginBottom" />
 						<Label text="상품명 " />
-						<Text text="OA-W123" class="sapUiTinyMarginBottom" />
+						<Text text="{estlist>/estlist/0/EstPname}" class="sapUiTinyMarginBottom" />
 						<Label text="총 합계 " />
 						<Text text="{sum>/sum}" class="sapUiTinyMarginBottom" />
 					</f:SimpleForm>
 				</l:VerticalLayout>
 				<l:VerticalLayout class="sapUiTinyMarginEnd" width="100%">
-					<f:SimpleForm title="공급업체"
+					<f:SimpleForm title="공급업체  정보"
 						layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="3"
 						labelSpanM="12" labelSpanS="12" adjustLabelSpan="false"
 						emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0"
 						columnsXL="2" columnsL="2" columnsM="1"
 						singleContainerFullSize="false">
-						<Title level="H2" titleStyle="H2" text="공급업체"
-						class="sapUiMediumMarginBottom" />
 						<f:content>
-							<Text text="공급업체명 : ERP상사" class="sapUiTinyMarginBottom" />
-							<Text text="공급업체코드 : VE01" class="sapUiTinyMarginBottom" />
-							<Text text="사업자등록번호 : 110-32-29342" class="sapUiTinyMarginBottom" />
-							<Text text="공급업체 주소 : 서울 동대문구 제기로 29길 12, 2층" class="sapUiTinyMarginBottom" />
-							<Text text="대표자 : 손경세" class="sapUiTinyMarginBottom" />
+							<Label text="공급업체명 " />
+							<Text text="{estlist>/estlist/0/EstVname}" class="sapUiTinyMarginBottom" />
+							<Label text="공급업체코드 " />
+							<Text text="{estlist>/estlist/0/EstVcode}" class="sapUiTinyMarginBottom" />
+							<Label text="사업자등록번호  " />
+							<Text text="{estlist>/estlist/0/EstVno}" class="sapUiTinyMarginBottom" />
+							<Label text="공급업체 주소 " />
+							<Text text="{estlist>/estlist/0/EstAddr}" class="sapUiTinyMarginBottom" />
+							<Label text="대표자 " />
+							<Text text="{estlist>/estlist/0/EstCeo}" class="sapUiTinyMarginBottom" />
 						</f:content>
 					</f:SimpleForm>
 				</l:VerticalLayout>
@@ -51,9 +54,12 @@
 						emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2"
 						columnsM="1" singleContainerFullSize="false">
 						<Title class="sapUiMediumMarginBottom" />
-						<Text text="업태 : 도소매" class="sapUiTinyMarginBottom" />
-						<Text text="종목 : 사무기기판매" class="sapUiTinyMarginBottom" />
-						<Text text="이메일 : asd123@naver.com" class="sapUiTinyMarginBottom" />
+						<Label text="업태 " />
+						<Text text="{estlist>/estlist/0/EstBc}" class="sapUiTinyMarginBottom" />
+						<Label text="종목  " />
+						<Text text="{estlist>/estlist/0/EstBs}" class="sapUiTinyMarginBottom" />
+						<Label text="이메일" />
+						<Text text="{estlist>/estlist/0/EstEmail}" class="sapUiTinyMarginBottom" />
 					</f:SimpleForm>
 				</l:VerticalLayout>
 			</l:Grid>
