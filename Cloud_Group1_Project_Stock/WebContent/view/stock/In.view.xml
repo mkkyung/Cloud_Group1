@@ -113,12 +113,12 @@
 						<Column
 								minScreenWidth="Tablet"
 								demandPopin="true">
-							<Text text="발주수량  "/>
+							<Text text="현재 발주수량  "/>
 						</Column>
 						<Column
 								minScreenWidth="Tablet"
 								demandPopin="true">
-							<Text text="입고수량"/>
+							<Text text="총 입고수량"/>
 						</Column>
 						<Column
 								minScreenWidth="Tablet"
@@ -152,7 +152,7 @@
 								<Text text="{Po>PoPname}"/><!-- 제품명 -->
 								<Text text="{Po>PoCat3No}"/><!-- 제품코드 -->
 								<Text text="{Po>PoVname}"/>
-								<Text text="{Po>PoTotal}"/><!-- 발주수량 -->
+								<Text text="{Po>PoNowAmt}"/><!-- 발주수량 -->
 								<Text text="{Po>InAmt}"/><!-- 입고수량 -->
 								<Text text="{Po>Inavail}" /><!-- 가용수량 -->
 <!-- 								<ObjectIdentifier -->
@@ -160,7 +160,7 @@
 <!-- 										text="{Po>PoEdate}"/> -->
 <!-- 								<Text text="{view>Zsect}"/> -->
 								<Text text="{Po>PoLight}"/><!--입고상태  -->
-								<Button icon="sap-icon://action" press="onApproveDialog" ariaLabelledBy="actionButtonLabel"/>
+								<Button icon="sap-icon://add-coursebook" visible="{Po>PoVisible}" press="onApproveDialog" ariaLabelledBy="actionButtonLabel"/>
 
 							</cells>
 						</ColumnListItem>
