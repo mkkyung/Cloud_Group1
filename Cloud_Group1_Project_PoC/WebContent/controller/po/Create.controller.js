@@ -194,6 +194,9 @@ sap.ui.define([
 		});
 		var oModel = new sap.ui.model.json.JSONModel({ "cont2" : list });
 		this.getView().setModel(oModel , "cont2");
+		
+
+//		this.save(length,cont2model);
 	},
 	
 	onExit : function () {
@@ -228,24 +231,69 @@ sap.ui.define([
 	},
 	
 	save: function () {
-//	      var category   = this.getView().byId("category").getSelectedKey();
-//	      var title      = this.getView().byId("title").getValue();
-//	      var content      = this.getView().byId("content").getValue();
-//	      var user      = this.getView().byId("user").getValue();
-	      var addr        = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000";
-	      addr          += "/sap/opu/odata/sap/Z_CLOUD_PUOR_SRV/GETCREATESet";
-//	      addr         += "(Po_no='PO0000009')";
+		
+		var cont2model = this.getView().getModel("cont2").oData;
+		var length = this.getView().getModel("cont2").oData["cont2"].length;
+	      var podate = "",
+	      potype = "",
+	      poddate = "",
+	      pocontno = "",
+	      poindex = "",
+	      pocat3no = "",
+	      popname = "",
+	      povname = "",
+	      povcode = "",
+	      povno = "",
+	      pototal = "",
+//	      poamt = "",
+	      poemail = "",
+	      poeprice = "",
+	      potprice = "",
+	      pocuky = "";
+	      var iii = "0";
 	      
-	      var paramData = 
+	      for (iii = 0 ; iii < length ; iii++){
+	      podate = this.getView().byId("ContSdate").getValue(),
+	      potype = this.getView().byId("ContType").getValue(),
+	      poddate = this.getView().byId("ConDdate").getValue(),
+	      pocontno = cont2model.cont2[iii].ContNo,
+	      poindex = cont2model.cont2[iii].ContIndex,
+	      pocat3no = cont2model.cont2[iii].ContCat3,
+	      popname = cont2model.cont2[iii].ContPname,
+	      povname = cont2model.cont2[iii].ContVname,
+	      povcode = cont2model.cont2[iii].ContVcode,
+	      povno = cont2model.cont2[iii].ContVno,
+	      pototal = cont2model.cont2[iii].ContAmt,
+//	      poamt = cont2model.cont2[0].ContCat3,
+	      poemail = cont2model.cont2[iii].ContEmail,
+	      poeprice = cont2model.cont2[iii].ContEprice,
+	      potprice = cont2model.cont2[iii].ContPrice,
+	      pocuky = cont2model.cont2[iii].ContCuky;
+	      
+	      var addr        = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000";
+	      addr          += "/sap/opu/odata/sap/Z_CLOUD_PUOR_SRV/getcreateSet";
+	      
+	      var paramData =
 	      {
-	            "PoIndex" : "A",
-	            "PoLight" : "유효",
-//	            "PoDate" : "20191014"
-//	            "PoEprice" : 3600
+	            "PoIndex" : poindex,
+	            "ContNo" : pocontno,
+	            "PoDate" : podate,
+	            "PoType" : potype,
+	            "PoDdate" : poddate,
+	            "PoCat3No" : pocat3no,
+	            "PoPname" : popname,
+	            "PoVname" : povname,
+	            "PoVcode" : povcode,
+	            "PoVno" : povno,
+	            "PoTotal" : pototal,
+	            "PoEmail" : poemail,
+	            "PoEprice" : poeprice,
+	            "PoTprice" : potprice,
+	            "PoCuky" : pocuky,
 	      };
 	      
 	      $.ajax({
-	         type : "GET",
+	         type : "POST",
 	         url  : addr,
 	         data : JSON.stringify(paramData),
 	            contentType: "application/json" ,
@@ -255,10 +303,10 @@ sap.ui.define([
 	            error: function(aa, bb, cc) { 
 	               console.log("23 " + cc);
 	            }
-	      });
-	   }
-
-
+	      	});
+	      }
+		
+	}
 	
 });
 	

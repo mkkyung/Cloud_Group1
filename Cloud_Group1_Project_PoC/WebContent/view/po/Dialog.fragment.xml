@@ -16,9 +16,9 @@
 			</cells>
 		</ColumnListItem>
 		<columns>
-			<Column>
+			<Column mergeDuplicates="true">
 				<header>
-					<Text text="계약번호" minScreenWidth="Desktop" demandPopin="true"/>
+					<Text text="계약번호" minScreenWidth="Desktop" demandPopin="true" />
 				</header>
 			</Column>
 			<Column minScreenWidth="Tablet" demandPopin="true">

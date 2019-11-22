@@ -42,41 +42,41 @@
 				</l:VerticalLayout>
 				<l:VerticalLayout>
 					<Label text="계약일자" design="Bold" />
-					<Input />
+					<DatePicker id="ContSdate" value="{cont2>/cont2/0/ContSdate}" valueFormat="yyyyMMdd" displayFormat="yyyy-MM-dd"/>
 				</l:VerticalLayout>
 				<l:VerticalLayout>
 					<Label text="발주일자" design="Bold" />
-					<DatePicker />
+					<DatePicker id="ConDdate" valueFormat="yyyyMMdd" displayFormat="yyyy-MM-dd"/>
 				</l:VerticalLayout>
-				<l:VerticalLayout>
-					<Label text="발주 담당자" design="Bold" />
-					<Input />
-				</l:VerticalLayout>
+<!-- 				<l:VerticalLayout> -->
+<!-- 					<Label text="발주 담당자" design="Bold" /> -->
+<!-- 					<Input id="ContManager" value=""/> -->
+<!-- 				</l:VerticalLayout> -->
 			</l:Grid>
 			<l:Grid defaultSpan="L2">
 				<l:VerticalLayout>
 					<Label text="공급업체코드" design="Bold" />
-					<Input value="" />
+					<Input id="ContVcode" value="{cont2>/cont2/0/ContVcode}"/>
 				</l:VerticalLayout>
 				<l:VerticalLayout>
 					<Label text="공급업체명" design="Bold" />
-					<Input value="" />
+					<Input id="ContVname" value="{cont2>/cont2/0/ContVname}" />
 				</l:VerticalLayout>
 				<l:VerticalLayout>
 					<Label text="사업자등록번호" design="Bold" />
-					<Input />
+					<Input id="ContVno" value="{cont2>/cont2/0/ContVno}"/>
 				</l:VerticalLayout>
-				<l:VerticalLayout>
-					<Label text="전화번호" design="Bold" />
-					<Input value="" />
-				</l:VerticalLayout>
-				<l:VerticalLayout>
-					<Label text="팩스" design="Bold" />
-					<Input value="" />
-				</l:VerticalLayout>
+<!-- 				<l:VerticalLayout> -->
+<!-- 					<Label text="전화번호" design="Bold" /> -->
+<!-- 					<Input value=""/> -->
+<!-- 				</l:VerticalLayout> -->
+<!-- 				<l:VerticalLayout> -->
+<!-- 					<Label text="팩스" design="Bold" /> -->
+<!-- 					<Input  value=""/> -->
+<!-- 				</l:VerticalLayout> -->
 				<l:VerticalLayout width="100%">
 					<Label text="이메일" design="Bold" />
-					<Input value="" />
+					<Input id="ContEmail" value="{cont2>/cont2/0/ContEmail}"/>
 				</l:VerticalLayout>
 			</l:Grid>
 			<Table items="{cont2>/cont2}" id="esttable" inset="false">
