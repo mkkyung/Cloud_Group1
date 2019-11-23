@@ -203,7 +203,7 @@ sap.ui.define([
 								new Text({ text: oItem.mAggregations.cells[1].mProperties.text}),//제품코드
 								new Text({ text: '\n'+oItem.mAggregations.cells[2].mProperties.text }),//공급업체명
 								new Text({ text: oItem.getBindingContext("Po").oModel.oData.data[index[index.length-1]].PoVcode }),//공급업체코드
-								new Text({ text: '\n'+oItem.mAggregations.cells[3].mProperties.text  }),//발주수량
+								new Text({ text: '\n\n'+oItem.mAggregations.cells[3].mProperties.text  }),//발주수량
 								new Text({ text: oItem.mAggregations.cells[6].mProperties.text }),//발주상태**
 								new Text({ text: oItem.mAggregations.cells[4].mProperties.text  }),//입고수량
 //								new Text({ text: oItem.mAggregations.cells[4].mProperties.text}),//발주상태
