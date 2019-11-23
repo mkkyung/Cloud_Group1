@@ -44,7 +44,7 @@
 				</l:VerticalLayout>
 				<l:VerticalLayout>
 					<Label text="발주일자" design="Bold" />
-					<DatePicker id="ConDdate" value="" valueFormat="yyyy-MM-dd" displayFormat="yyyy-MM-dd"/>
+					<DatePicker id="ConDdate" vlaue="" valueFormat="yyyy-MM-dd" displayFormat="yyyy-MM-dd"/>
 				</l:VerticalLayout>
 <!-- 				<l:VerticalLayout> -->
 <!-- 					<Label text="발주 담당자" design="Bold" /> -->

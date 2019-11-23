@@ -7,9 +7,14 @@
 			<cells>
 				<Text text="{estlist>EstNo}" />
 				<Text text="{estlist>EstType1}" />
-				<Text text="{estlist>EstData}" />
+				<Text text="{estlist>EstDate}" />
 				<Text text="{estlist>EstPname}" />
-				<ObjectIdentifier title="{estlist>EstTotla}" text="{estlist>EstCury}" />
+				<ObjectNumber
+										number="{
+												parts:[{path: 'estlist>EstPrice'},{path:'view>/currency'}],
+												type: 'sap.ui.model.type.Currency',
+												formatOptions: {showMeasure: false}
+												}"/>
 				<Text text="{estlist>EstVname}" />
 			</cells>
 		</ColumnListItem>
