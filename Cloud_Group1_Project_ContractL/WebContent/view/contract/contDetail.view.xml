@@ -4,16 +4,12 @@
 	xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
 	<Page title="계약서 상세 화면" showNavButton="true"
 		navButtonPress="goBack">
-		<headerContent>
-			<Button type="Accept" text="발주서 등록" id="button"
-				press=".onShow" />
-		</headerContent>
 
 		<content>
 <!-- 		<VBox items="{ContNo>/data}"> -->
 			<l:Grid defaultSpan="L4 M6 S6" class="white" >
 				<l:VerticalLayout class="sapUiTinyMarginEnd">
-					<f:SimpleForm title="계약번호"
+					<f:SimpleForm title="{ContNo>/data/0/ContNo}"
 						layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="3"
 						labelSpanM="12" labelSpanS="12" adjustLabelSpan="false"
 						emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0"
@@ -21,12 +17,13 @@
 						singleContainerFullSize="false" >
 						<Label text="계약상태" labelFor="name" design="Bold"
                                class="sapUiSmallMarginTop" />
-                        <Text text="{ContNo>/data/0/ContCat1}" class="sapUiTinyMarginBottom" />
-						 <Text text="계약구분 : " class="sapUiTinyMarginBottom" />
-					     <Text text="{ContNo>/data/0/ContCat1}" class="sapUiTinyMarginBottom" />	
-						
-						<Text text="계약일자" class="sapUiTinyMarginBottom" />
-						<Text text="{ContNo>ContCuky}" class="sapUiTinyMarginBottom" />
+                        <Text text="{ContNo>/data/0/ContLight}" class="sapUiTinyMarginBottom" />
+						 <Label text="계약구분" labelFor="name" design="Bold"
+                               class="sapUiSmallMarginTop" />
+					     <Text text="{ContNo>/data/0/ContType}" class="sapUiTinyMarginBottom" />	
+						<Label text="계약일자" labelFor="name" design="Bold"
+                               class="sapUiSmallMarginTop" />
+					     <Text text="{ContNo>/data/0/ContSdate}" class="sapUiTinyMarginBottom" />
 					</f:SimpleForm>
 				</l:VerticalLayout>
 				<l:VerticalLayout class="sapUiTinyMarginEnd">
@@ -39,24 +36,34 @@
 						<!-- <Title level="H2" titleStyle="H2" text="공급업체" -->
 						<!-- class="sapUiMediumMarginBottom" /> -->
 						<f:content>
-							<Text text="공급업체명" class="sapUiTinyMarginBottom"  />	
-							<Text text="공급업체코드" class="sapUiTinyMarginBottom" />
-							<Text text="사업자등록번호" class="sapUiTinyMarginBottom" />
-							<Text text="공급업체 주소" class="sapUiTinyMarginBottom" />
-							<Text text="대표자" class="sapUiTinyMarginBottom" />
+							<Label text="공급업체명" labelFor="name" design="Bold"
+                               class="sapUiSmallMarginTop" />
+                        <Text text="{ContNo>/data/0/ContVname}" class="sapUiTinyMarginBottom" />
+							<Label text="공급업체코드" labelFor="name" design="Bold"
+                               class="sapUiSmallMarginTop" />
+                        <Text text="{ContNo>/data/0/ContVcode}" class="sapUiTinyMarginBottom" />
+							<Label text="사업자등록번호" labelFor="name" design="Bold"
+                               class="sapUiSmallMarginTop" />
+                        <Text text="{ContNo>/data/0/ContVno}" class="sapUiTinyMarginBottom" />
+							<Label text="공급업체 주소" labelFor="name" design="Bold"
+                               class="sapUiSmallMarginTop" />
+                        <Text text="{ContNo>/data/0/ContAddr}" class="sapUiTinyMarginBottom" />
+						
 						</f:content>
 					</f:SimpleForm>
 				</l:VerticalLayout>
 				<l:VerticalLayout class="sapUiTinyMarginEnd">
-					<f:SimpleForm layout="ResponsiveGridLayout"
+					<f:SimpleForm layout="ResponsiveGridLayout" title=" "
 						labelSpanXL="4" labelSpanL="3" labelSpanM="12" labelSpanS="12"
 						adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
 						emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2"
 						columnsM="1" singleContainerFullSize="false">
-						<Title class="sapUiMediumMarginBottom" />
-						<Text text="업태" class="sapUiTinyMarginBottom" />
-						<Text text="종목" class="sapUiTinyMarginBottom" />
-						<Text text="이메일" class="sapUiTinyMarginBottom" />
+						<Label text="대표자" labelFor="name" design="Bold"
+                               class="sapUiSmallMarginTop" />
+                        <Text text="{ContNo>/data/0/ContVaddr}" class="sapUiTinyMarginBottom" />
+						<Label text="이메일" labelFor="name" design="Bold"
+                               class="sapUiSmallMarginTop" />
+                        <Text text="{ContNo>/data/0/ContEmail}" class="sapUiTinyMarginBottom" />
 					</f:SimpleForm>
 				</l:VerticalLayout>
 			</l:Grid>
@@ -102,7 +109,7 @@
 								<Text text="{ContNo>ContCat1}" />
 								<Text text="{ContNo>ContCat2}" />
 								<Text text="{ContNo>ContPname}" />
-								<Text text="{ContNo>ContPCat3}" />
+								<Text text="{ContNo>ContCat3}" />
 								<ObjectNumber
 							          number="{
 							             	   parts:[{path: 'ContNo>ContEprice'},{path:'view>/currency'}],
@@ -112,7 +119,7 @@
 								<Text text="{ContNo>ContAmt}" />
 								<ObjectNumber
 							          number="{
- 							             	   parts:[{path: 'ContNo>ContEprice'},{path:'view>/currency'}],
+ 							             	   parts:[{path: 'ContNo>ContPrice'},{path:'view>/currency'}],
  								               type: 'sap.ui.model.type.Currency',
 							            	   formatOptions: {showMeasure: false}
 								    		   }"/>

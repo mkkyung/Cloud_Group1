@@ -35,7 +35,7 @@
 				<l:VerticalLayout>
 					<Label text="계약구분 : " design="Bold" labelFor="InputNoEdit" />				
 			        <Input
-			        		value="{MainData>/MainData/0/AName}"
+			        		value="{list>/list/0/EstType1}"
 			            	id="B"
 			 	            class="sapUiSmallMarginBottom"
 							enabled="false"
@@ -53,7 +53,7 @@
                                        strictParsing: true
                                        }
                                     }"
-                                 class="sapUiSmallMarginBottom" valueFormat="yyyyMMdd" change="handleChange"/>
+                                 class="sapUiSmallMarginBottom" valueFormat="yyyy-MM-dd" change="handleChange"/>
 				</l:VerticalLayout>
 				<l:VerticalLayout>
 					<Label text="종료일자 : " design="Bold" />
@@ -66,37 +66,30 @@
                                        strictParsing: true
                                        }
                                     }"
-                                 class="sapUiSmallMarginBottom" valueFormat="yyyyMMdd" change="handleChange2"/>
+                                 class="sapUiSmallMarginBottom" valueFormat="yyyy-MM-dd" change="handleChange2"/>
 				</l:VerticalLayout>
 				<l:VerticalLayout>
 					<Label text="공급업체명 : " design="Bold"/>
-					<Input maxLength="15" enabled="false"/>
+					<Input value="{list>/list/0/EstVname}" maxLength="15" enabled="false"/>
 				</l:VerticalLayout>
 				<l:VerticalLayout>
 					<Label text="대표자명 : " design="Bold"/>
-					<Input value="asdfsdf" maxLength="10" enabled="false"/>
+
+					<Input value="{list>/list/0/EstCeo}" enabled="false"/>
 				</l:VerticalLayout>
 			</l:Grid>
 			<l:Grid defaultSpan="L2" class="white">
 				<l:VerticalLayout>
 					<Label text="사업자등록번호 : " design="Bold" />
-					<Input maxLength="10" enabled="false"/>
+					<Input value="{list>/list/0/EstVno}" maxLength="10" enabled="false"/>
 				</l:VerticalLayout>
 				<l:VerticalLayout width="100%">
 					<Label text="주소 : " design="Bold" />
-					<Input maxLength="30" enabled="false"/>
-				</l:VerticalLayout>
-				<l:VerticalLayout>
-					<Label text="전화번호 : " design="Bold" />
-					<Input enabled="false"/>
-				</l:VerticalLayout>
-				<l:VerticalLayout>
-					<Label text="팩스 : " design="Bold" />
-					<Input enabled="false"/>
+					<Input value="{list>/list/0/EstAddr}" maxLength="30" enabled="false"/>
 				</l:VerticalLayout>
 				<l:VerticalLayout>
 					<Label text="이메일 : " design="Bold" />
-					<Input enabled="false"/>
+					<Input value="{list>/list/0/EstEmail}" enabled="false"/>
 				</l:VerticalLayout>
 
 			</l:Grid>
@@ -130,12 +123,6 @@
 					<Column minScreenWidth="Tablet" demandPopin="true">
 						<Text text="총합계" />
 					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
-						<Text text="계약일자" />
-					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
-						<Text text="종료일자" />
-					</Column>
 
 				</columns>
 
@@ -151,10 +138,18 @@
 							<Text text="{list>EstCat2}" />
 							<Text text="{list>EstPname}" />
 							<Text text="{list>EstAmt}" />
-							<Text text="{list>EstPrice}" />
-							<Text text="{list>EstTotal}" />
-							<Text text="" />
-							<Text text="" />
+											<ObjectNumber
+										number="{
+												parts:[{path: 'list>EstPrice'},{path:'view>/currency'}],
+												type: 'sap.ui.model.type.Currency',
+												formatOptions: {showMeasure: false}
+												}"/>
+											<ObjectNumber
+										number="{
+												parts:[{path: 'list>EstTotal'},{path:'view>/currency'}],
+												type: 'sap.ui.model.type.Currency',
+												formatOptions: {showMeasure: false}
+												}"/>
 						</cells>
 
 					</ColumnListItem>
