@@ -74,6 +74,7 @@
 				</l:VerticalLayout>
 				<l:VerticalLayout>
 					<Label text="대표자명 : " design="Bold"/>
+
 					<Input value="{list>/list/0/EstCeo}" enabled="false"/>
 				</l:VerticalLayout>
 			</l:Grid>

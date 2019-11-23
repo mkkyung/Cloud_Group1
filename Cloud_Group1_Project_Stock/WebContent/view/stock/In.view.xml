@@ -129,7 +129,7 @@
 						<Column
 								minScreenWidth="Tablet"
 								demandPopin="true">
-							<Text text="발주상태"/>
+							<Text text="분출수량"/>
 						</Column>
 						<Column
 								minScreenWidth="Tablet"
@@ -159,7 +159,7 @@
 <!-- 										title="{Po>PoPodate}" -->
 <!-- 										text="{Po>PoEdate}"/> -->
 <!-- 								<Text text="{view>Zsect}"/> -->
-								<Text text="{Po>PoLight}"/><!--입고상태  -->
+								<Text text="{Po>OutTotal}"/> 
 
 								<Button icon="sap-icon://add-coursebook" visible="{Po>PoVisible}" press="onApproveDialog" ariaLabelledBy="actionButtonLabel"/>
 

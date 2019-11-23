@@ -39,7 +39,7 @@ sap.ui.define([
 		            "InEdate" :obj[25].substr(1),
 		            "InTotal" : parseInt(obj[31]),
 		            "InPic" : obj[27].substr(2),
-		            "InIcon" : obj[28],//*
+		            "InIcon" : '입고완료',//*
 		            "InStock" : obj[30],
 		            "InPono" : arrPo.PoNo,
 		            "InPodate" : obj[26],
@@ -78,11 +78,11 @@ sap.ui.define([
 			var InPic = ['A1','A2',"B1","B2","C1"];
 			var Indate= new Date();
 			var InIcon = ['입고완료', '입고대기']; var InIconNum;
-			if(oContext.oModel.oData.data[a].PoAmt <= oContext.oModel.oData.data[a].InAmt){
-				InIconNum = 0;
-			}else{
+//			if(oContext.oModel.oData.data[a].PoAmt <= oContext.oModel.oData.data[a].InAmt){
+//				InIconNum = 0;
+//			}else{
 				InIconNum = 1;
-			};
+//			};
 //			var gd = this.getData();
 //			oEvent=this.getData();
 			var dialog = new sap.m.Dialog({
@@ -136,7 +136,7 @@ sap.ui.define([
 				beginButton: new sap.m.Button({
 					text: '입고등록',
 					press: function (sAction) {
-						sap.m.MessageToast.show('Submit pressed!');
+						sap.m.MessageToast.show('입고등록이 완료되었습니다.');
 //						dialog._$content.context.textContent.split(" ")
 						if(sAction.oSource.mProperties.text="입고등록"){
 							saveEvent(dialog._$content.context.textContent.split(" "),oContext.oModel.oData.data[a]);
@@ -189,7 +189,7 @@ sap.ui.define([
 								new Text({ text: '\n공급업체명 : ' }),
 								new Text({ text: '공급업체코드 : ' }),
 								new Text({ text: '\n발주수량 : ' }),
-								new Text({ text: '발주상태 : ' }),
+								new Text({ text: '분출수량 : ' }),
 								new Text({ text: '입고수량 : ' }),
 //								new Text({ text: '발주상태 : ' }),
 								new Text({ text: '가용수량 : ' }),
@@ -334,7 +334,9 @@ sap.ui.define([
 	        	 check2 = false;
 	        	 dataPo[i].PoVisible = true;
 	        	 dataPo[i].PoNowAmt = dataPo[i].PoTotal;
-	        	 
+	        	 dataPo[i].OutTotal = 0;
+	        	 dataPo[i].InAmt = 0;
+	        	 dataPo[i].Inavail = 0;
 //	        	 if(dataPo[i].PoVisible = false;)
 	        	 for(j=0;j<dataIn.length;j++)
 	        	 {//입고
@@ -357,16 +359,16 @@ sap.ui.define([
 		        			 check2 = true; 
 		        		 }
 		        		 
-		        		 dataPo[i].InAmt += dataIn[j].InTotal;
+		        		 
 		        		 
 		        		 if(typeof dataPo[i].Inavail != 'number'){
 		        			 dataPo[i].Inavail = 0;
 		        		 }
 		        		 
 		        		 dataPo[i].Inavail += dataPo[i].PoTotal;
-		        		 
+		        		 dataPo[i].InAmt += dataPo[i].PoTotal;
 		        		 if( dataIn[j].InIcon == '입고완료'){//안되는 상황 있을거 같음...
-		        			 dataPo[i].PoNowAmt = '';
+		        			 dataPo[i].PoNowAmt = '0';
 		        			 dataPo[i].PoVisible = false;
 
 		        		 }
@@ -381,8 +383,15 @@ sap.ui.define([
 		        		 
 		        		 for(x=0;x<dataOut.length;x++)
 			        	 {//분출
+		        			
 			        		 if( dataPo[i].PoCat3No == dataOut[x].OutCat3){//분출개수 -
 			        			 dataPo[i].Inavail -= dataOut[x].OutTotal;
+//			        			 if(dataOut[x].OutTotal){
+			        				 dataPo[i].OutTotal = dataOut[x].OutTotal;
+//			        			 }else{
+//			        				 dataPo[i].OutTatal = '0';
+//			        			 }
+			        			 
 			        		 }
 			        	 }//분출for
 		        		 
