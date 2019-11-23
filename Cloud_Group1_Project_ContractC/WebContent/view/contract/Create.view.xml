@@ -74,7 +74,7 @@
 				</l:VerticalLayout>
 				<l:VerticalLayout>
 					<Label text="대표자명 : " design="Bold"/>
-					<Input value="asdfsdf" maxLength="10" enabled="false"/>
+					<Input value="" maxLength="10" enabled="false"/>
 				</l:VerticalLayout>
 			</l:Grid>
 			<l:Grid defaultSpan="L2" class="white">
