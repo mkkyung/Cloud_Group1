@@ -10,9 +10,9 @@
 		<Page title="계약등록" showNavButton="true"
 			navButtonPress="goBack">
 			<headerContent text="view3">
-				<Button text="next" id="button" type="Reject" press=".onShow" />
+<!-- 				<Button text="next" id="button" type="Reject" press=".onShow" /> -->
 				<Button id="save" icon="sap-icon://save" type="Accept"
-               press="save" />
+               press="onPress" />
 			</headerContent>
 			<l:Grid defaultSpan="L12" class="white">
 				<l:VerticalLayout />

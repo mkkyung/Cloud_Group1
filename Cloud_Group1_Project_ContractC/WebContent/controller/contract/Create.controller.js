@@ -5,8 +5,9 @@ sap.ui.define([
 	"sap/ui/model/json/JSONModel",
 	'sap/ui/core/Fragment',
 	'sap/ui/model/Filter',
-	'sap/m/MessageToast'
-], function(Controller, History, UIComponent, JSONModel, Fragment, Filter, MessageToast) {
+	'sap/m/MessageToast',
+	'sap/m/MessageBox'
+], function(Controller, History, UIComponent, JSONModel, Fragment, Filter, MessageToast, MessageBox) {
 	"use strict";
 
 	return Controller.extend("Cloud_Group1_ProjectCloud_Group1_Project.controller.contract.Create", {
@@ -261,21 +262,29 @@ sap.ui.define([
 		
 		},
 
-//		handleValueHelpClose : function() {
-//			var oModel = this.getView().getModel("estlist"),
-//				aProducts = oModel.getProperty("/estlist"),
-//				oInput = this.byId("productInput");
-//
-//			var bHasSelected = aProducts.some(function(oProduct) {
-//				if (oProduct.selected) {
-//					oInput.setValue(oProduct.Name);
-//					return true;
-//				}
-//			});
-//
-//			if (!bHasSelected) {
-//				oInput.setValue(null);
-//			}
-//		}
+		onPress : function (oEvent) {	//발주서 눌렀을 때 
+//			var oItem = oEvent.getSource();
+			var oRouter = UIComponent.getRouterFor(this);
+//			var routerData = oItem.mAggregations.cells[1].mProperties.text;
+//			var test = this.save();
+
+			var bCompact = !!this.getView().$().closest(".sapUiSizeCompact").length;
+			MessageBox.warning(
+					"계약서를 등록하시겠습니까?\n"  + "한번 계약서 등록 시 변경이 불가능합니다.",
+					{
+						icon: MessageBox.Icon.WARNING,
+						title: "계약서 등록",
+						actions: [sap.m.MessageBox.Action.OK, sap.m.MessageBox.Action.CANCEL],
+						styleClass: bCompact ? "sapUiSizeCompact" : "",
+						initialFocus: MessageBox.Action.CANCEL,
+						onClose: function(oAction){
+							if(oAction == 'OK'){
+//								this.test;
+							}
+						}
+					}
+			);
+		},
+		
 	});
 });
