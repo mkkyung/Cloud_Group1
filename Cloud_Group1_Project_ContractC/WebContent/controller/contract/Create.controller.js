@@ -29,9 +29,10 @@ sap.ui.define([
 		},
 		
 		getest : function() {
+			var pava = "O";
 			var sServiceUrl = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000"
 					+ "/sap/opu/odata/sap/Z_CLOUD_ESTIMATE_SRV";
-			var url = "/getestiSet";
+			var url = "/getestiSet?$filter=PAva eq '" + pava + "'";
    			var oDataModel= new sap.ui.model.odata.ODataModel(sServiceUrl,true);
    			var estlist;
    			oDataModel.read(url, null, null, false, function(oData) {
@@ -148,6 +149,116 @@ sap.ui.define([
 			});
 			var oModel = new sap.ui.model.json.JSONModel({ "list" : list });
 			this.getView().setModel(oModel , "list");
+		},
+		
+		save: function () {
+			var last = "";
+			var abc  = "";
+			var leg  = "";
+			var abcd = "";
+			var len  = "";
+			
+			var i;
+			var end = this.getView().getModel("list").oData;
+			var leg = this.getView().getModel("list").oData["list"].length - 1;
+			
+			var date1 = this.getView().byId("ContSdate").getValue();
+			var date2 = this.getView().byId("ContDdate").getValue();
+			last = end.list[leg].EstNo;
+			abc = last.substr(7); // PO000001 자르기
+			
+			abcd = parseInt(abc) + 1; // int로 변환
+			len = abc.length - abcd.toString().length; for(i=0;i<len;i++)
+			{
+				abcd = "0" + abcd ;
+			};
+		
+			var cont2model = this.getView().getModel("list").oData;
+			var length = this.getView().getModel("list").oData["list"].length;
+		      var EstIndex = "",
+		      cosdate = "",
+		      coedate = "",
+		      EstType1 = "",
+		      EstPname = "",
+		      EstCat1 = "",
+		      EstCat2 = "",
+		      EstCat3 = "",
+		      EstVname = "",
+		      EstVcode = "",
+		      EstAmt = "",
+		      EstPrice = "",
+		      EstTotal = "",
+		      EstTprice = "",
+		      EstAddr = "",
+		      EstVno = "",
+		      EstEmail = "",
+		      EstEtc = "",
+		      EstCuky = "";
+		      var iii = "0";
+	      
+		      for (iii = 0 ; iii < length ; iii++){
+		      cosdate = date1,
+		      coedate = date2,
+		      EstIndex = cont2model.list[iii].EstIndex,
+		      EstType1 = cont2model.list[iii].EstType1,
+		      EstPname = cont2model.list[iii].EstPname,
+		      EstCat1 = cont2model.list[iii].EstCat1,
+		      EstCat2 = cont2model.list[iii].EstCat2,
+		      EstCat3 = cont2model.list[iii].EstCat3,
+		      EstVname = cont2model.list[iii].EstVname,
+		      EstVcode = cont2model.list[iii].EstVcode,
+		      EstAmt = cont2model.list[iii].EstAmt,
+		      EstPrice = cont2model.list[iii].EstPrice,
+		      EstTotal = cont2model.list[iii].EstTotal,
+		      EstTprice = cont2model.list[iii].EstTprice,
+		      EstAddr = cont2model.list[iii].EstAddr,
+		      EstVno = cont2model.list[iii].EstVno,
+		      EstEmail = cont2model.list[iii].EstEmail,
+		      EstEtc = cont2model.list[iii].EstEtc,
+		      EstCuky = cont2model.list[iii].EstCuky;
+		      
+		      var addr        = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000";
+		      addr          += "/sap/opu/odata/sap/Z_CLOUD_CONT_SRV/getCreate1Set";
+//		      
+		      var paramData =
+		      {
+		    		"ContNo" : abcd,
+		            "ContIndex" : EstIndex,
+		            "ContSdate" : cosdate,
+		            "ContEdate" : coedate,
+		            "ContType" : EstType1,
+		            "ContPname" : EstPname,
+		            "ContCat1" : EstCat1,
+		            "ContCat2" : EstCat2,
+		            "ContCat3" : EstCat3,
+		            "ContVname" : EstVname,
+		            "ContVcode" : EstVcode,
+		            "ContLamt" : "0",
+		            "ContAmt" : EstAmt,
+		            "ContEprice" : EstPrice,
+		            "ContTprice" : EstTotal,
+		            "ContPrice" : EstTprice,
+		            "ContAddr" : EstAddr,
+		            "ContVno" : EstVno,
+		            "ContEmail" : EstEmail,
+		            "ContEtc" : EstEtc,
+		            "ContCuky" : EstCuky,
+		      };
+		      
+		      $.ajax({
+		         type : "POST",
+		         url  : addr,
+		         data : JSON.stringify(paramData),
+		            contentType: "application/json" ,
+		              success: function(aa, bb, cc) {
+		                 console.log("13 " + cc);
+		              },
+		            error: function(aa, bb, cc) { 
+		               console.log("23 " + cc);
+		            }
+		      	});
+		      }
+		
 		},
 
 //		handleValueHelpClose : function() {
