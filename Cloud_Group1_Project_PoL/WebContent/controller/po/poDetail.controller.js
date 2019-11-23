@@ -90,18 +90,6 @@ sap.ui.define([
 		    this.callAjax("PUT", addr, updateData); // 리스트 갯수만큼 돌릴려면 for문 안에 있어야해요 ^^
 		}
 
-<<<<<<< HEAD
-		var addr        = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000/sap/opu/odata/sap/Z_CLOUD_PUOR_SRV/GETCREATESet";
-			addr          += "('" + PoNo + "')";
-	       var updateData = {
-					"PoAmt" : PoAmt
-	      };
-	      
-	      $.ajax({
-	         type : "PUT",
-	         url  : addr,
-	         data : JSON.stringify(updateData),
-=======
 //	      this.enter();
 	
 	},
@@ -110,7 +98,6 @@ sap.ui.define([
 	         type : type,
 	         url  : url,
 	         data : JSON.stringify(data),
->>>>>>> 0b2be57e5868641324bf6823d92958abca7e8aeb
 	            contentType: "application/json" ,
 	              success: function(aa, bb, cc) {
 	                 console.log("13 " + cc);
