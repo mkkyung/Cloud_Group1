@@ -19,7 +19,7 @@
 			</l:Grid>
 			<l:Grid defaultSpan="L2 M6 S6" class="white">
 				<l:VerticalLayout>
-					<Label text="견적서 조회 : " design="Bold" />
+					<Label text="견적서 조회  " design="Bold" />
 					<Input id="productInput" type="Text"
 						textFormatMode="KeyValue" placeholder="견적번호 입력"
 						showSuggestion="true" showValueHelp="true"
@@ -44,7 +44,7 @@
 				</l:VerticalLayout>
 				<l:VerticalLayout>
 					<Label text="계약일자 : " design="Bold" />
-                        <DatePicker id="H"
+                        <DatePicker id="ContSdate"
 									value="{
                                     path:'/dateValue', 
                                     type:'sap.ui.model.type.Date', 
@@ -57,7 +57,7 @@
 				</l:VerticalLayout>
 				<l:VerticalLayout>
 					<Label text="종료일자 : " design="Bold" />
-					<DatePicker id="I"
+					<DatePicker id="ContDdate"
 								value="{
                                        path:'/dateValue', 
                                        type:'sap.ui.model.type.Date', 
