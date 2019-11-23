@@ -40,11 +40,11 @@
 				</l:VerticalLayout>
 				<l:VerticalLayout>
 					<Label text="계약일자" design="Bold" />
-					<DatePicker id="ContSdate" value="{cont2>/cont2/0/ContSdate}" valueFormat="yyyyMMdd" displayFormat="yyyy-MM-dd"/>
+					<DatePicker id="ContSdate" value="{cont2>/cont2/0/ContSdate}" valueFormat="yyyy-MM-dd" displayFormat="yyyy-MM-dd"/>
 				</l:VerticalLayout>
 				<l:VerticalLayout>
 					<Label text="발주일자" design="Bold" />
-					<DatePicker id="ConDdate" valueFormat="yyyyMMdd" displayFormat="yyyy-MM-dd"/>
+					<DatePicker id="ConDdate" value="" valueFormat="yyyy-MM-dd" displayFormat="yyyy-MM-dd"/>
 				</l:VerticalLayout>
 <!-- 				<l:VerticalLayout> -->
 <!-- 					<Label text="발주 담당자" design="Bold" /> -->
