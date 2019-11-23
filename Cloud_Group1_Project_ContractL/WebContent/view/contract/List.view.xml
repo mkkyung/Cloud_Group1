@@ -6,7 +6,7 @@
 	xmlns:vm="sap.ui.comp.variants" xmlns:layout="sap.ui.layout"
 	displayBlock="true">
 	<App id="apps">
-		<Page title="view4 : 계약조회" showNavButton="true"
+		<Page title="계약 조회" showNavButton="true"
 			navButtonPress="goBack">
 			<headerContent>
 				<!-- <Button text="next" id="button" type="Reject" press=".onShow" /> -->
@@ -452,13 +452,13 @@
                      <Text text="{getData>ContAmt}" />
                      <ObjectNumber
 							number="{
-  									parts:[{path: 'getData>ContPrice'},{path:'view>/currency'}],
+  									parts:[{path: 'getData>ContEprice'},{path:'view>/currency'}],
   									type: 'sap.ui.model.type.Currency',  
   									formatOptions: {showMeasure: false} 
  									}"/> 
 					<ObjectNumber
 							number="{
-  									parts:[{path: 'getData>ContTprice'},{path:'view>/currency'}],
+  									parts:[{path: 'getData>ContPrice'},{path:'view>/currency'}],
  									type: 'sap.ui.model.type.Currency',
   									formatOptions: {showMeasure: false}
   									}"/>

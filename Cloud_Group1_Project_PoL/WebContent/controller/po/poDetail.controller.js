@@ -92,7 +92,8 @@ sap.ui.define([
 
 //	      this.enter();
 	
-	},
+		},
+	
 	callAjax : function(type, url, data) {
 		$.ajax({
 	         type : type,

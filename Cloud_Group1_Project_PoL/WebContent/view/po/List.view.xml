@@ -7,7 +7,7 @@
 	xmlns:fA="sap.ui.layout.form">
 
 	<App id="apps">
-		<Page title="발주 조회 화면" showNavButton="true"
+		<Page title="발주 조회 " showNavButton="true"
 			navButtonPress="goBack">
 			<IconTabBar id="idIconTabBar"
 				select="handleIconTabBarSelect"

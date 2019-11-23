@@ -44,6 +44,11 @@ sap.ui.define([
 		
 		onInit : function () {
 			this.getest();
+			
+			var oViewModel = new JSONModel({
+				currency: "KRW"
+			});
+			this.getView().setModel(oViewModel, "view");
 		},
 		
 		handleValueHelp : function (oEvent) {						  //Table Dialog
