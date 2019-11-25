@@ -12,7 +12,7 @@
 			<headerContent text="view3">
 <!-- 				<Button text="next" id="button" type="Reject" press=".onShow" /> -->
 				<Button id="save" icon="sap-icon://save" type="Accept"
-               press="onPress" />
+               press="save" />
 			</headerContent>
 			<l:Grid defaultSpan="L12" class="white">
 				<l:VerticalLayout />
