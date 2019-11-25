@@ -153,6 +153,9 @@ sap.ui.define([
 		},
 		
 		save: function () {
+			var date1 = this.getView().byId("ContSdate").getValue();
+			var date2 = this.getView().byId("ContDdate").getValue();
+			
 			var last = "";
 			var abc  = "";
 			var leg  = "";
@@ -163,17 +166,19 @@ sap.ui.define([
 			var end = this.getView().getModel("list").oData;
 			var leg = this.getView().getModel("list").oData["list"].length - 1;
 			
-			var date1 = this.getView().byId("ContSdate").getValue();
-			var date2 = this.getView().byId("ContDdate").getValue();
+			
 			last = end.list[leg].EstNo;
 			abc = last.substr(7); // PO000001 자르기
 			
 			abcd = parseInt(abc) + 1; // int로 변환
-			len = abc.length - abcd.toString().length; for(i=0;i<len;i++)
+			len = abc.length - abcd.toString().length;
+			for(i=0;i<len;i++)
 			{
 				abcd = "0" + abcd ;
 			};
-		
+			
+			abcd = "CONT0" + abcd ;
+			
 			var cont2model = this.getView().getModel("list").oData;
 			var length = this.getView().getModel("list").oData["list"].length;
 		      var EstIndex = "",
@@ -219,7 +224,7 @@ sap.ui.define([
 		      EstCuky = cont2model.list[iii].EstCuky;
 		      
 		      var addr        = "proxy/http/zenedus4ap1.zenconsulting.co.kr:50000";
-		      addr          += "/sap/opu/odata/sap/Z_CLOUD_CONT_SRV/getCreate1Set";
+		      addr          += "/sap/opu/odata/sap/Z_CLOUD_CONT_SRV_01/getCreate1Set";
 //		      
 		      var paramData =
 		      {
@@ -232,9 +237,10 @@ sap.ui.define([
 		            "ContCat1" : EstCat1,
 		            "ContCat2" : EstCat2,
 		            "ContCat3" : EstCat3,
+		            "ContLight" : "승인",
 		            "ContVname" : EstVname,
 		            "ContVcode" : EstVcode,
-		            "ContLamt" : "0",
+		            "ContLamt" : 0,
 		            "ContAmt" : EstAmt,
 		            "ContEprice" : EstPrice,
 		            "ContTprice" : EstTotal,
@@ -266,7 +272,7 @@ sap.ui.define([
 //			var oItem = oEvent.getSource();
 			var oRouter = UIComponent.getRouterFor(this);
 //			var routerData = oItem.mAggregations.cells[1].mProperties.text;
-//			var test = this.save();
+			var test = this.save();
 
 			var bCompact = !!this.getView().$().closest(".sapUiSizeCompact").length;
 			MessageBox.warning(
@@ -279,7 +285,7 @@ sap.ui.define([
 						initialFocus: MessageBox.Action.CANCEL,
 						onClose: function(oAction){
 							if(oAction == 'OK'){
-//								this.test;
+								this.test;
 							}
 						}
 					}
